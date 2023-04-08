@@ -1,0 +1,747 @@
+Introduction,Header,Name,Account,Alias,BaseCurrency,AccountType,AnalysisPeriod,PerformanceMeasure
+Introduction,Data,Enrico Saccheggiani,U9454063,,EUR,Individual,"May 10, 2022 to January 25, 2023 (Daily)",TWR
+Open Position Summary,MetaInfo,Analysis Period,"January 25, 2023"
+Open Position Summary,Header,Date,FinancialInstrument,Currency,Symbol,Description,Sector,Quantity,ClosePrice,Value,Cost Basis,UnrealizedP&L,FXRateToBase
+Open Position Summary,Data,01/25/2023,Options,USD,AAPL  230217C00140000,AAPL 17FEB23 140 C,Technology,-2,6.0277,-1205.54,-531.826851,-673.713149,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,AAPL  230217C00170000,AAPL 17FEB23 170 C,Technology,2,0.06,12,64.4663,-52.4663,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,AAPL  230217P00145000,AAPL 17FEB23 145 P,Technology,-2,6.4045,-1280.9,-1218.610882,-62.289118,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,AXP   230217C00190000,AXP 17FEB23 190 C,Financials,1,0.0322,3.22,10.78815,-7.56815,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,AXP   230421C00175000,AXP 21APR23 175 C,Financials,-2,2.325,-465,-339.111034,-125.888966,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,AXP   230421C00185000,AXP 21APR23 185 C,Financials,2,0.845,169,127.3563,41.6437,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,AXP   230421P00130000,AXP 21APR23 130 P,Financials,-2,1.46,-292,-412.40934,120.40934,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,CVX   230317C00195000,CVX 17MAR23 195 C,Energy,-2,1.295,-259,-391.109843,132.109843,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,CVX   230317C00220000,CVX 17MAR23 220 C,Energy,2,0.05,10,33.5563,-23.5563,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,CVX   230317P00160000,CVX 17MAR23 160 P,Energy,-2,1.67,-334,-378.630118,44.630118,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,DBC   240119P00016000,DBC 19JAN24 16 P,Basic Materials,-10,0.0966,-96.6,-245.560976,148.960976,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,JNJ   230317C00175000,JNJ 17MAR23 175 C,Healthcare,-2,1.335,-267,-350.61076,83.61076,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,JNJ   230317C00190000,JNJ 17MAR23 190 C,Healthcare,2,0.055,11,62.5763,-51.5763,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,JNJ   230317P00165000,JNJ 17MAR23 165 P,Healthcare,-2,2.175,-435,-251.453049,-183.546951,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,KO    230317P00060000,KO 17MAR23 60 P,Consumer Non-Cyc,-2,1.215,-243,-162.635064,-80.364936,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,MRK   230317C00105000,MRK 17MAR23 105 C,Healthcare,-1,5.8238,-582.38,-782.191479,199.811479,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,MRK   230317C00125000,MRK 17MAR23 125 C,Healthcare,1,0.0901,9.01,82.61815,-73.60815,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,MRK   230317P00115000,MRK 17MAR23 115 P,Healthcare,-1,7.3317,-733.17,-599.19567,-133.97433,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,MSFT  230421C00260000,MSFT 21APR23 260 C,Technology,-2,4.65,-930,-831.099767,-98.900233,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,MSFT  230421C00275000,MSFT 21APR23 275 C,Technology,2,1.745,349,323.0763,25.9237,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,MSFT  230421P00215000,MSFT 21APR23 215 P,Technology,-2,3.475,-695,-658.623706,-36.376294,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,OXY   230519P00052500,OXY 19MAY23 52.5 P,Energy,-1,1.54,-154,-129.206433,-24.793567,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,SPY   230317P00350000,SPY 17MAR23 350 P,Broad,4,1.215,486,618.7526,-132.7526,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,TSM   230421P00075000,TSM 21APR23 75 P,Technology,-2,0.875,-175,-220.633736,45.633736,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,TXN   230317C00195000,TXN 17MAR23 195 C,Technology,-1,0.8,-80,-213.204509,133.204509,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,TXN   230317C00200000,TXN 17MAR23 200 C,Technology,-1,0.395,-39.5,-162.205677,122.705677,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,TXN   230317C00210000,TXN 17MAR23 210 C,Technology,2,0.08,16,117.5763,-101.5763,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,TXN   230317P00155000,TXN 17MAR23 155 P,Technology,-1,1.42,-142,-247.203731,105.203731,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,TXN   230317P00160000,TXN 17MAR23 160 P,Technology,-1,2.215,-221.5,-268.953227,47.453227,0.91614
+Open Position Summary,Data,01/25/2023,Options,USD,USB   230217P00035000,USB 17FEB23 35 P,Financials,-1,0.0169,-1.69,-19.709212,18.019212,0.91614
+Open Position Summary,Data,Total,Options,USD,,,,,,-7567.05,-6973.418364,-593.631636
+Open Position Summary,Data,Total,Options,EUR,,,,,,-6932.477187,-6388.627499995,-543.849687005
+Open Position Summary,Data,01/25/2023,Cash,EUR,EUR,Euro,Cash,21424.95306,1,21424.95306, , ,1
+Open Position Summary,Data,01/25/2023,Cash,USD,USD,United States Dollar,Cash,36628.313543,0.91614,33556.663169284, , ,0.91614
+Open Position Summary,Data,Total,Cash,EUR,,,,,,54981.616229284, , 
+Trade Summary,MetaInfo,Analysis Period,"May 10, 2022 - January 25, 2023"
+Trade Summary,Header,Financial Instrument,Currency,Symbol,Description,Sector,Quantity Bought,Average Price Bought,Proceeds Bought,Proceeds Bought in Base,Quantity Sold,Average Price Sold,Proceeds Sold,Proceeds Sold in Base
+Trade Summary,Data,Forex,United States Dollar,EUR.USD,EUR.USD,Cash,9747,1.025852724,-9998.9865,-9791.0032563,-43320,1.035755448,44868.926,43405.47939584
+Trade Summary,Data,Options,United States Dollar,AAPL  220617P00120000,AAPL 17JUN22 120 P,Technology,1,0.08,-8,-7.58248,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,AAPL  220617P00127000,AAPL 17JUN22 127 P,Technology,2,0.25,-50,-47.40547,-2,0.555,111,105.20691
+Trade Summary,Data,Options,United States Dollar,AAPL  220617P00131000,AAPL 17JUN22 131 P,Technology,1,0.34,-34,-31.76212,-1,0.24,24,22.42032
+Trade Summary,Data,Options,United States Dollar,AAPL  220617P00132000,AAPL 17JUN22 132.0 P,Technology,1,0.28,-28,-26.15704,-1,1.26,126,119.8008
+Trade Summary,Data,Options,United States Dollar,AAPL  220617P00138000,AAPL 17JUN22 138 P,Technology,1,0.69,-69,-64.45842,-1,0.93,93,86.87874
+Trade Summary,Data,Options,United States Dollar,AAPL  220617P00141000,AAPL 17JUN22 141.0 P,Technology,1,0.77,-77,-71.84947,-1,1.1,110,102.7598
+Trade Summary,Data,Options,United States Dollar,AAPL  220617P00142000,AAPL 17JUN22 142.0 P,Technology,1,5.39,-539,-512.4812,-1,0.93,93,86.77923
+Trade Summary,Data,Options,United States Dollar,AAPL  220624C00141000,AAPL 24JUN22 141 C,Technology,1,0.12,-12,-11.40348,-1,0.39,39,37.02582
+Trade Summary,Data,Options,United States Dollar,AAPL  220624C00146000,AAPL 24JUN22 146 C,Technology,1,0.04,-4,-3.79752,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,AAPL  220624P00120000,AAPL 24JUN22 120.0 P,Technology,1,0.29,-29,-27.6312,-1,0.28,28,26.6784
+Trade Summary,Data,Options,United States Dollar,AAPL  220624P00125000,AAPL 24JUN22 125 P,Technology,1,0.72,-72,-68.6016,-1,0.8,80,76.224
+Trade Summary,Data,Options,United States Dollar,AAPL  220624P00126000,AAPL 24JUN22 126 P,Technology,1,0.21,-21,-19.93698,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,AAPL  220624P00130000,AAPL 24JUN22 130.0 P,Technology,1,0.07,-7,-6.65203,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,AAPL  220624P00131000,AAPL 24JUN22 131 P,Technology,1,0.08,-8,-7.60232,-1,0.71,71,67.40598
+Trade Summary,Data,Options,United States Dollar,AAPL  220624P00135000,AAPL 24JUN22 135.0 P,Technology,2,0,0,0,-2,0.455,91,86.47639
+Trade Summary,Data,Options,United States Dollar,AAPL  220708C00145000,AAPL 08JUL22 145 C,Technology,2,1.99,-398,-391.7116,-2,0.24,48,46.7616
+Trade Summary,Data,Options,United States Dollar,AAPL  220708C00148000,AAPL 08JUL22 148 C,Technology,2,0.06,-12,-11.6904,-2,0.45,90,88.578
+Trade Summary,Data,Options,United States Dollar,AAPL  220708P00131000,AAPL 08JUL22 131 P,Technology,1,0.14,-14,-13.6388,-1,0.01,1,0.9842
+Trade Summary,Data,Options,United States Dollar,AAPL  220708P00135000,AAPL 08JUL22 135 P,Technology,1,0.03,-3,-2.9526,-1,0.4,40,38.968
+Trade Summary,Data,Options,United States Dollar,AAPL  220708P00140000,AAPL 08JUL22 140 P,Technology,4,0.1075,-43,-42.3206,-4,0,0,0
+Trade Summary,Data,Options,United States Dollar,AAPL  220708P00143000,AAPL 08JUL22 143 P,Technology,4,0,0,0,-4,0.37,148,145.6616
+Trade Summary,Data,Options,United States Dollar,AAPL  220715C00145000,AAPL 15JUL22 145 C,Technology,1,0.71,-71,-67.72619,-1,1.58,158,150.14582
+Trade Summary,Data,Options,United States Dollar,AAPL  220715C00147000,AAPL 15JUL22 147 C,Technology,1,2.12,-212,-211.57176,-1,0.49,49,48.90102
+Trade Summary,Data,Options,United States Dollar,AAPL  220715C00149000,AAPL 15JUL22 149 C,Technology,3,0.176666667,-53,-52.89294,-3,0.716666667,215,214.14162
+Trade Summary,Data,Options,United States Dollar,AAPL  220715C00150000,AAPL 15JUL22 150 C,Technology,2,0.315,-63,-62.63838,-2,1.14,228,224.3976
+Trade Summary,Data,Options,United States Dollar,AAPL  220715C00155000,AAPL 15JUL22 155 C,Technology,3,0.23,-69,-67.12987,-3,0.05,15,14.48471
+Trade Summary,Data,Options,United States Dollar,AAPL  220715P00132000,AAPL 15JUL22 132 P,Technology,4,0.135,-54,-53.78292,-4,0,0,0
+Trade Summary,Data,Options,United States Dollar,AAPL  220715P00137000,AAPL 15JUL22 137 P,Technology,4,0.15,-60,-59.7792,-4,0.4525,181,180.27238
+Trade Summary,Data,Options,United States Dollar,AAPL  220715P00141000,AAPL 15JUL22 141 P,Technology,4,0.37,-148,-147.45536,-4,0.42,168,167.38176
+Trade Summary,Data,Options,United States Dollar,AAPL  220715P00143000,AAPL 15JUL22 143 P,Technology,4,0.27,-108,-107.78184,-4,0.64,256,255.05792
+Trade Summary,Data,Options,United States Dollar,AAPL  220715P00145000,AAPL 15JUL22 145 P,Technology,4,0.39,-156,-155.68488,-4,0.7,280,279.4344
+Trade Summary,Data,Options,United States Dollar,AAPL  220722C00150000,AAPL 22JUL22 150 C,Technology,1,1.98,-198,-196.27542,-1,2.32,232,231.53136
+Trade Summary,Data,Options,United States Dollar,AAPL  220722C00157500,AAPL 22JUL22 157.5 C,Technology,1,0.31,-31,-30.93738,-1,0.17,17,16.85193
+Trade Summary,Data,Options,United States Dollar,AAPL  220722P00138000,AAPL 22JUL22 138 P,Technology,4,0.51,-204,-203.58792,-4,0.23,92,91.19868
+Trade Summary,Data,Options,United States Dollar,AAPL  220722P00140000,AAPL 22JUL22 140 P,Technology,7,0.28,-196,-193.80108,-7,0.048571429,34,33.48092
+Trade Summary,Data,Options,United States Dollar,AAPL  220722P00142000,AAPL 22JUL22 142 P,Technology,4,0.6,-240,-237.9096,-4,1.03,412,411.16776
+Trade Summary,Data,Options,United States Dollar,AAPL  220722P00144000,AAPL 22JUL22 144 P,Technology,4,0.73,-292,-289.45668,-4,0.97,388,384.62052
+Trade Summary,Data,Options,United States Dollar,AAPL  220722P00145000,AAPL 22JUL22 145 P,Technology,2,0.09,-18,-17.6778,-2,0.6,120,117.3564
+Trade Summary,Data,Options,United States Dollar,AAPL  220722P00146000,AAPL 22JUL22 146 P,Technology,4,0.6,-240,-236.5992,-4,1.14,456,452.02824
+Trade Summary,Data,Options,United States Dollar,AAPL  220722P00147000,AAPL 22JUL22 147 P,Technology,9,0.153333333,-138,-135.40749,-9,0.272222222,245,241.42923
+Trade Summary,Data,Options,United States Dollar,AAPL  220722P00150000,AAPL 22JUL22 150 P,Technology,6,0.09,-54,-52.78878,-6,0.465,279,273.51666
+Trade Summary,Data,Options,United States Dollar,AAPL  220729P00141000,AAPL 29JUL22 141 P,Technology,5,0.64,-320,-313.2864,-5,0.29,145,142.16815
+Trade Summary,Data,Options,United States Dollar,AAPL  220729P00142000,AAPL 29JUL22 142 P,Technology,1,0.57,-57,-55.80414,-1,0.35,35,34.31645
+Trade Summary,Data,Options,United States Dollar,AAPL  220729P00144000,AAPL 29JUL22 144 P,Technology,6,0.55,-330,-323.5551,-6,0.905,543,531.60786
+Trade Summary,Data,Options,United States Dollar,AAPL  220729P00146000,AAPL 29JUL22 146 P,Technology,12,0.624166667,-749,-734.38655,-12,0,0,0
+Trade Summary,Data,Options,United States Dollar,AAPL  220729P00148000,AAPL 29JUL22 148 P,Technology,12,0.01,-12,-11.73456,-12,0.911666667,1094,1072.65574
+Trade Summary,Data,Options,United States Dollar,AAPL  220805P00155000,AAPL 05AUG22 155 P,Technology,20,0.4,-800,-782.5223,-20,0,0,0
+Trade Summary,Data,Options,United States Dollar,AAPL  220805P00157500,AAPL 05AUG22 157.5 P,Technology,20,0,0,0,-20,0.655,1310,1281.35036
+Trade Summary,Data,Options,United States Dollar,AAPL  220819C00150000,AAPL 19AUG22 150 C,Technology,2,15.305,-3061,-2987.19929,-2,3.555,711,693.24955
+Trade Summary,Data,Options,United States Dollar,AAPL  220819C00155000,AAPL 19AUG22 155 C,Technology,2,10.7,-2140,-2101.7796,-2,3.5,700,693.903
+Trade Summary,Data,Options,United States Dollar,AAPL  220819C00160000,AAPL 19AUG22 160 C,Technology,2,1.225,-245,-238.82544,-2,1.52,304,302.25504
+Trade Summary,Data,Options,United States Dollar,AAPL  220819C00165000,AAPL 19AUG22 165 C,Technology,4,0.875,-350,-347.42076,-4,3.39,1356,1327.28184
+Trade Summary,Data,Options,United States Dollar,AAPL  220819P00105000,AAPL 19AUG22 105 P,Technology,2,0.74,-148,-141.8486,-2,0.45,90,88.3872
+Trade Summary,Data,Options,United States Dollar,AAPL  220819P00110000,AAPL 19AUG22 110 P,Technology,2,0.77,-154,-148.04456,-2,0.79,158,152.55754
+Trade Summary,Data,Options,United States Dollar,AAPL  220819P00115000,AAPL 19AUG22 115 P,Technology,8,0.655,-524,-517.89168,-8,0.4,320,318.17856
+Trade Summary,Data,Options,United States Dollar,AAPL  220819P00120000,AAPL 19AUG22 120 P,Technology,2,1.48,-296,-290.69568,-2,1.87,374,355.95325
+Trade Summary,Data,Options,United States Dollar,AAPL  220819P00125000,AAPL 19AUG22 125 P,Technology,7,0.845714286,-592,-585.21772,-7,0.345714286,242,237.56256
+Trade Summary,Data,Options,United States Dollar,AAPL  220819P00130000,AAPL 19AUG22 130 P,Technology,4,1.76,-704,-701.40928,-4,2.53,1012,994.74264
+Trade Summary,Data,Options,United States Dollar,AAPL  220819P00135000,AAPL 19AUG22 135 P,Technology,4,2.04,-816,-808.89264,-4,2.65,1060,1056.0992
+Trade Summary,Data,Options,United States Dollar,AAPL  220819P00140000,AAPL 19AUG22 140 P,Technology,6,1.84,-1104,-1084.2384,-6,2.87,1722,1704.43518
+Trade Summary,Data,Options,United States Dollar,AAPL  220819P00142000,AAPL 19AUG22 142 P,Technology,6,1.82,-1092,-1067.50644,-6,2.26,1356,1331.7276
+Trade Summary,Data,Options,United States Dollar,AAPL  220819P00145000,AAPL 19AUG22 145 P,Technology,8,1.775,-1420,-1392.33428,-8,1.8775,1502,1468.33494
+Trade Summary,Data,Options,United States Dollar,AAPL  220819P00147000,AAPL 19AUG22 147 P,Technology,8,0.57,-456,-445.91328,-8,2.175,1740,1706.09964
+Trade Summary,Data,Options,United States Dollar,AAPL  220819P00152500,AAPL 19AUG22 152.5 P,Technology,20,0.91,-1820,-1784.0432,-20,0.09,180,174.3822
+Trade Summary,Data,Options,United States Dollar,AAPL  220819P00155000,AAPL 19AUG22 155 P,Technology,20,0.19,-380,-368.9838,-20,1.245,2490,2440.8076
+Trade Summary,Data,Options,United States Dollar,AAPL  220819P00157500,AAPL 19AUG22 157.5 P,Technology,20,0.2,-400,-387.516,-20,0.29,580,563.1858
+Trade Summary,Data,Options,United States Dollar,AAPL  220819P00160000,AAPL 19AUG22 160 P,Technology,5,0.31,-155,-150.16245,-5,0.03,15,14.74725
+Trade Summary,Data,Options,United States Dollar,AAPL  220819P00162500,AAPL 19AUG22 162.5 P,Technology,5,0.39,-195,-190.08015,-5,0.51,255,247.04145
+Trade Summary,Data,Options,United States Dollar,AAPL  220819P00165000,AAPL 19AUG22 165 P,Technology,5,0.2,-100,-98.428,-5,0.7,350,341.1695
+Trade Summary,Data,Options,United States Dollar,AAPL  220819P00167500,AAPL 19AUG22 167.5 P,Technology,6,0.213333333,-128,-125.8432,-6,0.338333333,203,199.84436
+Trade Summary,Data,Options,United States Dollar,AAPL  220819P00170000,AAPL 19AUG22 170 P,Technology,5,0.22,-110,-108.0695,-5,0.54,270,265.4505
+Trade Summary,Data,Options,United States Dollar,AAPL  220819P00172500,AAPL 19AUG22 172.5 P,Technology,5,0.87,-435,-433.3122,-5,0.4,200,196.49
+Trade Summary,Data,Options,United States Dollar,AAPL  220826C00165000,AAPL 26AUG22 165 C,Technology,6,0,0,0,-6,0.471666667,283,284.0188
+Trade Summary,Data,Options,United States Dollar,AAPL  220826C00172500,AAPL 26AUG22 172.5 C,Technology,6,0.01,-6,-6.0216,-6,0.45,270,270.864
+Trade Summary,Data,Options,United States Dollar,AAPL  220826C00175000,AAPL 26AUG22 175 C,Technology,6,0.15,-90,-90.288,-6,0,0,0
+Trade Summary,Data,Options,United States Dollar,AAPL  220826P00160000,AAPL 26AUG22 160 P,Technology,6,0.19,-114,-114.3714,-6,0.01,6,6.0216
+Trade Summary,Data,Options,United States Dollar,AAPL  220826P00162500,AAPL 26AUG22 162.5 P,Technology,6,0.03,-18,-18.0648,-6,0.435,261,261.8508
+Trade Summary,Data,Options,United States Dollar,AAPL  220826P00165000,AAPL 26AUG22 165 P,Technology,6,1.34,-804,-806.8944,-6,0.07,42,42.1512
+Trade Summary,Data,Options,United States Dollar,AAPL  220826P00167500,AAPL 26AUG22 167.5 P,Technology,6,0.8,-480,-481.728,-6,0.37,222,222.7992
+Trade Summary,Data,Options,United States Dollar,AAPL  220902C00165000,AAPL 02SEP22 165 C,Technology,6,0.04,-24,-24.1296,-6,0.295,177,176.7345
+Trade Summary,Data,Options,United States Dollar,AAPL  220902C00167500,AAPL 02SEP22 167.5 C,Technology,12,0.11,-132,-131.73252,-12,0.165,198,198.0516
+Trade Summary,Data,Options,United States Dollar,AAPL  220902C00170000,AAPL 02SEP22 170 C,Technology,6,0.12,-72,-72.0072,-6,0.05,30,29.955
+Trade Summary,Data,Options,United States Dollar,AAPL  220909C00160000,AAPL 09SEP22 160 C,Technology,2,0.04,-8,-8.0008,-2,0.58,116,117.1136
+Trade Summary,Data,Options,United States Dollar,AAPL  220909C00165000,AAPL 09SEP22 165 C,Technology,2,0.11,-22,-22.2112,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,AAPL  220916C00160000,AAPL 16SEP22 160 C,Technology,7,0,0,0,-7,0.294285714,206,206.0206
+Trade Summary,Data,Options,United States Dollar,AAPL  220916C00162500,AAPL 16SEP22 162.5 C,Technology,7,0.137142857,-96,-96.0096,-7,0,0,0
+Trade Summary,Data,Options,United States Dollar,AAPL  220916P00155000,AAPL 16SEP22 155 P,Technology,2,0.31,-62,-61.25104,-2,2.08,416,416.0416
+Trade Summary,Data,Options,United States Dollar,AAPL  220916P00160000,AAPL 16SEP22 160 P,Technology,2,7.44,-1488,-1488.1488,-2,0.99,198,195.60816
+Trade Summary,Data,Options,United States Dollar,AAPL  220923C00160000,AAPL 23SEP22 160 C,Technology,7,0,0,0,-7,0.141428571,99,99.42928
+Trade Summary,Data,Options,United States Dollar,AAPL  220923C00165000,AAPL 23SEP22 165 C,Technology,7,0.034285714,-24,-24.13328,-7,0,0,0
+Trade Summary,Data,Options,United States Dollar,AAPL  220930C00157500,AAPL 30SEP22 157.5 C,Technology,4,0.04,-16,-16.3834,-4,0.23,92,95.6468
+Trade Summary,Data,Options,United States Dollar,AAPL  220930C00160000,AAPL 30SEP22 160 C,Technology,2,0.15,-30,-31.269,-2,0.51,102,106.1514
+Trade Summary,Data,Options,United States Dollar,AAPL  220930C00165000,AAPL 30SEP22 165 C,Technology,2,0.085,-17,-17.6919,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,AAPL  221021C00148000,AAPL 21OCT22 148 C,Technology,10,1.04,-1040,-1054.664,-10,0.27,270,276.156
+Trade Summary,Data,Options,United States Dollar,AAPL  221021C00152500,AAPL 21OCT22 152.5 C,Technology,10,0.11,-110,-112.508,-10,0.88,880,895.664
+Trade Summary,Data,Options,United States Dollar,AAPL  221021C00155000,AAPL 21OCT22 155 C,Technology,10,0.53,-530,-539.434,-10,1.005,1005,1025.301
+Trade Summary,Data,Options,United States Dollar,AAPL  221021C00160000,AAPL 21OCT22 160 C,Technology,10,0.44,-440,-448.888,-10,1.658,1658,1666.9566
+Trade Summary,Data,Options,United States Dollar,AAPL  221021C00165000,AAPL 21OCT22 165 C,Technology,5,1.23,-615,-614.0529,-5,1.8,900,900.09
+Trade Summary,Data,Options,United States Dollar,AAPL  221021C00170000,AAPL 21OCT22 170 C,Technology,10,0.57,-570,-572.4684,-10,0,0,0
+Trade Summary,Data,Options,United States Dollar,AAPL  221021C00175000,AAPL 21OCT22 175 C,Technology,5,0.46,-230,-230.023,-5,0.94,470,471.1908
+Trade Summary,Data,Options,United States Dollar,AAPL  221021C00180000,AAPL 21OCT22 180 C,Technology,5,0.482,-241,-241.6089,-5,0.24,120,120.012
+Trade Summary,Data,Options,United States Dollar,AAPL  221021P00145000,AAPL 21OCT22 145 P,Technology,7,1.978571429,-1385,-1376.4298,-7,6.96,4872,5020.596
+Trade Summary,Data,Options,United States Dollar,AAPL  221021P00155000,AAPL 21OCT22 155 P,Technology,5,2.544,-1272,-1267.06464,-5,3.25,1625,1605.37
+Trade Summary,Data,Options,United States Dollar,AAPL  221021P00160000,AAPL 21OCT22 160 P,Technology,7,14.992857143,-10495,-10815.0975,-7,5.162857143,3614,3607.476
+Trade Summary,Data,Options,United States Dollar,AAPL  221118C00160000,AAPL 18NOV22 160 C,Technology,12,1.21,-1452,-1472.4732,-12,1.4675,1761,1789.7005
+Trade Summary,Data,Options,United States Dollar,AAPL  221118C00175000,AAPL 18NOV22 175 C,Technology,10,0.23,-230,-233.243,-10,0.17,170,172.397
+Trade Summary,Data,Options,United States Dollar,AAPL  221118P00155000,AAPL 18NOV22 155 P,Technology,5,20.46,-10230,-10463.244,-5,17,8500,8759.25
+Trade Summary,Data,Options,United States Dollar,AAPL  221216C00155000,AAPL 16DEC22 155 C,Technology,2,0,0,0,-2,0.9,180,180.756
+Trade Summary,Data,Options,United States Dollar,AAPL  221216C00160000,AAPL 16DEC22 160 C,Technology,2,2.33,-466,-465.45603,-2,2.59,518,525.3038
+Trade Summary,Data,Options,United States Dollar,AAPL  221216C00165000,AAPL 16DEC22 165 C,Technology,10,2.27,-2270,-2251.3179,-10,1.59,1590,1612.419
+Trade Summary,Data,Options,United States Dollar,AAPL  221216C00170000,AAPL 16DEC22 170 C,Technology,6,0.55,-330,-335.678,-6,0.6,360,361.26
+Trade Summary,Data,Options,United States Dollar,AAPL  221216C00180000,AAPL 16DEC22 180 C,Technology,4,0.32,-128,-128.448,-4,0.22,88,89.6456
+Trade Summary,Data,Options,United States Dollar,AAPL  221216C00185000,AAPL 16DEC22 185 C,Technology,10,0.22,-220,-223.102,-10,0.25,250,247.9425
+Trade Summary,Data,Options,United States Dollar,AAPL  221216C00190000,AAPL 16DEC22 190 C,Technology,1,3.05,-305,-299.5527,-1,3.08,308,300.57412
+Trade Summary,Data,Options,United States Dollar,AAPL  221216C00195000,AAPL 16DEC22 195 C,Technology,1,2.2,-220,-214.6958,-1,2.15,215,211.1601
+Trade Summary,Data,Options,United States Dollar,AAPL  221216P00135000,AAPL 16DEC22 135 P,Technology,1,1.05,-105,-99.687,-1,1.3,130,125.4305
+Trade Summary,Data,Options,United States Dollar,AAPL  230120P00155000,AAPL 20JAN23 155 P,Technology,5,17.65,-8825,-9026.21,-5,21.5,10750,10995.1
+Trade Summary,Data,Options,United States Dollar,AAPL  230217C00140000,AAPL 17FEB23 140 C,Technology,0,0,0,0,-2,2.67,534,503.55114
+Trade Summary,Data,Options,United States Dollar,AAPL  230217C00155000,AAPL 17FEB23 155 C,Technology,2,0.69,-138,-129.70206,-2,2.24,448,421.58144
+Trade Summary,Data,Options,United States Dollar,AAPL  230217C00170000,AAPL 17FEB23 170 C,Technology,3,0.38,-114,-107.34722,-1,0.15,15,14.09805
+Trade Summary,Data,Options,United States Dollar,AAPL  230217P00125000,AAPL 17FEB23 125 P,Technology,4,1.925,-770,-726.3051,-4,2.31,924,869.29884
+Trade Summary,Data,Options,United States Dollar,AAPL  230217P00145000,AAPL 17FEB23 145 P,Technology,0,0,0,0,-2,6.1,1220,1122.1438
+Trade Summary,Data,Options,United States Dollar,AAPL  230915C00165000,AAPL 15SEP23 165 C,Technology,4,23.51,-9404,-9437.8544,-4,24.1,9640,9467.8296
+Trade Summary,Data,Options,United States Dollar,AAPL  230915C00170000,AAPL 15SEP23 170 C,Technology,4,9.45,-3780,-3895.29,-4,21.1,8440,8470.384
+Trade Summary,Data,Options,United States Dollar,AAPL  230915C00175000,AAPL 15SEP23 175 C,Technology,4,19.4,-7760,-7621.4064,-4,8.05,3220,3318.21
+Trade Summary,Data,Options,United States Dollar,AAPL  240621C00195000,AAPL 21JUN24 195 C,Technology,12,13.21,-15852,-15815.0694,-12,11.293333333,13552,13743.0832
+Trade Summary,Data,Options,United States Dollar,AAPL  240621C00215000,AAPL 21JUN24 215 C,Technology,12,7.333333333,-8800,-8924.08,-12,8.695,10434,10410.04428
+Trade Summary,Data,Options,United States Dollar,AAPL  240621P00110000,AAPL 21JUN24 110 P,Technology,1,8.66,-866,-858.45714,-1,10.93,1093,1039.2244
+Trade Summary,Data,Options,United States Dollar,AAPL  240621P00120000,AAPL 21JUN24 120 P,Technology,1,7.25,-725,-706.70825,-1,11.3,1130,1120.1577
+Trade Summary,Data,Options,United States Dollar,AAPL  240621P00130000,AAPL 21JUN24 130 P,Technology,8,13.9175,-11134,-11283.5974,-8,13.7175,10974,11168.83688
+Trade Summary,Data,Options,United States Dollar,AAPL  240621P00135000,AAPL 21JUN24 135 P,Technology,4,15.25,-6100,-6049.797,-4,14.99,5996,6072.1492
+Trade Summary,Data,Options,United States Dollar,AAPL  250117P00085000,AAPL 17JAN25 85 P,Technology,6,3.46,-2076,-1909.48404,-6,4.15,2490,2498.217
+Trade Summary,Data,Options,United States Dollar,AAPL  250117P00140000,AAPL 17JAN25 140 P,Technology,5,19.9,-9950,-10166.91,-5,21.22,10610,10851.908
+Trade Summary,Data,Options,United States Dollar,ABB   220916C00032000,ABB 16SEP22 32 C,Industrials,1,0,0,0,-1,0.29,29,28.52614
+Trade Summary,Data,Options,United States Dollar,ABB   220916C00034000,ABB 16SEP22 34 C,Industrials,1,0.09,-9,-8.85294,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,ABB   220916P00025000,ABB 16SEP22 25 P,Industrials,1,0.19,-19,-18.68954,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,ABB   220916P00027000,ABB 16SEP22 27 P,Industrials,1,0.16,-16,-15.97536,-1,0.29,29,28.52614
+Trade Summary,Data,Options,United States Dollar,ABBV  220916C00150000,ABBV 16SEP22 150 C,Healthcare,2,0.07,-14,-13.98964,-2,0.59,118,116.3861
+Trade Summary,Data,Options,United States Dollar,ABBV  220916C00155000,ABBV 16SEP22 155 C,Healthcare,2,0.23,-46,-45.35012,-2,0.03,6,5.99556
+Trade Summary,Data,Options,United States Dollar,ABBV  220916P00120000,ABBV 16SEP22 120 P,Healthcare,6,0.166666667,-100,-99.39316,-6,0.02,12,12.0012
+Trade Summary,Data,Options,United States Dollar,ABBV  220916P00125000,ABBV 16SEP22 125 P,Healthcare,6,0.08,-48,-48.0048,-6,0.273333333,164,162.947
+Trade Summary,Data,Options,United States Dollar,ABBV  221021C00144000,ABBV 21OCT22 144 C,Healthcare,2,1.87,-374,-379.2734,-2,0.53,106,108.4168
+Trade Summary,Data,Options,United States Dollar,ABBV  221021C00150000,ABBV 21OCT22 150 C,Healthcare,2,0.1,-20,-20.456,-2,0.735,147,146.89122
+Trade Summary,Data,Options,United States Dollar,ABBV  221021C00155000,ABBV 21OCT22 155 C,Healthcare,2,0.3,-60,-59.9556,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,ABBV  221021P00115000,ABBV 21OCT22 115 P,Healthcare,2,0.41,-82,-82.0082,-2,0.01,2,2.032
+Trade Summary,Data,Options,United States Dollar,ABBV  221021P00125000,ABBV 21OCT22 125 P,Healthcare,2,0.08,-16,-16.256,-2,0.97,194,194.0194
+Trade Summary,Data,Options,United States Dollar,ABBV  221118C00150000,ABBV 18NOV22 150 C,Healthcare,2,6.7,-1340,-1344.69,-2,2.84,568,576.0088
+Trade Summary,Data,Options,United States Dollar,ABBV  221118C00160000,ABBV 18NOV22 160 C,Healthcare,2,0.65,-130,-131.833,-2,1.73,346,347.211
+Trade Summary,Data,Options,United States Dollar,ABBV  221118P00120000,ABBV 18NOV22 120 P,Healthcare,2,0.18,-36,-36.4572,-2,0.52,104,105.664
+Trade Summary,Data,Options,United States Dollar,ABBV  221216P00125000,ABBV 16DEC22 125 P,Healthcare,2,0.56,-112,-111.07824,-2,0.86,172,174.1844
+Trade Summary,Data,Options,United States Dollar,ABBV  221216P00140000,ABBV 16DEC22 140 P,Healthcare,4,1.94,-776,-778.716,-4,2.0425,817,814.82733
+Trade Summary,Data,Options,United States Dollar,AMD   221021C00075000,AMD 21OCT22 75 C,Technology,4,0.07,-28,-28.854,-4,0.67,268,273.0652
+Trade Summary,Data,Options,United States Dollar,AMD   221021C00078000,AMD 21OCT22 78 C,Technology,4,0.39,-156,-158.9484,-4,0.84,336,350.2128
+Trade Summary,Data,Options,United States Dollar,AMD   221021C00090000,AMD 21OCT22 90 C,Technology,4,0.13,-52,-54.1996,-4,0.815,326,325.34756
+Trade Summary,Data,Options,United States Dollar,AMD   221021C00100000,AMD 21OCT22 100 C,Technology,1,0.23,-23,-22.96458,-1,1.02,102,101.53284
+Trade Summary,Data,Options,United States Dollar,AMD   221021C00105000,AMD 21OCT22 105 C,Technology,4,0.2225,-89,-88.6781,-4,0.01,4,4.122
+Trade Summary,Data,Options,United States Dollar,AMD   221021P00070000,AMD 21OCT22 70 P,Technology,1,1.16,-116,-115.46872,-1,6.8,680,692.852
+Trade Summary,Data,Options,United States Dollar,AMD   221021P00075000,AMD 21OCT22 75 P,Technology,1,10.7,-1070,-1090.223,-1,2.09,209,208.04278
+Trade Summary,Data,Options,United States Dollar,AMD   221216C00070000,AMD 16DEC22 70 C,Technology,4,1.02,-408,-418.4856,-4,1.5075,603,617.0499
+Trade Summary,Data,Options,United States Dollar,AMD   221216C00075000,AMD 16DEC22 75 C,Technology,4,0.87,-348,-356.1084,-4,1.21,484,498.762
+Trade Summary,Data,Options,United States Dollar,AMD   221216C00080000,AMD 16DEC22 80 C,Technology,4,0.71,-284,-292.662,-4,0.23,92,94.3644
+Trade Summary,Data,Options,United States Dollar,AMD   221216P00060000,AMD 16DEC22 60 P,Technology,1,4.85,-485,-494.1665,-1,4.76,476,477.5708
+Trade Summary,Data,Options,United States Dollar,AMD   221216P00070000,AMD 16DEC22 70 P,Technology,1,10.74,-1074,-1077.5442,-1,9.85,985,1003.6165
+Trade Summary,Data,Options,United States Dollar,AMD   230120P00060000,AMD 20JAN23 60 P,Technology,1,6.17,-617,-632.8569,-1,5.95,595,596.9635
+Trade Summary,Data,Options,United States Dollar,AMGN  221021C00245000,AMGN 21OCT22 245 C,Healthcare,2,8,-1600,-1645.76,-2,1.16,232,232.5508
+Trade Summary,Data,Options,United States Dollar,AMGN  221021C00260000,AMGN 21OCT22 260 C,Healthcare,1,0.3,-30,-30.057,-1,1.76,176,177.6896
+Trade Summary,Data,Options,United States Dollar,AMGN  221021C00265000,AMGN 21OCT22 265 C,Healthcare,2,0.605,-121,-122.0362,-2,0.3,60,61.716
+Trade Summary,Data,Options,United States Dollar,AMGN  221021P00225000,AMGN 21OCT22 225 P,Healthcare,1,2.06,-206,-207.9776,-1,0.09,9,9.2097
+Trade Summary,Data,Options,United States Dollar,AMGN  221021P00230000,AMGN 21OCT22 230 P,Healthcare,1,0.56,-56,-57.7136,-1,2.86,286,288.7456
+Trade Summary,Data,Options,United States Dollar,AMGN  221021P00235000,AMGN 21OCT22 235 P,Healthcare,1,0.18,-18,-18.2538,-1,1,100,103.06
+Trade Summary,Data,Options,United States Dollar,AMGN  221021P00242500,AMGN 21OCT22 242.5 P,Healthcare,1,0.47,-47,-48.0951,-1,0.48,48,48.6768
+Trade Summary,Data,Options,United States Dollar,AMGN  221118C00250000,AMGN 18NOV22 250 C,Healthcare,2,7.35,-1470,-1504.251,-2,9.205,1841,1893.6526
+Trade Summary,Data,Options,United States Dollar,AMGN  221118C00270000,AMGN 18NOV22 270 C,Healthcare,2,1.92,-384,-394.9824,-2,1.19,238,243.5454
+Trade Summary,Data,Options,United States Dollar,AMGN  221118P00210000,AMGN 18NOV22 210 P,Healthcare,2,0.61,-122,-124.6596,-2,0.67,134,137.1222
+Trade Summary,Data,Options,United States Dollar,AMGN  221216C00255000,AMGN 16DEC22 255 C,Healthcare,2,15.875,-3175,-3201.585,-2,7.1,1420,1453.086
+Trade Summary,Data,Options,United States Dollar,AMGN  221216C00280000,AMGN 16DEC22 280 C,Healthcare,2,1.22,-244,-249.6852,-2,4.255,851,858.7553
+Trade Summary,Data,Options,United States Dollar,AMGN  221216P00210000,AMGN 16DEC22 210 P,Healthcare,2,1.61,-322,-326.0894,-2,1.49,298,304.4964
+Trade Summary,Data,Options,United States Dollar,AMGN  221216P00245000,AMGN 16DEC22 245 P,Healthcare,2,4.23,-846,-844.57182,-2,4.865,973,980.9861
+Trade Summary,Data,Options,United States Dollar,AMGN  221216P00255000,AMGN 16DEC22 255 P,Healthcare,1,4.7,-470,-471.598,-1,6.2,620,614.8974
+Trade Summary,Data,Options,United States Dollar,AMGN  221216P00260000,AMGN 16DEC22 260 P,Healthcare,1,5.4,-540,-550.098,-1,5.84,584,585.9856
+Trade Summary,Data,Options,United States Dollar,AXP   221021C00150000,AXP 21OCT22 150 C,Financials,2,1.64,-328,-335.1504,-2,0.88,176,180.1008
+Trade Summary,Data,Options,United States Dollar,AXP   221021C00152500,AXP 21OCT22 152.5 C,Financials,2,0.48,-96,-98.2368,-2,1.34,268,275.236
+Trade Summary,Data,Options,United States Dollar,AXP   221021C00165000,AXP 21OCT22 165 C,Financials,2,0.26,-52,-53.404,-2,2.19,438,436.91376
+Trade Summary,Data,Options,United States Dollar,AXP   221021C00170000,AXP 21OCT22 170 C,Financials,2,1.18,-236,-235.41472,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,AXP   221118P00110000,AXP 18NOV22 110 P,Financials,2,0.46,-92,-94.0056,-2,1.3,260,265.928
+Trade Summary,Data,Options,United States Dollar,AXP   221216P00130000,AXP 16DEC22 130 P,Financials,2,0.38,-76,-73.7618,-2,0.555,111,108.38373
+Trade Summary,Data,Options,United States Dollar,AXP   230120C00165000,AXP 20JAN23 165 C,Financials,1,0.27,-27,-25.37649,-1,0.74,74,69.63622
+Trade Summary,Data,Options,United States Dollar,AXP   230120C00175000,AXP 20JAN23 175 C,Financials,3,1.17,-351,-351.09971,-3,1.74,522,528.08728
+Trade Summary,Data,Options,United States Dollar,AXP   230120C00190000,AXP 20JAN23 190 C,Financials,1,0.15,-15,-14.4249,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,AXP   230120C00195000,AXP 20JAN23 195 C,Financials,2,0.57,-114,-116.4852,-2,0.28,56,56.1848
+Trade Summary,Data,Options,United States Dollar,AXP   230120P00105000,AXP 20JAN23 105 P,Financials,3,0.31,-93,-90.80799,-3,1.12,336,341.75286
+Trade Summary,Data,Options,United States Dollar,AXP   230120P00135000,AXP 20JAN23 135 P,Financials,1,1.16,-116,-109.02492,-1,1.98,198,192.1689
+Trade Summary,Data,Options,United States Dollar,AXP   230217C00165000,AXP 17FEB23 165 C,Financials,1,1.23,-123,-112.68522,-1,1.74,174,163.53738
+Trade Summary,Data,Options,United States Dollar,AXP   230217C00190000,AXP 17FEB23 190 C,Financials,1,0.1,-10,-9.3987,0,0,0,0
+Trade Summary,Data,Options,United States Dollar,AXP   230217P00135000,AXP 17FEB23 135 P,Financials,1,1.06,-106,-97.679,-1,3.2,320,300.7584
+Trade Summary,Data,Options,United States Dollar,AXP   230421C00175000,AXP 21APR23 175 C,Financials,0,0,0,0,-2,1.7,340,311.4876
+Trade Summary,Data,Options,United States Dollar,AXP   230421C00185000,AXP 21APR23 185 C,Financials,2,0.63,-126,-115.43364,0,0,0,0
+Trade Summary,Data,Options,United States Dollar,AXP   230421P00130000,AXP 21APR23 130 P,Financials,0,0,0,0,-2,2.07,414,380.55764
+Trade Summary,Data,Options,United States Dollar,BAC   220617P00028000,BAC 17JUN22 28 P,Financials,1,0.07,-7,-6.52393,-1,0.02,2,1.86098
+Trade Summary,Data,Options,United States Dollar,BAC   220617P00032500,BAC 17JUN22 32.5 P,Financials,1,0.13,-13,-12.09637,-1,0.29,29,27.02771
+Trade Summary,Data,Options,United States Dollar,BAC   220916C00037000,BAC 16SEP22 37 C,Financials,1,0.04,-4,-4.0384,-1,0.23,23,23.1334
+Trade Summary,Data,Options,United States Dollar,BAC   220916C00038000,BAC 16SEP22 38 C,Financials,1,0.13,-13,-13.0754,-1,0.01,1,1.0096
+Trade Summary,Data,Options,United States Dollar,BAC   220916P00031000,BAC 16SEP22 31 P,Financials,1,0.21,-21,-21.1218,-1,0.02,2,2.0066
+Trade Summary,Data,Options,United States Dollar,BAC   220916P00032000,BAC 16SEP22 32 P,Financials,1,0.05,-5,-5.0165,-1,0.32,32,32.1856
+Trade Summary,Data,Options,United States Dollar,BAC   221021C00034500,BAC 21OCT22 34.5 C,Financials,2,0.66,-132,-133.8612,-2,0.25,50,52.115
+Trade Summary,Data,Options,United States Dollar,BAC   221021C00037000,BAC 21OCT22 37 C,Financials,2,0.07,-14,-14.5922,-2,0.36,72,72.6912
+Trade Summary,Data,Options,United States Dollar,BAC   221021C00038000,BAC 21OCT22 38 C,Financials,2,0.22,-44,-44.4224,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,BAC   221021P00028000,BAC 21OCT22 28 P,Financials,2,0.18,-36,-36.1188,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,BAC   221021P00030000,BAC 21OCT22 30 P,Financials,2,0.02,-4,-4.0564,-2,0.34,68,68.2244
+Trade Summary,Data,Options,United States Dollar,BAC   221216C00040000,BAC 16DEC22 40 C,Financials,1,0,0,0,-1,0.26,26,26.3666
+Trade Summary,Data,Options,United States Dollar,BAC   221216C00042000,BAC 16DEC22 42 C,Financials,1,0.13,-13,-13.1833,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,BAC   221216P00025000,BAC 16DEC22 25 P,Financials,1,0.04,-4,-4.0168,-1,0.16,16,16.3488
+Trade Summary,Data,Options,United States Dollar,BAC   221216P00031000,BAC 16DEC22 31 P,Financials,1,0.05,-5,-4.80985,-1,0.19,19,19.0798
+Trade Summary,Data,Options,United States Dollar,BAC   230120P00031000,BAC 20JAN23 31 P,Financials,1,0.13,-13,-12.21246,-1,0.24,24,23.08728
+Trade Summary,Data,Options,United States Dollar,BAC   230217P00030000,BAC 17FEB23 30 P,Financials,1,0.07,-7,-6.41298,-1,0.28,28,26.30376
+Trade Summary,Data,Options,United States Dollar,BMY   220715C00075000,BMY 15JUL22 75 C,Healthcare,1,0.38,-38,-37.66902,-1,0.07,7,6.98586
+Trade Summary,Data,Options,United States Dollar,BMY   220715C00076000,BMY 15JUL22 76 C,Healthcare,1,0.05,-5,-4.9899,-1,0.15,15,14.9139
+Trade Summary,Data,Options,United States Dollar,BMY   220715C00077000,BMY 15JUL22 77 C,Healthcare,1,0.06,-6,-5.96556,-1,0.19,19,18.92362
+Trade Summary,Data,Options,United States Dollar,BMY   220715C00079000,BMY 15JUL22 79 C,Healthcare,1,0.04,-4,-3.98392,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,BMY   220715P00070000,BMY 15JUL22 70 P,Healthcare,1,0.04,-4,-3.98392,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,BMY   220715P00073000,BMY 15JUL22 73 P,Healthcare,1,0.03,-3,-2.97387,-1,0.14,14,13.94372
+Trade Summary,Data,Options,United States Dollar,BMY   220722C00076000,BMY 22JUL22 76 C,Healthcare,1,0.09,-9,-8.80173,-1,0.48,48,47.58192
+Trade Summary,Data,Options,United States Dollar,BMY   220722C00078000,BMY 22JUL22 78 C,Healthcare,1,0.09,-9,-8.92161,-1,0.03,3,2.93391
+Trade Summary,Data,Options,United States Dollar,BMY   220722P00071000,BMY 22JUL22 71 P,Healthcare,1,0.06,-6,-5.94774,-1,0.02,2,1.95804
+Trade Summary,Data,Options,United States Dollar,BMY   220722P00073000,BMY 22JUL22 73 P,Healthcare,1,0.39,-39,-38.18178,-1,0.16,16,15.86064
+Trade Summary,Data,Options,United States Dollar,BMY   220819C00078000,BMY 19AUG22 78 C,Healthcare,2,0,0,0,-2,0.45,90,88.0173
+Trade Summary,Data,Options,United States Dollar,BMY   220819C00082500,BMY 19AUG22 82.5 C,Healthcare,1,0.08,-8,-7.82376,-1,0.34,34,33.1228
+Trade Summary,Data,Options,United States Dollar,BMY   220819C00090000,BMY 19AUG22 90 C,Healthcare,2,0.045,-9,-8.77911,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,BMY   220819P00060000,BMY 19AUG22 60 P,Healthcare,1,0.16,-16,-15.5872,-1,0.05,5,4.95645
+Trade Summary,Data,Options,United States Dollar,BMY   220819P00065000,BMY 19AUG22 65 P,Healthcare,1,0.18,-18,-17.84322,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,BMY   220819P00067500,BMY 19AUG22 67.5 P,Healthcare,1,0.31,-31,-30.72999,-1,0.62,62,60.4004
+Trade Summary,Data,Options,United States Dollar,BMY   220819P00070000,BMY 19AUG22 70 P,Healthcare,1,0.09,-9,-8.73909,-1,0.55,55,54.52095
+Trade Summary,Data,Options,United States Dollar,BMY   220819P00071000,BMY 19AUG22 71 P,Healthcare,1,0,0,0,-1,0.13,13,12.62313
+Trade Summary,Data,Options,United States Dollar,BMY   220916C00072500,BMY 16SEP22 72.5 C,Healthcare,3,0.243333333,-73,-73.0073,-3,0.23,69,69.0069
+Trade Summary,Data,Options,United States Dollar,BMY   220916C00074000,BMY 16SEP22 74 C,Healthcare,3,0.14,-42,-42.0042,-3,0.04,12,12.0012
+Trade Summary,Data,Options,United States Dollar,BMY   220916C00079000,BMY 16SEP22 79 C,Healthcare,1,0.05,-5,-5.0005,-1,0.39,39,39.2262
+Trade Summary,Data,Options,United States Dollar,BMY   220916C00080000,BMY 16SEP22 80 C,Healthcare,1,0.27,-27,-27.1566,-1,0.03,3,3.0003
+Trade Summary,Data,Options,United States Dollar,BMY   220916P00065000,BMY 16SEP22 65 P,Healthcare,3,0.386666667,-116,-113.53858,-3,0.01,3,2.96376
+Trade Summary,Data,Options,United States Dollar,BMY   220916P00067500,BMY 16SEP22 67.5 P,Healthcare,3,0.03,-9,-8.89128,-3,0.606666667,182,178.09998
+Trade Summary,Data,Options,United States Dollar,BMY   221021C00075000,BMY 21OCT22 75 C,Healthcare,2,0.03,-6,-6.1398,-2,0.74,148,148.0148
+Trade Summary,Data,Options,United States Dollar,BMY   221021C00080000,BMY 21OCT22 80 C,Healthcare,2,0.12,-24,-24.0024,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,BMY   221021P00057500,BMY 21OCT22 57.5 P,Healthcare,2,0.09,-18,-17.78256,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,BMY   221021P00067500,BMY 21OCT22 67.5 P,Healthcare,2,0.04,-8,-8.1864,-2,0.44,88,86.93696
+Trade Summary,Data,Options,United States Dollar,BMY   221118C00077500,BMY 18NOV22 77.5 C,Healthcare,2,1.85,-370,-379.509,-2,0.29,58,59.3514
+Trade Summary,Data,Options,United States Dollar,BMY   221118C00087500,BMY 18NOV22 87.5 C,Healthcare,2,0.03,-6,-6.1398,-2,0.01,2,2.0514
+Trade Summary,Data,Options,United States Dollar,BMY   221118P00062500,BMY 18NOV22 62.5 P,Healthcare,2,0.06,-12,-11.90124,-2,0.26,52,53.2116
+Trade Summary,Data,Options,United States Dollar,BMY   221118P00068000,BMY 18NOV22 68 P,Healthcare,2,0.05,-10,-10.187,-2,0.2,40,39.6708
+Trade Summary,Data,Options,United States Dollar,C     220617P00042000,C 17JUN22 42 P,Financials,2,0.2,-40,-38.4356,-2,0.04,8,7.65864
+Trade Summary,Data,Options,United States Dollar,C     220617P00045500,C 17JUN22 45.5 P,Financials,2,0.095,-19,-17.74719,-2,0.99,198,190.25622
+Trade Summary,Data,Options,United States Dollar,C     220617P00049000,C 17JUN22 49 P,Financials,3,1.33,-399,-381.34962,-3,0.376666667,113,105.51202
+Trade Summary,Data,Options,United States Dollar,C     220624C00047500,C 24JUN22 47.5 C,Financials,1,0.69,-69,-65.36646,-1,0.19,19,18.05551
+Trade Summary,Data,Options,United States Dollar,C     220624C00048500,C 24JUN22 48.5 C,Financials,1,0.06,-6,-5.70174,-1,0.18,18,17.03232
+Trade Summary,Data,Options,United States Dollar,C     220624C00051000,C 24JUN22 51 C,Financials,1,0.03,-3,-2.83872,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,C     220624P00044500,C 24JUN22 44.5 P,Financials,1,0.07,-7,-6.62368,-1,0.09,9,8.55261
+Trade Summary,Data,Options,United States Dollar,C     220624P00046000,C 24JUN22 46 P,Financials,1,0.44,-44,-41.81276,-1,0.23,23,21.76352
+Trade Summary,Data,Options,United States Dollar,C     220701P00041000,C 01JUL22 41 P,Financials,1,0.11,-11,-10.45319,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,C     220701P00043500,C 01JUL22 43.5 P,Financials,1,0.07,-7,-6.61444,-1,0.32,32,30.40928
+Trade Summary,Data,Options,United States Dollar,C     220708C00048000,C 08JUL22 48 C,Financials,1,0,0,0,-1,0.08,8,7.7936
+Trade Summary,Data,Options,United States Dollar,C     220708C00049500,C 08JUL22 49.5 C,Financials,1,0.03,-3,-2.9226,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,C     220715C00045000,C 15JUL22 45 C,Financials,1,3.66,-366,-362.81214,-1,0.29,29,28.94142
+Trade Summary,Data,Options,United States Dollar,C     220715C00047500,C 15JUL22 47.5 C,Financials,1,0.04,-4,-3.99192,-1,0.26,26,25.85076
+Trade Summary,Data,Options,United States Dollar,C     220715C00049000,C 15JUL22 49 C,Financials,1,0.12,-12,-11.93112,-1,0.24,24,23.90352
+Trade Summary,Data,Options,United States Dollar,C     220715C00051000,C 15JUL22 51 C,Financials,1,0.07,-7,-6.97186,-1,0.01,1,0.99129
+Trade Summary,Data,Options,United States Dollar,C     220715P00041500,C 15JUL22 41.5 P,Financials,1,0.12,-12,-11.95176,-1,0.18,18,17.96364
+Trade Summary,Data,Options,United States Dollar,C     220715P00044000,C 15JUL22 44 P,Financials,1,1.05,-105,-104.7879,-1,0.37,37,36.85126
+Trade Summary,Data,Options,United States Dollar,C     220722C00046000,C 22JUL22 46 C,Financials,2,2.93,-586,-580.89594,-2,0.41,82,81.83436
+Trade Summary,Data,Options,United States Dollar,C     220722C00048000,C 22JUL22 48 C,Financials,2,0.14,-28,-27.94344,-2,0.37,74,73.57524
+Trade Summary,Data,Options,United States Dollar,C     220722C00050000,C 22JUL22 50 C,Financials,2,0.14,-28,-27.83928,-2,0.43,86,82.47572
+Trade Summary,Data,Options,United States Dollar,C     220722C00051000,C 22JUL22 51 C,Financials,1,1.45,-145,-141.9579,-1,0.2,20,19.8258
+Trade Summary,Data,Options,United States Dollar,C     220722C00052000,C 22JUL22 52 C,Financials,1,0.21,-21,-20.13942,-1,0.6,60,56.8404
+Trade Summary,Data,Options,United States Dollar,C     220722C00053000,C 22JUL22 53 C,Financials,3,0.103333333,-31,-29.95551,-3,0.06,18,17.7696
+Trade Summary,Data,Options,United States Dollar,C     220722C00056000,C 22JUL22 56 C,Financials,1,0.14,-14,-13.26276,-1,0.03,3,2.87706
+Trade Summary,Data,Options,United States Dollar,C     220722P00039000,C 22JUL22 39 P,Financials,1,0.16,-16,-15.96768,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,C     220722P00041000,C 22JUL22 41 P,Financials,1,0.03,-3,-2.97387,-1,0.4,40,39.9192
+Trade Summary,Data,Options,United States Dollar,C     220722P00046500,C 22JUL22 46.5 P,Financials,1,0.06,-6,-5.86782,-1,0.31,31,30.72999
+Trade Summary,Data,Options,United States Dollar,C     220722P00048000,C 22JUL22 48 P,Financials,1,0.03,-3,-2.9463,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,C     220722P00048500,C 22JUL22 48.5 P,Financials,11,0.144545455,-159,-155.51375,-11,0.149090909,164,160.38708
+Trade Summary,Data,Options,United States Dollar,C     220722P00050000,C 22JUL22 50 P,Financials,1,0,0,0,-1,0.11,11,10.8031
+Trade Summary,Data,Options,United States Dollar,C     220819C00052500,C 19AUG22 52.5 C,Financials,2,1.28,-256,-251.5072,-2,0.52,104,103.09416
+Trade Summary,Data,Options,United States Dollar,C     220819C00057500,C 19AUG22 57.5 C,Financials,2,0.09,-18,-17.84322,-2,0.01,2,1.9649
+Trade Summary,Data,Options,United States Dollar,C     220819P00032500,C 19AUG22 32.5 P,Financials,2,0.145,-29,-28.06646,-2,0.02,4,3.9284
+Trade Summary,Data,Options,United States Dollar,C     220819P00042500,C 19AUG22 42.5 P,Financials,4,0.375,-150,-148.05414,-4,0.76,304,297.30504
+Trade Summary,Data,Options,United States Dollar,C     220819P00045000,C 19AUG22 45 P,Financials,8,0.26125,-209,-204.81926,-8,0.01,8,7.76808
+Trade Summary,Data,Options,United States Dollar,C     220819P00046000,C 19AUG22 46 P,Financials,2,0.47,-94,-92.3174,-2,0.57,114,111.48858
+Trade Summary,Data,Options,United States Dollar,C     220819P00048000,C 19AUG22 48 P,Financials,8,0.04,-32,-31.07232,-8,0.55125,441,432.1733
+Trade Summary,Data,Options,United States Dollar,C     220819P00049500,C 19AUG22 49.5 P,Financials,2,0.08,-16,-15.53616,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,C     220819P00051000,C 19AUG22 51 P,Financials,2,0,0,0,-2,0.16,32,31.07232
+Trade Summary,Data,Options,United States Dollar,C     221021C00055000,C 21OCT22 55 C,Financials,7,0.05,-35,-36.4245,-7,0.872857143,611,604.10968
+Trade Summary,Data,Options,United States Dollar,C     221021C00060000,C 21OCT22 60 C,Financials,7,0.22,-154,-152.06666,-7,0.01,7,7.2849
+Trade Summary,Data,Options,United States Dollar,C     221021P00040000,C 21OCT22 40 P,Financials,7,0.275714286,-193,-193.7238,-7,0.86,602,620.361
+Trade Summary,Data,Options,United States Dollar,C     221021P00042500,C 21OCT22 42.5 P,Financials,7,1.88,-1316,-1356.138,-7,0.431428571,302,303.129
+Trade Summary,Data,Options,United States Dollar,C     221118C00050000,C 18NOV22 50 C,Financials,2,0.16,-32,-32.6976,-2,0.55,110,114.477
+Trade Summary,Data,Options,United States Dollar,C     221118C00055000,C 18NOV22 55 C,Financials,2,0.13,-26,-27.0582,-2,0.03,6,6.1308
+Trade Summary,Data,Options,United States Dollar,C     221216C00048500,C 16DEC22 48.5 C,Financials,2,0,0,0,-2,0.22,44,41.93508
+Trade Summary,Data,Options,United States Dollar,C     221216C00052500,C 16DEC22 52.5 C,Financials,2,0.03,-6,-5.71842,-2,0.21,42,42.9156
+Trade Summary,Data,Options,United States Dollar,C     221216C00060000,C 16DEC22 60 C,Financials,2,0.04,-8,-8.1744,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,C     221216P00030000,C 16DEC22 30 P,Financials,2,0.19,-38,-38.8284,-2,0.48,96,98.9376
+Trade Summary,Data,Options,United States Dollar,C     221216P00032500,C 16DEC22 32.5 P,Financials,2,0.1,-20,-20.068,-2,0.28,56,57.2208
+Trade Summary,Data,Options,United States Dollar,C     221216P00037500,C 16DEC22 37.5 P,Financials,2,0.06,-12,-11.6226,-2,0.28,56,56.1904
+Trade Summary,Data,Options,United States Dollar,C     221216P00045000,C 16DEC22 45 P,Financials,2,1.24,-248,-234.96264,-2,0.51,102,98.7921
+Trade Summary,Data,Options,United States Dollar,C     230120P00042500,C 20JAN23 42.5 P,Financials,2,0.75,-150,-141.453,-2,1.23,246,233.06778
+Trade Summary,Data,Options,United States Dollar,C     230217P00040000,C 17FEB23 40 P,Financials,2,0.26,-52,-48.45204,-2,0.78,156,147.11112
+Trade Summary,Data,Options,United States Dollar,C     230317P00040000,C 17MAR23 40 P,Financials,2,0.12,-24,-22.0428,-2,0.49,98,91.31346
+Trade Summary,Data,Options,United States Dollar,CVX   220902C00160000,CVX 02SEP22 160 C,Energy,2,0,0,0,-2,0.35,70,70.378
+Trade Summary,Data,Options,United States Dollar,CVX   220902C00162500,CVX 02SEP22 162.5 C,Energy,2,0.13,-26,-26.1404,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,CVX   220902P00157500,CVX 02SEP22 157.5 P,Energy,2,0.31,-62,-62.0062,-2,0.33,66,66.2904
+Trade Summary,Data,Options,United States Dollar,CVX   220902P00160000,CVX 02SEP22 160 P,Energy,2,1.82,-364,-365.6016,-2,0.58,116,116.0116
+Trade Summary,Data,Options,United States Dollar,CVX   220909C00157500,CVX 09SEP22 157.5 C,Energy,2,1.04,-208,-207.04736,-2,0.44,88,87.93488
+Trade Summary,Data,Options,United States Dollar,CVX   220909C00160000,CVX 09SEP22 160 C,Energy,2,0.15,-30,-29.9778,-2,0.15,30,29.8626
+Trade Summary,Data,Options,United States Dollar,CVX   220916C00167500,CVX 16SEP22 167.5 C,Energy,3,0,0,0,-3,0.923333333,277,278.5382
+Trade Summary,Data,Options,United States Dollar,CVX   220916C00170000,CVX 16SEP22 170 C,Energy,3,0.633333333,-190,-191.0556,-3,0,0,0
+Trade Summary,Data,Options,United States Dollar,CVX   220916P00135000,CVX 16SEP22 135 P,Energy,2,0.455,-91,-91.4574,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,CVX   220916P00140000,CVX 16SEP22 140 P,Energy,1,0.6,-60,-60.192,-1,1.14,114,114.6612
+Trade Summary,Data,Options,United States Dollar,CVX   220916P00148000,CVX 16SEP22 148 P,Energy,2,0.07,-14,-14.0462,-2,1.135,227,227.6736
+Trade Summary,Data,Options,United States Dollar,CVX   221021C00160000,CVX 21OCT22 160 C,Energy,4,4.22,-1688,-1736.2768,-4,1.11,444,462.0708
+Trade Summary,Data,Options,United States Dollar,CVX   221021C00170000,CVX 21OCT22 170 C,Energy,2,0.28,-56,-58.2792,-2,2.52,504,501.69168
+Trade Summary,Data,Options,United States Dollar,CVX   221021C00175000,CVX 21OCT22 175 C,Energy,4,0.84,-336,-335.81952,-4,0.22,88,90.5168
+Trade Summary,Data,Options,United States Dollar,CVX   221021P00130000,CVX 21OCT22 130 P,Energy,4,0.36,-144,-144.9072,-4,0,0,0
+Trade Summary,Data,Options,United States Dollar,CVX   221021P00140000,CVX 21OCT22 140 P,Energy,2,0.37,-74,-75.5762,-2,1.34,268,268.8844
+Trade Summary,Data,Options,United States Dollar,CVX   221021P00148000,CVX 21OCT22 148 P,Energy,4,0.07,-28,-28.3948,-4,0.98,392,400.3496
+Trade Summary,Data,Options,United States Dollar,CVX   221021P00150000,CVX 21OCT22 150 P,Energy,2,4.445,-889,-892.9116,-2,10.95,2190,2279.133
+Trade Summary,Data,Options,United States Dollar,CVX   221021P00152500,CVX 21OCT22 152.5 P,Energy,4,0.03,-12,-12.2796,-4,0.2,80,81.128
+Trade Summary,Data,Options,United States Dollar,CVX   221021P00155000,CVX 21OCT22 155 P,Energy,2,14.55,-2910,-3028.437,-2,6.165,1233,1238.4252
+Trade Summary,Data,Options,United States Dollar,CVX   221021P00162500,CVX 21OCT22 162.5 P,Energy,4,0.13,-52,-53.1336,-4,0.3,120,122.796
+Trade Summary,Data,Options,United States Dollar,CVX   221021P00165000,CVX 21OCT22 165 P,Energy,4,0,0,0,-4,0.3,120,122.616
+Trade Summary,Data,Options,United States Dollar,CVX   221118C00165000,CVX 18NOV22 165 C,Energy,4,11.65,-4660,-4719.182,-4,6.41,2564,2637.3304
+Trade Summary,Data,Options,United States Dollar,CVX   221118C00180000,CVX 18NOV22 180 C,Energy,4,1.71,-684,-703.5624,-4,3.45,1380,1397.526
+Trade Summary,Data,Options,United States Dollar,CVX   221118P00135000,CVX 18NOV22 135 P,Energy,2,6.38,-1276,-1327.9332,-2,1.15,230,235.244
+Trade Summary,Data,Options,United States Dollar,CVX   221118P00145000,CVX 18NOV22 145 P,Energy,2,1.11,-222,-226.8396,-2,10.8,2160,2247.912
+Trade Summary,Data,Options,United States Dollar,CVX   221216C00170000,CVX 16DEC22 170 C,Energy,4,14.44,-5776,-5878.19661,-4,10.57,4228,4281.6956
+Trade Summary,Data,Options,United States Dollar,CVX   221216C00175000,CVX 16DEC22 175 C,Energy,3,11.11,-3333,-3346.9986,-3,11.05,3315,3400.1955
+Trade Summary,Data,Options,United States Dollar,CVX   221216C00190000,CVX 16DEC22 190 C,Energy,4,2.89,-1156,-1170.6812,-4,3.825,1530,1531.5783
+Trade Summary,Data,Options,United States Dollar,CVX   221216P00140000,CVX 16DEC22 140 P,Energy,4,1.38,-552,-559.0104,-4,1.615,646,657.7728
+Trade Summary,Data,Options,United States Dollar,CVX   221216P00150000,CVX 16DEC22 150 P,Energy,4,1.64,-656,-650.60112,-4,2.56,1024,1037.0048
+Trade Summary,Data,Options,United States Dollar,CVX   221216P00170000,CVX 16DEC22 170 P,Energy,4,3.8,-1520,-1537.936,-4,5.75,2300,2281.071
+Trade Summary,Data,Options,United States Dollar,CVX   221216P00175000,CVX 16DEC22 175 P,Energy,4,5.15,-2060,-2068.652,-4,5.2175,2087,2111.6266
+Trade Summary,Data,Options,United States Dollar,CVX   230120C00185000,CVX 20JAN23 185 C,Energy,3,0.35,-105,-97.61535,-3,1.08,324,305.04246
+Trade Summary,Data,Options,United States Dollar,CVX   230120C00190000,CVX 20JAN23 190 C,Energy,1,0.72,-72,-67.75416,-1,2.2,220,209.6754
+Trade Summary,Data,Options,United States Dollar,CVX   230120C00195000,CVX 20JAN23 195 C,Energy,1,1.34,-134,-127.71138,-1,5,500,502.1
+Trade Summary,Data,Options,United States Dollar,CVX   230120C00220000,CVX 20JAN23 220 C,Energy,3,0.35,-105,-104.8785,-3,0,0,0
+Trade Summary,Data,Options,United States Dollar,CVX   230120P00170000,CVX 20JAN23 170 P,Energy,1,3.16,-316,-306.6938,-1,5.79,579,581.4318
+Trade Summary,Data,Options,United States Dollar,CVX   230120P00175000,CVX 20JAN23 175 P,Energy,1,3.75,-375,-352.45125,-1,4.35,435,422.18925
+Trade Summary,Data,Options,United States Dollar,CVX   230217P00170000,CVX 17FEB23 170 P,Energy,2,4.46,-892,-829.26564,-2,5.095,1019,957.72753
+Trade Summary,Data,Options,United States Dollar,CVX   230317C00195000,CVX 17MAR23 195 C,Energy,0,0,0,0,-2,1.96,392,364.43064
+Trade Summary,Data,Options,United States Dollar,CVX   230317C00220000,CVX 17MAR23 220 C,Energy,2,0.155,-31,-28.81977,0,0,0,0
+Trade Summary,Data,Options,United States Dollar,CVX   230317P00155000,CVX 17MAR23 155 P,Energy,2,1.27,-254,-233.98988,-2,2.33,466,433.22622
+Trade Summary,Data,Options,United States Dollar,CVX   230317P00160000,CVX 17MAR23 160 P,Energy,2,3.3,-660,-613.5822,-4,2.6,1040,963.6458
+Trade Summary,Data,Options,United States Dollar,DBC   240119P00016000,DBC 19JAN24 16 P,Basic Materials,0,0,0,0,-10,0.25,250,249.44
+Trade Summary,Data,Options,United States Dollar,DBC   240119P00027000,DBC 19JAN24 27 P,Basic Materials,10,3.7,-3700,-3496.204,-10,3.4,3400,3271.004
+Trade Summary,Data,Options,United States Dollar,INTC  220715C00038500,INTC 15JUL22 38.5 C,Technology,1,0,0,0,-1,0.17,17,16.93166
+Trade Summary,Data,Options,United States Dollar,INTC  220715C00040000,INTC 15JUL22 40 C,Technology,1,0.04,-4,-3.98392,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,INTC  220715P00034000,INTC 15JUL22 34 P,Technology,1,0.04,-4,-3.98392,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,INTC  220715P00036000,INTC 15JUL22 36 P,Technology,1,0,0,0,-1,0.19,19,18.92362
+Trade Summary,Data,Options,United States Dollar,INTC  220819C00038000,INTC 19AUG22 38 C,Technology,5,0,0,0,-5,0.258,129,126.33726
+Trade Summary,Data,Options,United States Dollar,INTC  220819C00040000,INTC 19AUG22 40 C,Technology,5,0.104,-52,-50.91912,-5,0,0,0
+Trade Summary,Data,Options,United States Dollar,INTC  220819C00042500,INTC 19AUG22 42.5 C,Technology,1,0.06,-6,-5.86728,-1,0.38,38,37.30688
+Trade Summary,Data,Options,United States Dollar,INTC  220819C00047500,INTC 19AUG22 47.5 C,Technology,1,0.09,-9,-8.83584,-1,0.02,2,1.95576
+Trade Summary,Data,Options,United States Dollar,INTC  220819P00025000,INTC 19AUG22 25 P,Technology,1,0.07,-7,-6.87232,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,INTC  220819P00032500,INTC 19AUG22 32.5 P,Technology,1,0.28,-28,-27.38316,-1,0.47,47,46.14272
+Trade Summary,Data,Options,United States Dollar,INTC  220819P00033500,INTC 19AUG22 33.5 P,Technology,3,0.22,-66,-64.31898,-3,0,0,0
+Trade Summary,Data,Options,United States Dollar,INTC  220819P00035000,INTC 19AUG22 35 P,Technology,4,0,0,0,-4,0.4725,189,184.38225
+Trade Summary,Data,Options,United States Dollar,INTC  220916C00037000,INTC 16SEP22 37 C,Technology,2,0.03,-6,-6.0576,-2,0.25,50,50.1692
+Trade Summary,Data,Options,United States Dollar,INTC  220916C00038500,INTC 16SEP22 38.5 C,Technology,2,0.115,-23,-23.0776,-2,0.01,2,2.0192
+Trade Summary,Data,Options,United States Dollar,INTC  220916P00030500,INTC 16SEP22 30.5 P,Technology,2,0.155,-31,-31.1556,-2,1.26,252,252.4788
+Trade Summary,Data,Options,United States Dollar,INTC  220916P00031500,INTC 16SEP22 31.5 P,Technology,2,2.26,-452,-452.8588,-2,0.235,47,47.2352
+Trade Summary,Data,Options,United States Dollar,INTC  221021C00030000,INTC 21OCT22 30 C,Technology,2,0.04,-8,-8.244,-2,0.22,44,45.8612
+Trade Summary,Data,Options,United States Dollar,INTC  221021C00032500,INTC 21OCT22 32.5 C,Technology,2,0.06,-12,-12.5076,-2,0.26,52,52.0052
+Trade Summary,Data,Options,United States Dollar,INTC  221021C00035000,INTC 21OCT22 35 C,Technology,2,0.1,-20,-20.002,-2,0.31,62,62.5952
+Trade Summary,Data,Options,United States Dollar,INTC  221021C00037500,INTC 21OCT22 37.5 C,Technology,2,0.12,-24,-24.2304,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,INTC  221021P00022500,INTC 21OCT22 22.5 P,Technology,2,0.1,-20,-20.038,-2,0.15,30,30.915
+Trade Summary,Data,Options,United States Dollar,INTC  221021P00030000,INTC 21OCT22 30 P,Technology,2,4.81,-962,-991.341,-2,1.69,338,338.6422
+Trade Summary,Data,Options,United States Dollar,INTC  221118C00030000,INTC 18NOV22 30 C,Technology,2,0.26,-52,-50.3646,-2,0.26,52,53.586
+Trade Summary,Data,Options,United States Dollar,INTC  221118C00034000,INTC 18NOV22 34 C,Technology,2,0.08,-16,-16.488,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,INTC  221118P00019000,INTC 18NOV22 19 P,Technology,2,0.09,-18,-18.2286,-2,0.12,24,24.3384
+Trade Summary,Data,Options,United States Dollar,INTC  221118P00020500,INTC 18NOV22 20.5 P,Technology,2,0.03,-6,-6.0204,-2,0.13,26,26.3302
+Trade Summary,Data,Options,United States Dollar,INTC  221118P00025000,INTC 18NOV22 25 P,Technology,2,0.02,-4,-3.87324,-2,0.15,30,30.102
+Trade Summary,Data,Options,United States Dollar,INTC  221118P00030000,INTC 18NOV22 30 P,Technology,2,0.16,-32,-30.9936,-2,0.26,52,50.35212
+Trade Summary,Data,Options,United States Dollar,JNJ   220617P00150000,JNJ 17JUN22 150 P,Healthcare,1,0.23,-23,-21.80032,-1,0.1,10,9.3144
+Trade Summary,Data,Options,United States Dollar,JNJ   220617P00160000,JNJ 17JUN22 160 P,Healthcare,2,0.315,-63,-58.68072,-2,0.355,71,67.036
+Trade Summary,Data,Options,United States Dollar,JNJ   220617P00162500,JNJ 17JUN22 162.5 P,Healthcare,1,0.24,-24,-22.3572,-1,0.1,10,9.3418
+Trade Summary,Data,Options,United States Dollar,JNJ   220617P00170000,JNJ 17JUN22 170 P,Healthcare,2,0.57,-114,-106.32557,-2,0.775,155,144.38002
+Trade Summary,Data,Options,United States Dollar,JNJ   220624C00177500,JNJ 24JUN22 177.5 C,Healthcare,1,0.87,-87,-82.32288,-1,0.14,14,13.29132
+Trade Summary,Data,Options,United States Dollar,JNJ   220624C00182500,JNJ 24JUN22 182.5 C,Healthcare,1,0.02,-2,-1.89876,-1,0.04,4,3.78496
+Trade Summary,Data,Options,United States Dollar,JNJ   220624P00160000,JNJ 24JUN22 160 P,Healthcare,1,0.09,-9,-8.54442,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,JNJ   220624P00167500,JNJ 24JUN22 167.5 P,Healthcare,1,0.09,-9,-8.51616,-1,0.27,27,25.63326
+Trade Summary,Data,Options,United States Dollar,JNJ   220624P00175000,JNJ 24JUN22 175 P,Healthcare,2,0.13,-26,-24.70754,-2,0.445,89,84.32876
+Trade Summary,Data,Options,United States Dollar,JNJ   220701C00180000,JNJ 01JUL22 180 C,Healthcare,1,1.74,-174,-165.35046,-1,0.99,99,93.67776
+Trade Summary,Data,Options,United States Dollar,JNJ   220701C00187500,JNJ 01JUL22 187.5 C,Healthcare,1,0.1,-10,-9.4624,-1,0.1,10,9.5029
+Trade Summary,Data,Options,United States Dollar,JNJ   220708C00180000,JNJ 08JUL22 180 C,Healthcare,2,0,0,0,-2,0.2,40,38.968
+Trade Summary,Data,Options,United States Dollar,JNJ   220708C00187500,JNJ 08JUL22 187.5 C,Healthcare,2,0.03,-6,-5.8452,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,JNJ   220708P00167500,JNJ 08JUL22 167.5 P,Healthcare,1,0.03,-3,-2.94624,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,JNJ   220708P00175000,JNJ 08JUL22 175 P,Healthcare,1,0,0,0,-1,0.33,33,32.40864
+Trade Summary,Data,Options,United States Dollar,JNJ   220715C00175000,JNJ 15JUL22 175 C,Healthcare,1,2.65,-265,-262.69185,-1,0.52,52,51.89496
+Trade Summary,Data,Options,United States Dollar,JNJ   220715C00177500,JNJ 15JUL22 177.5 C,Healthcare,1,0.14,-14,-13.97172,-1,0.37,37,36.78762
+Trade Summary,Data,Options,United States Dollar,JNJ   220715C00180000,JNJ 15JUL22 180 C,Healthcare,2,0.085,-17,-16.92474,-2,0.175,35,34.86617
+Trade Summary,Data,Options,United States Dollar,JNJ   220715C00182500,JNJ 15JUL22 182.5 C,Healthcare,1,0.1,-10,-9.9632,-1,0.74,74,70.96748
+Trade Summary,Data,Options,United States Dollar,JNJ   220715C00185000,JNJ 15JUL22 185 C,Healthcare,1,0.37,-37,-35.48374,-1,0.96,96,91.22784
+Trade Summary,Data,Options,United States Dollar,JNJ   220715C00187500,JNJ 15JUL22 187.5 C,Healthcare,1,0.18,-18,-17.26236,-1,0.01,1,0.99798
+Trade Summary,Data,Options,United States Dollar,JNJ   220715C00195000,JNJ 15JUL22 195 C,Healthcare,1,0.08,-8,-7.60232,-1,0.05,5,4.7951
+Trade Summary,Data,Options,United States Dollar,JNJ   220715P00165000,JNJ 15JUL22 165 P,Healthcare,1,0.06,-6,-5.89056,-1,0.02,2,1.99596
+Trade Summary,Data,Options,United States Dollar,JNJ   220715P00175000,JNJ 15JUL22 175 P,Healthcare,1,2.12,-212,-211.57176,-1,0.42,42,41.23392
+Trade Summary,Data,Options,United States Dollar,JNJ   220722C00182500,JNJ 22JUL22 182.5 C,Healthcare,4,0.38,-152,-149.84616,-4,0.535,214,212.13606
+Trade Summary,Data,Options,United States Dollar,JNJ   220722C00190000,JNJ 22JUL22 190 C,Healthcare,4,0.0575,-23,-22.79967,-4,0.04,16,15.77328
+Trade Summary,Data,Options,United States Dollar,JNJ   220722P00162500,JNJ 22JUL22 162.5 P,Healthcare,4,0.125,-50,-49.899,-4,0.08,32,31.93536
+Trade Summary,Data,Options,United States Dollar,JNJ   220722P00167500,JNJ 22JUL22 167.5 P,Healthcare,4,0.33,-132,-131.73336,-4,0.12,48,46.92336
+Trade Summary,Data,Options,United States Dollar,JNJ   220722P00170000,JNJ 22JUL22 170 P,Healthcare,4,0.68,-272,-271.45056,-4,0.7975,319,318.35562
+Trade Summary,Data,Options,United States Dollar,JNJ   220722P00172500,JNJ 22JUL22 172.5 P,Healthcare,4,0.53,-212,-210.15348,-4,1.28,512,510.96576
+Trade Summary,Data,Options,United States Dollar,JNJ   220722P00175000,JNJ 22JUL22 175 P,Healthcare,4,4.25,-1700,-1661.869,-4,1.115,446,442.11534
+Trade Summary,Data,Options,United States Dollar,JNJ   220729P00165000,JNJ 29JUL22 165 P,Healthcare,6,0.12,-72,-70.45056,-6,0.05,30,29.6517
+Trade Summary,Data,Options,United States Dollar,JNJ   220729P00167500,JNJ 29JUL22 167.5 P,Healthcare,12,0.16,-192,-189.77088,-12,0.135,162,158.51016
+Trade Summary,Data,Options,United States Dollar,JNJ   220729P00170000,JNJ 29JUL22 170 P,Healthcare,6,0.03,-18,-17.60184,-6,0.413333333,248,245.12072
+Trade Summary,Data,Options,United States Dollar,JNJ   220805P00167500,JNJ 05AUG22 167.5 P,Healthcare,8,0.1825,-146,-143.2353,-8,0,0,0
+Trade Summary,Data,Options,United States Dollar,JNJ   220805P00170000,JNJ 05AUG22 170 P,Healthcare,8,0,0,0,-8,0.3475,278,272.7403
+Trade Summary,Data,Options,United States Dollar,JNJ   220812C00172500,JNJ 12AUG22 172.5 C,Healthcare,1,0.01,-1,-0.97477,-1,0.04,4,3.87516
+Trade Summary,Data,Options,United States Dollar,JNJ   220812C00175000,JNJ 12AUG22 175 C,Healthcare,1,0.02,-2,-1.93758,-1,0.11,11,10.77065
+Trade Summary,Data,Options,United States Dollar,JNJ   220812C00177500,JNJ 12AUG22 177.5 C,Healthcare,2,0.05,-10,-9.8086,-2,0.02,4,3.92344
+Trade Summary,Data,Options,United States Dollar,JNJ   220819C00170000,JNJ 19AUG22 170 C,Healthcare,4,0.29,-116,-115.54992,-4,0.3,120,116.9724
+Trade Summary,Data,Options,United States Dollar,JNJ   220819C00172500,JNJ 19AUG22 172.5 C,Healthcare,12,0.11,-132,-128.66964,-12,0.221666667,266,257.69814
+Trade Summary,Data,Options,United States Dollar,JNJ   220819C00175000,JNJ 19AUG22 175 C,Healthcare,8,0.62,-496,-484.7346,-8,1.5725,1258,1230.52324
+Trade Summary,Data,Options,United States Dollar,JNJ   220819C00177500,JNJ 19AUG22 177.5 C,Healthcare,4,0.13,-52,-50.78746,-4,0.03,12,11.69724
+Trade Summary,Data,Options,United States Dollar,JNJ   220819C00180000,JNJ 19AUG22 180 C,Healthcare,6,0.78,-468,-457.68996,-6,1.483333333,890,879.11766
+Trade Summary,Data,Options,United States Dollar,JNJ   220819C00182500,JNJ 19AUG22 182.5 C,Healthcare,4,0.7375,-295,-288.50115,-4,1.37,548,540.23484
+Trade Summary,Data,Options,United States Dollar,JNJ   220819C00185000,JNJ 19AUG22 185 C,Healthcare,12,0.573333333,-688,-679.21188,-12,0.616666667,740,732.24474
+Trade Summary,Data,Options,United States Dollar,JNJ   220819C00190000,JNJ 19AUG22 190 C,Healthcare,4,0.39,-156,-154.83872,-4,0.45,180,178.98824
+Trade Summary,Data,Options,United States Dollar,JNJ   220819C00192500,JNJ 19AUG22 192.5 C,Healthcare,4,0.235,-94,-92.66802,-4,0.075,30,29.3391
+Trade Summary,Data,Options,United States Dollar,JNJ   220819C00200000,JNJ 19AUG22 200 C,Healthcare,2,0.15,-30,-29.8794,-2,0.01,2,1.97678
+Trade Summary,Data,Options,United States Dollar,JNJ   220819P00155000,JNJ 19AUG22 155 P,Healthcare,2,0.585,-117,-113.68618,-2,0.21,42,41.63418
+Trade Summary,Data,Options,United States Dollar,JNJ   220819P00160000,JNJ 19AUG22 160 P,Healthcare,2,0.41,-82,-81.28578,-2,0.43,86,85.00154
+Trade Summary,Data,Options,United States Dollar,JNJ   220819P00162500,JNJ 19AUG22 162.5 P,Healthcare,4,0.825,-330,-322.8984,-4,0.6,240,237.2136
+Trade Summary,Data,Options,United States Dollar,JNJ   220819P00165000,JNJ 19AUG22 165 P,Healthcare,4,0.86,-344,-340.00616,-4,1.155,462,452.05776
+Trade Summary,Data,Options,United States Dollar,JNJ   220819P00167500,JNJ 19AUG22 167.5 P,Healthcare,13,0.553846154,-720,-711.6408,-13,0.412307692,536,527.19468
+Trade Summary,Data,Options,United States Dollar,JNJ   220819P00170000,JNJ 19AUG22 170 P,Healthcare,8,2.245,-1796,-1767.20292,-8,1.92125,1537,1514.16295
+Trade Summary,Data,Options,United States Dollar,JNJ   220826C00170000,JNJ 26AUG22 170 C,Healthcare,1,0,0,0,-1,0.26,26,26.0832
+Trade Summary,Data,Options,United States Dollar,JNJ   220826C00172500,JNJ 26AUG22 172.5 C,Healthcare,1,0.08,-8,-8.0256,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,JNJ   220826P00160000,JNJ 26AUG22 160 P,Healthcare,2,0.05,-10,-10.0316,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,JNJ   220826P00162500,JNJ 26AUG22 162.5 P,Healthcare,2,0,0,0,-2,0.175,35,35.111
+Trade Summary,Data,Options,United States Dollar,JNJ   220902C00167500,JNJ 02SEP22 167.5 C,Healthcare,3,0,0,0,-3,0.15,45,45.0045
+Trade Summary,Data,Options,United States Dollar,JNJ   220902C00170000,JNJ 02SEP22 170 C,Healthcare,3,0.03,-9,-9.0009,-3,0,0,0
+Trade Summary,Data,Options,United States Dollar,JNJ   220916C00167500,JNJ 16SEP22 167.5 C,Healthcare,8,0.13,-104,-104.3432,-8,0.64,512,511.62112
+Trade Summary,Data,Options,United States Dollar,JNJ   220916C00170000,JNJ 16SEP22 170 C,Healthcare,8,0.26,-208,-207.84608,-8,0.04,32,32.1056
+Trade Summary,Data,Options,United States Dollar,JNJ   220916C00175000,JNJ 16SEP22 175 C,Healthcare,8,0.06,-48,-47.96448,-8,0.21125,169,168.976
+Trade Summary,Data,Options,United States Dollar,JNJ   220916C00180000,JNJ 16SEP22 180 C,Healthcare,8,0.07625,-61,-61.0106,-8,0.02,16,15.98816
+Trade Summary,Data,Options,United States Dollar,JNJ   220916P00155000,JNJ 16SEP22 155 P,Healthcare,8,0.21,-168,-165.5104,-8,0,0,0
+Trade Summary,Data,Options,United States Dollar,JNJ   220916P00160000,JNJ 16SEP22 160 P,Healthcare,10,0.25,-250,-245.6125,-10,0.614,614,604.7304
+Trade Summary,Data,Options,United States Dollar,JNJ   221021C00170000,JNJ 21OCT22 170 C,Healthcare,2,0.06,-12,-12.2796,-2,1.54,308,309.0164
+Trade Summary,Data,Options,United States Dollar,JNJ   221021C00185000,JNJ 21OCT22 185 C,Healthcare,2,0.11,-22,-22.0726,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,JNJ   221021P00145000,JNJ 21OCT22 145 P,Healthcare,2,0.24,-48,-48.144,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,JNJ   221021P00152500,JNJ 21OCT22 152.5 P,Healthcare,2,0.05,-10,-10.16,-2,0.69,138,138.414
+Trade Summary,Data,Options,United States Dollar,JNJ   221021P00157500,JNJ 21OCT22 157.5 P,Healthcare,2,0.07,-14,-14.3262,-2,0.18,36,36.576
+Trade Summary,Data,Options,United States Dollar,JNJ   221118C00180000,JNJ 18NOV22 180 C,Healthcare,2,0.015,-3,-2.89455,-2,0.2,40,40.932
+Trade Summary,Data,Options,United States Dollar,JNJ   221118C00195000,JNJ 18NOV22 195 C,Healthcare,2,0.07,-14,-14.3262,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,JNJ   221118P00150000,JNJ 18NOV22 150 P,Healthcare,2,0.16,-32,-32.1056,-2,0.56,112,114.6096
+Trade Summary,Data,Options,United States Dollar,JNJ   221216C00185000,JNJ 16DEC22 185 C,Healthcare,2,0,0,0,-2,0.37,74,71.6727
+Trade Summary,Data,Options,United States Dollar,JNJ   221216C00190000,JNJ 16DEC22 190 C,Healthcare,2,0.16,-32,-30.9936,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,JNJ   221216P00150000,JNJ 16DEC22 150 P,Healthcare,4,0.37,-148,-148.5032,-4,0.56,224,224.7576
+Trade Summary,Data,Options,United States Dollar,JNJ   221216P00160000,JNJ 16DEC22 160 P,Healthcare,4,0.35,-140,-135.597,-4,1,400,401.36
+Trade Summary,Data,Options,United States Dollar,JNJ   221216P00165000,JNJ 16DEC22 165 P,Healthcare,4,0.3325,-133,-129.03151,-4,0.68,272,263.4456
+Trade Summary,Data,Options,United States Dollar,JNJ   230217P00165000,JNJ 17FEB23 165 P,Healthcare,2,0.73,-146,-137.15532,-2,1.82,364,346.49524
+Trade Summary,Data,Options,United States Dollar,JNJ   230317C00175000,JNJ 17MAR23 175 C,Healthcare,0,0,0,0,-2,1.76,352,324.26944
+Trade Summary,Data,Options,United States Dollar,JNJ   230317C00180000,JNJ 17MAR23 180 C,Healthcare,1,2.2,-220,-203.0864,-1,2.38,238,219.317
+Trade Summary,Data,Options,United States Dollar,JNJ   230317C00185000,JNJ 17MAR23 185 C,Healthcare,3,0.28,-84,-77.38248,-3,0.8,240,221.69312
+Trade Summary,Data,Options,United States Dollar,JNJ   230317C00190000,JNJ 17MAR23 190 C,Healthcare,3,0.366666667,-110,-101.52614,-1,0.13,13,11.97586
+Trade Summary,Data,Options,United States Dollar,JNJ   230317P00165000,JNJ 17MAR23 165 P,Healthcare,0,0,0,0,-2,1.26,252,236.73384
+Trade Summary,Data,Options,United States Dollar,KO    220624C00062000,KO 24JUN22 62 C,Consumer Non-Cyc,1,0,0,0,-1,0.12,12,11.40348
+Trade Summary,Data,Options,United States Dollar,KO    220624C00063000,KO 24JUN22 63 C,Consumer Non-Cyc,1,0.02,-2,-1.90058,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,KO    220624P00057000,KO 24JUN22 57 P,Consumer Non-Cyc,1,0.03,-3,-2.83872,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,KO    220624P00060000,KO 24JUN22 60 P,Consumer Non-Cyc,1,0,0,0,-1,0.14,14,13.24736
+Trade Summary,Data,Options,United States Dollar,KO    220708P00058000,KO 08JUL22 58 P,Consumer Non-Cyc,2,0.03,-6,-5.8452,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,KO    220708P00061000,KO 08JUL22 61 P,Consumer Non-Cyc,2,0,0,0,-2,0.13,26,25.3292
+Trade Summary,Data,Options,United States Dollar,KO    220715C00064000,KO 15JUL22 64 C,Consumer Non-Cyc,1,0,0,0,-1,0.07,7,6.95982
+Trade Summary,Data,Options,United States Dollar,KO    220715C00065000,KO 15JUL22 65 C,Consumer Non-Cyc,1,0.03,-3,-2.98278,-1,0.29,29,27.56624
+Trade Summary,Data,Options,United States Dollar,KO    220715C00068000,KO 15JUL22 68 C,Consumer Non-Cyc,1,0.05,-5,-4.7528,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,KO    220715P00057000,KO 15JUL22 57 P,Consumer Non-Cyc,1,0.12,-12,-11.40672,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,KO    220715P00060000,KO 15JUL22 60 P,Consumer Non-Cyc,1,0.05,-5,-4.9713,-1,0.28,28,26.61568
+Trade Summary,Data,Options,United States Dollar,KO    220715P00061000,KO 15JUL22 61 P,Consumer Non-Cyc,1,0,0,0,-1,0.09,9,8.94834
+Trade Summary,Data,Options,United States Dollar,KO    220819C00065000,KO 19AUG22 65 C,Consumer Non-Cyc,6,0.22,-132,-130.85688,-6,0.226666667,136,133.35484
+Trade Summary,Data,Options,United States Dollar,KO    220819C00067000,KO 19AUG22 67 C,Consumer Non-Cyc,6,0.066666667,-40,-39.22192,-6,0,0,0
+Trade Summary,Data,Options,United States Dollar,KO    220819C00067500,KO 19AUG22 67.5 C,Consumer Non-Cyc,4,0.06,-24,-23.53128,-4,0.205,82,81.04095
+Trade Summary,Data,Options,United States Dollar,KO    220819C00072500,KO 19AUG22 72.5 C,Consumer Non-Cyc,4,0.035,-14,-13.82159,-4,0,0,0
+Trade Summary,Data,Options,United States Dollar,KO    220819P00052500,KO 19AUG22 52.5 P,Consumer Non-Cyc,4,0.1725,-69,-68.0979,-4,0.04,16,15.81424
+Trade Summary,Data,Options,United States Dollar,KO    220819P00057500,KO 19AUG22 57.5 P,Consumer Non-Cyc,7,0.152857143,-107,-105.75773,-7,0.294285714,206,202.98816
+Trade Summary,Data,Options,United States Dollar,KO    220819P00060000,KO 19AUG22 60 P,Consumer Non-Cyc,3,0.14,-42,-40.93026,-3,0.353333333,106,104.76934
+Trade Summary,Data,Options,United States Dollar,KO    220819P00061000,KO 19AUG22 61 P,Consumer Non-Cyc,4,0.19,-76,-74.06428,-4,0,0,0
+Trade Summary,Data,Options,United States Dollar,KO    220819P00062500,KO 19AUG22 62.5 P,Consumer Non-Cyc,4,0,0,0,-4,0.33,132,128.63796
+Trade Summary,Data,Options,United States Dollar,KO    220909C00066000,KO 09SEP22 66 C,Consumer Non-Cyc,6,0.115,-69,-69.228,-6,0.52,312,309.29808
+Trade Summary,Data,Options,United States Dollar,KO    220909C00067000,KO 09SEP22 67 C,Consumer Non-Cyc,6,0.25,-150,-148.701,-6,0.035,21,21.0672
+Trade Summary,Data,Options,United States Dollar,KO    221021C00062500,KO 21OCT22 62.5 C,Consumer Non-Cyc,3,0.02,-6,-6.183,-3,0.18,54,56.2842
+Trade Summary,Data,Options,United States Dollar,KO    221021C00065000,KO 21OCT22 65 C,Consumer Non-Cyc,2,0.06,-12,-12.5076,-2,0.38,76,76.3176
+Trade Summary,Data,Options,United States Dollar,KO    221021C00067500,KO 21OCT22 67.5 C,Consumer Non-Cyc,3,0.09,-27,-27.2255,-3,0,0,0
+Trade Summary,Data,Options,United States Dollar,KO    221021P00057500,KO 21OCT22 57.5 P,Consumer Non-Cyc,2,0.335,-67,-67.307,-2,2.88,576,593.568
+Trade Summary,Data,Options,United States Dollar,KO    221021P00060000,KO 21OCT22 60 P,Consumer Non-Cyc,2,5.2,-1040,-1071.72,-2,0.59,118,118.5404
+Trade Summary,Data,Options,United States Dollar,KO    221118C00060000,KO 18NOV22 60 C,Consumer Non-Cyc,2,1.12,-224,-216.9552,-2,0.22,44,45.342
+Trade Summary,Data,Options,United States Dollar,KO    221118C00065000,KO 18NOV22 65 C,Consumer Non-Cyc,2,0.04,-8,-8.244,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,KO    221118P00047500,KO 18NOV22 47.5 P,Consumer Non-Cyc,2,0.04,-8,-7.93416,-2,0.19,38,38.608
+Trade Summary,Data,Options,United States Dollar,KO    221118P00055000,KO 18NOV22 55 P,Consumer Non-Cyc,2,0.04,-8,-7.8364,-2,0.2,40,39.6708
+Trade Summary,Data,Options,United States Dollar,KO    221216P00057500,KO 16DEC22 57.5 P,Consumer Non-Cyc,2,0.4,-80,-77.4648,-2,0.61,122,119.5051
+Trade Summary,Data,Options,United States Dollar,KO    230120P00057500,KO 20JAN23 57.5 P,Consumer Non-Cyc,3,0.72,-216,-209.2068,-3,0.81,243,234.99139
+Trade Summary,Data,Options,United States Dollar,KO    230217P00057500,KO 17FEB23 57.5 P,Consumer Non-Cyc,3,0.26,-78,-73.38276,-3,1.13,339,328.33845
+Trade Summary,Data,Options,United States Dollar,KO    230317P00060000,KO 17MAR23 60 P,Consumer Non-Cyc,0,0,0,0,-2,0.82,164,154.06488
+Trade Summary,Data,Options,United States Dollar,MRK   220624C00089000,MRK 24JUN22 89 C,Healthcare,1,0.49,-49,-46.51962,-1,0.24,24,22.78512
+Trade Summary,Data,Options,United States Dollar,MRK   220624C00090000,MRK 24JUN22 90 C,Healthcare,1,0.82,-82,-77.59168,-1,0.25,25,23.7345
+Trade Summary,Data,Options,United States Dollar,MRK   220624C00092000,MRK 24JUN22 92 C,Healthcare,1,0.02,-2,-1.89876,-1,0.15,15,14.1936
+Trade Summary,Data,Options,United States Dollar,MRK   220624P00082000,MRK 24JUN22 82 P,Healthcare,1,0.08,-8,-7.59504,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,MRK   220624P00085000,MRK 24JUN22 85 P,Healthcare,1,0.21,-21,-19.93698,-1,0.28,28,26.58264
+Trade Summary,Data,Options,United States Dollar,MRK   220624P00086000,MRK 24JUN22 86 P,Healthcare,1,0.11,-11,-10.40864,-1,0.33,33,31.32954
+Trade Summary,Data,Options,United States Dollar,MRK   220624P00088000,MRK 24JUN22 88 P,Healthcare,1,0,0,0,-1,0.27,27,25.54848
+Trade Summary,Data,Options,United States Dollar,MRK   220701P00086000,MRK 01JUL22 86 P,Healthcare,2,0.045,-9,-8.56836,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,MRK   220701P00090000,MRK 01JUL22 90 P,Healthcare,5,0,0,0,-5,0.102,51,48.63669
+Trade Summary,Data,Options,United States Dollar,MRK   220708P00086000,MRK 08JUL22 86 P,Healthcare,2,0.09,-18,-17.5356,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,MRK   220708P00088000,MRK 08JUL22 88 P,Healthcare,2,0,0,0,-2,0.2,40,38.968
+Trade Summary,Data,Options,United States Dollar,MRK   220715C00093000,MRK 15JUL22 93 C,Healthcare,1,3.18,-318,-300.48456,-1,0.92,92,87.05408
+Trade Summary,Data,Options,United States Dollar,MRK   220715C00094000,MRK 15JUL22 94 C,Healthcare,1,0.91,-91,-90.20739,-1,0.24,24,23.95152
+Trade Summary,Data,Options,United States Dollar,MRK   220715C00096000,MRK 15JUL22 96 C,Healthcare,1,0.04,-4,-3.99192,-1,0.31,31,30.87538
+Trade Summary,Data,Options,United States Dollar,MRK   220715C00097000,MRK 15JUL22 97 C,Healthcare,1,0.23,-23,-21.76352,-1,1.11,111,104.88612
+Trade Summary,Data,Options,United States Dollar,MRK   220715C00098000,MRK 15JUL22 98 C,Healthcare,1,0.1,-10,-9.9598,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,MRK   220715P00088000,MRK 15JUL22 88 P,Healthcare,4,0.09,-36,-35.85528,-4,0,0,0
+Trade Summary,Data,Options,United States Dollar,MRK   220715P00090000,MRK 15JUL22 90 P,Healthcare,4,0.08,-32,-31.81632,-4,0.17,68,67.72664
+Trade Summary,Data,Options,United States Dollar,MRK   220715P00091000,MRK 15JUL22 91 P,Healthcare,4,0.05,-20,-19.9596,-4,0.12,48,47.72448
+Trade Summary,Data,Options,United States Dollar,MRK   220715P00092000,MRK 15JUL22 92 P,Healthcare,4,0.02,-8,-7.93032,-4,0.09,36,35.92728
+Trade Summary,Data,Options,United States Dollar,MRK   220722P00090000,MRK 22JUL22 90 P,Healthcare,1,0.11,-11,-10.90419,-1,0.38,38,37.14766
+Trade Summary,Data,Options,United States Dollar,MRK   220722P00092500,MRK 22JUL22 92.5 P,Healthcare,1,2.35,-235,-229.72895,-1,0.34,34,33.70386
+Trade Summary,Data,Options,United States Dollar,MRK   220805C00091000,MRK 05AUG22 91 C,Healthcare,4,0.02,-8,-7.80712,-4,0.125,50,49.183
+Trade Summary,Data,Options,United States Dollar,MRK   220805C00092500,MRK 05AUG22 92.5 C,Healthcare,4,0.04,-16,-15.73856,-4,0,0,0
+Trade Summary,Data,Options,United States Dollar,MRK   220812C00089000,MRK 12AUG22 89 C,Healthcare,6,1.49,-894,-871.44438,-6,0.276666667,166,162.64384
+Trade Summary,Data,Options,United States Dollar,MRK   220812C00090000,MRK 12AUG22 90 C,Healthcare,6,0.138333333,-83,-81.32192,-6,0.563333333,338,329.47226
+Trade Summary,Data,Options,United States Dollar,MRK   220819C00092500,MRK 19AUG22 92.5 C,Healthcare,10,0.29,-290,-288.8748,-10,0.378,378,370.34666
+Trade Summary,Data,Options,United States Dollar,MRK   220819C00094000,MRK 19AUG22 94 C,Healthcare,3,0.18,-54,-52.95726,-3,0.91,273,267.41934
+Trade Summary,Data,Options,United States Dollar,MRK   220819C00095000,MRK 19AUG22 95 C,Healthcare,9,0.183333333,-165,-161.79088,-9,0.431111111,388,367.03856
+Trade Summary,Data,Options,United States Dollar,MRK   220819C00096000,MRK 19AUG22 96 C,Healthcare,2,0.17,-34,-33.34346,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,MRK   220819C00098000,MRK 19AUG22 98 C,Healthcare,3,0.273333333,-82,-80.32528,-3,0.03,9,8.82621
+Trade Summary,Data,Options,United States Dollar,MRK   220819C00105000,MRK 19AUG22 105 C,Healthcare,1,0.67,-67,-63.30964,-1,0.04,4,3.9284
+Trade Summary,Data,Options,United States Dollar,MRK   220819P00077500,MRK 19AUG22 77.5 P,Healthcare,1,0.3,-30,-28.3476,-1,0.11,11,10.84413
+Trade Summary,Data,Options,United States Dollar,MRK   220819P00082500,MRK 19AUG22 82.5 P,Healthcare,5,0.356,-178,-175.61812,-5,0,0,0
+Trade Summary,Data,Options,United States Dollar,MRK   220819P00085000,MRK 19AUG22 85 P,Healthcare,6,0.176666667,-106,-105.02907,-6,0.655,393,384.10264
+Trade Summary,Data,Options,United States Dollar,MRK   220819P00087000,MRK 19AUG22 87 P,Healthcare,1,1.35,-135,-131.97195,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,MRK   220819P00087500,MRK 19AUG22 87.5 P,Healthcare,1,0.7,-70,-69.0081,-1,0.94,94,93.46044
+Trade Summary,Data,Options,United States Dollar,MRK   220819P00089000,MRK 19AUG22 89 P,Healthcare,2,0.02,-4,-3.98448,-2,1.46,292,286.22688
+Trade Summary,Data,Options,United States Dollar,MRK   220916C00090000,MRK 16SEP22 90 C,Healthcare,6,1.88,-1128,-1131.6096,-6,2.67,1602,1561.58154
+Trade Summary,Data,Options,United States Dollar,MRK   220916C00092500,MRK 16SEP22 92.5 C,Healthcare,6,1.48,-888,-865.59576,-6,0.84,504,505.6128
+Trade Summary,Data,Options,United States Dollar,MRK   220916P00085000,MRK 16SEP22 85 P,Healthcare,2,0.08,-16,-16.0016,-2,0.4,80,79.6896
+Trade Summary,Data,Options,United States Dollar,MRK   221021C00092500,MRK 21OCT22 92.5 C,Healthcare,6,1.52,-912,-938.0832,-6,1.86,1116,1119.5712
+Trade Summary,Data,Options,United States Dollar,MRK   221021C00095000,MRK 21OCT22 95 C,Healthcare,6,1.08,-648,-650.0736,-6,0.43,258,265.3788
+Trade Summary,Data,Options,United States Dollar,MRK   221021P00075000,MRK 21OCT22 75 P,Healthcare,2,0.23,-46,-46.0046,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,MRK   221021P00080000,MRK 21OCT22 80 P,Healthcare,2,0.06,-12,-12.3636,-2,0.59,118,118.0118
+Trade Summary,Data,Options,United States Dollar,MRK   221118C00095000,MRK 18NOV22 95 C,Healthcare,6,1.81,-1086,-1109.6748,-6,2.078333333,1247,1282.6642
+Trade Summary,Data,Options,United States Dollar,MRK   221118C00100000,MRK 18NOV22 100 C,Healthcare,6,0.66,-396,-407.3256,-6,0.48,288,294.2784
+Trade Summary,Data,Options,United States Dollar,MRK   221118P00065000,MRK 18NOV22 65 P,Healthcare,2,0.09,-18,-18.5454,-2,0.01,2,2.0436
+Trade Summary,Data,Options,United States Dollar,MRK   221118P00077500,MRK 18NOV22 77.5 P,Healthcare,2,0.275,-55,-56.573,-2,0.41,82,84.4846
+Trade Summary,Data,Options,United States Dollar,MRK   221118P00082500,MRK 18NOV22 82.5 P,Healthcare,2,0.38,-76,-77.7708,-2,0.55,110,113.146
+Trade Summary,Data,Options,United States Dollar,MRK   221118P00085000,MRK 18NOV22 85 P,Healthcare,2,0.59,-118,-120.5724,-2,0.59,118,120.7494
+Trade Summary,Data,Options,United States Dollar,MRK   221216C00105000,MRK 16DEC22 105 C,Healthcare,2,2.675,-535,-521.22775,-2,0.36,72,73.5696
+Trade Summary,Data,Options,United States Dollar,MRK   221216C00115000,MRK 16DEC22 115 C,Healthcare,2,0.07,-14,-14.3052,-2,0.185,37,36.22349
+Trade Summary,Data,Options,United States Dollar,MRK   221216P00080000,MRK 16DEC22 80 P,Healthcare,2,0.28,-56,-55.53912,-2,0.69,138,141.0084
+Trade Summary,Data,Options,United States Dollar,MRK   221216P00092500,MRK 16DEC22 92.5 P,Healthcare,1,0.58,-58,-57.57602,-1,1.55,155,153.72435
+Trade Summary,Data,Options,United States Dollar,MRK   221216P00095000,MRK 16DEC22 95 P,Healthcare,2,0.39,-78,-75.5469,-2,0.95,190,188.6111
+Trade Summary,Data,Options,United States Dollar,MRK   221216P00097500,MRK 16DEC22 97.5 P,Healthcare,2,0.47,-94,-91.78442,-2,0.67,134,129.7857
+Trade Summary,Data,Options,United States Dollar,MRK   221216P00100000,MRK 16DEC22 100 P,Healthcare,2,0.72,-144,-140.60592,-2,0.83,166,162.08738
+Trade Summary,Data,Options,United States Dollar,MRK   221216P00103000,MRK 16DEC22 103 P,Healthcare,1,0.99,-99,-96.08445,-1,1.42,142,138.65306
+Trade Summary,Data,Options,United States Dollar,MRK   221216P00105000,MRK 16DEC22 105 P,Healthcare,1,1.56,-156,-150.06732,-1,1.57,157,152.37635
+Trade Summary,Data,Options,United States Dollar,MRK   221216P00110000,MRK 16DEC22 110 P,Healthcare,1,3.3,-330,-319.4961,-1,3.1,310,299.8103
+Trade Summary,Data,Options,United States Dollar,MRK   230120C00105000,MRK 20JAN23 105 C,Healthcare,1,7.36,-736,-694.5264,-1,5.32,532,515.06644
+Trade Summary,Data,Options,United States Dollar,MRK   230120C00115000,MRK 20JAN23 115 C,Healthcare,1,1.09,-109,-105.53053,-1,1.12,112,105.6888
+Trade Summary,Data,Options,United States Dollar,MRK   230120P00105000,MRK 20JAN23 105 P,Healthcare,2,2.11,-422,-408.12886,-2,2.505,501,481.79166
+Trade Summary,Data,Options,United States Dollar,MRK   230120P00110000,MRK 20JAN23 110 P,Healthcare,1,1.77,-177,-167.02605,-1,4.4,440,425.9948
+Trade Summary,Data,Options,United States Dollar,MRK   230217C00110000,MRK 17FEB23 110 C,Healthcare,1,5.99,-599,-558.13023,-1,5,500,471.825
+Trade Summary,Data,Options,United States Dollar,MRK   230217C00125000,MRK 17FEB23 125 C,Healthcare,1,0.43,-43,-40.57695,-1,0.38,38,35.40726
+Trade Summary,Data,Options,United States Dollar,MRK   230217P00115000,MRK 17FEB23 115 P,Healthcare,1,3.17,-317,-297.79614,-1,5.55,555,523.72575
+Trade Summary,Data,Options,United States Dollar,MRK   230217P00120000,MRK 17FEB23 120 P,Healthcare,1,6.97,-697,-649.44369,-1,6.05,605,568.3491
+Trade Summary,Data,Options,United States Dollar,MRK   230317C00105000,MRK 17MAR23 105 C,Healthcare,0,0,0,0,-1,7.83,783,727.93161
+Trade Summary,Data,Options,United States Dollar,MRK   230317C00110000,MRK 17MAR23 110 C,Healthcare,1,4.56,-456,-423.92952,-1,6.85,685,638.26245
+Trade Summary,Data,Options,United States Dollar,MRK   230317C00125000,MRK 17MAR23 125 C,Healthcare,1,0.82,-82,-76.40514,0,0,0,0
+Trade Summary,Data,Options,United States Dollar,MRK   230317P00115000,MRK 17MAR23 115 P,Healthcare,0,0,0,0,-1,6,600,558.942
+Trade Summary,Data,Options,United States Dollar,MRK   230317P00120000,MRK 17MAR23 120 P,Healthcare,1,10.55,-1055,-983.01735,-1,7.7,770,717.4629
+Trade Summary,Data,Options,United States Dollar,MSFT  221216P00200000,MSFT 16DEC22 200 P,Technology,4,3.92,-1568,-1608.2976,-4,1.75,700,702.31
+Trade Summary,Data,Options,United States Dollar,MSFT  230217C00255000,MSFT 17FEB23 255 C,Technology,3,1.58,-474,-434.25036,-3,1.55,465,429.32985
+Trade Summary,Data,Options,United States Dollar,MSFT  230217C00260000,MSFT 17FEB23 260 C,Technology,3,0.96,-288,-265.90752,-3,1.736666667,521,491.32384
+Trade Summary,Data,Options,United States Dollar,MSFT  230217C00270000,MSFT 17FEB23 270 C,Technology,3,0.83,-249,-234.81696,-3,2.25,675,635.496
+Trade Summary,Data,Options,United States Dollar,MSFT  230217C00290000,MSFT 17FEB23 290 C,Technology,3,0.67,-201,-189.23248,-3,0.04,12,10.99368
+Trade Summary,Data,Options,United States Dollar,MSFT  230217P00200000,MSFT 17FEB23 200 P,Technology,2,1.31,-262,-246.411,-2,2.3,460,435.8178
+Trade Summary,Data,Options,United States Dollar,MSFT  230217P00220000,MSFT 17FEB23 220 P,Technology,2,1.83,-366,-336.64314,-2,3,600,564.3
+Trade Summary,Data,Options,United States Dollar,MSFT  230317P00220000,MSFT 17MAR23 220 P,Technology,2,2.38,-476,-436.08264,-2,3.215,643,591.42497
+Trade Summary,Data,Options,United States Dollar,MSFT  230421C00260000,MSFT 21APR23 260 C,Technology,0,0,0,0,-2,4.16,832,762.22848
+Trade Summary,Data,Options,United States Dollar,MSFT  230421C00275000,MSFT 21APR23 275 C,Technology,2,1.605,-321,-294.08094,0,0,0,0
+Trade Summary,Data,Options,United States Dollar,MSFT  230421P00215000,MSFT 21APR23 215 P,Technology,0,0,0,0,-2,3.3,660,604.6524
+Trade Summary,Data,Options,United States Dollar,NVS   220617P00075000,NVS 17JUN22 75 P,Healthcare,1,0.2,-20,-18.726,-1,0.2,20,19.1168
+Trade Summary,Data,Options,United States Dollar,NVS   220715C00085000,NVS 15JUL22 85 C,Healthcare,1,0.09,-9,-8.94834,-1,0.5,50,47.469
+Trade Summary,Data,Options,United States Dollar,NVS   220715C00090000,NVS 15JUL22 90 C,Healthcare,1,0.12,-12,-11.39256,-1,0.01,1,0.99426
+Trade Summary,Data,Options,United States Dollar,NVS   220715P00070000,NVS 15JUL22 70 P,Healthcare,2,0.225,-45,-42.7221,-2,0.05,10,9.4492
+Trade Summary,Data,Options,United States Dollar,NVS   220715P00075000,NVS 15JUL22 75 P,Healthcare,1,0.15,-15,-14.613,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,NVS   220715P00077500,NVS 15JUL22 77.5 P,Healthcare,2,0.2,-40,-37.7968,-2,0.605,121,114.87498
+Trade Summary,Data,Options,United States Dollar,NVS   220715P00080000,NVS 15JUL22 80 P,Healthcare,1,0.1,-10,-9.9598,-1,0.3,30,29.226
+Trade Summary,Data,Options,United States Dollar,NVS   220715P00082500,NVS 15JUL22 82.5 P,Healthcare,1,0.85,-85,-84.8283,-1,0.16,16,15.93568
+Trade Summary,Data,Options,United States Dollar,NVS   220819C00087500,NVS 19AUG22 87.5 C,Healthcare,2,0,0,0,-2,0.5,100,99.798
+Trade Summary,Data,Options,United States Dollar,NVS   220819C00090000,NVS 19AUG22 90 C,Healthcare,4,0.14,-56,-55.88688,-4,0.32,128,126.57044
+Trade Summary,Data,Options,United States Dollar,NVS   220819C00095000,NVS 19AUG22 95 C,Healthcare,4,0.0925,-37,-36.64794,-4,0,0,0
+Trade Summary,Data,Options,United States Dollar,NVS   220819P00072500,NVS 19AUG22 72.5 P,Healthcare,3,0.396666667,-119,-114.74042,-3,0,0,0
+Trade Summary,Data,Options,United States Dollar,NVS   220819P00077500,NVS 19AUG22 77.5 P,Healthcare,1,0.2,-20,-19.5804,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,NVS   220819P00080000,NVS 19AUG22 80 P,Healthcare,6,0.365,-219,-214.92567,-6,0.551666667,331,321.02622
+Trade Summary,Data,Options,United States Dollar,NVS   220819P00082500,NVS 19AUG22 82.5 P,Healthcare,7,0,0,0,-7,0.57,399,391.53902
+Trade Summary,Data,Options,United States Dollar,NVS   220916P00080000,NVS 16SEP22 80 P,Healthcare,1,0.35,-35,-35.203,-1,0.05,5,4.9923
+Trade Summary,Data,Options,United States Dollar,NVS   220916P00082500,NVS 16SEP22 82.5 P,Healthcare,1,1.78,-178,-177.72588,-1,0.66,66,66.3828
+Trade Summary,Data,Options,United States Dollar,NVS   221021C00087500,NVS 21OCT22 87.5 C,Healthcare,2,0,0,0,-2,0.2,40,39.9384
+Trade Summary,Data,Options,United States Dollar,NVS   221021C00090000,NVS 21OCT22 90 C,Healthcare,2,0.11,-22,-21.96612,-2,0.505,101,101.4866
+Trade Summary,Data,Options,United States Dollar,NVS   221021C00092500,NVS 21OCT22 92.5 C,Healthcare,2,0.275,-55,-55.255,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,NVS   230120C00085000,NVS 20JAN23 85 C,Healthcare,2,7.6,-1520,-1446.9032,-2,0.69,138,139.9458
+Trade Summary,Data,Options,United States Dollar,NVS   230120C00090000,NVS 20JAN23 90 C,Healthcare,2,0.3,-60,-60.846,-2,1.5,300,290.139
+Trade Summary,Data,Options,United States Dollar,NVS   230120C00105000,NVS 20JAN23 105 C,Healthcare,2,0.1,-20,-19.3426,-2,0.1,20,19.0382
+Trade Summary,Data,Options,United States Dollar,NVS   230120P00060000,NVS 20JAN23 60 P,Healthcare,2,0.31,-62,-62.2604,-2,0.45,90,91.269
+Trade Summary,Data,Options,United States Dollar,NVS   230120P00075000,NVS 20JAN23 75 P,Healthcare,2,0.55,-110,-107.7505,-2,0.9,180,180.756
+Trade Summary,Data,Options,United States Dollar,NVS   230120P00077500,NVS 20JAN23 77.5 P,Healthcare,2,0.65,-130,-125.9115,-2,0.7,140,137.137
+Trade Summary,Data,Options,United States Dollar,NVS   230120P00085000,NVS 20JAN23 85 P,Healthcare,2,1.25,-250,-241.7825,-2,2.15,430,416.4765
+Trade Summary,Data,Options,United States Dollar,NVS   230120P00090000,NVS 20JAN23 90 P,Healthcare,2,2.09,-418,-397.13762,-2,3.22,644,622.83172
+Trade Summary,Data,Options,United States Dollar,NVS   230120P00092500,NVS 20JAN23 92.5 P,Healthcare,2,2.55,-510,-485.4741,-2,3.48,696,661.26264
+Trade Summary,Data,Options,United States Dollar,NVS   230421C00087500,NVS 21APR23 87.5 C,Healthcare,2,6.5,-1300,-1225.952,-2,6.46,1292,1224.07956
+Trade Summary,Data,Options,United States Dollar,NVS   230421C00105000,NVS 21APR23 105 C,Healthcare,2,0.55,-110,-104.2173,-2,0.25,50,47.152
+Trade Summary,Data,Options,United States Dollar,NVS   230421P00092500,NVS 21APR23 92.5 P,Healthcare,2,4.41,-882,-831.76128,-2,5.5,1100,1042.173
+Trade Summary,Data,Options,United States Dollar,OXY   221118P00050000,OXY 18NOV22 50 P,Energy,1,0.19,-19,-19.2679,-1,0.3,30,30.699
+Trade Summary,Data,Options,United States Dollar,OXY   221216C00095000,OXY 16DEC22 95 C,Energy,2,0.48,-96,-96.336,-2,0.55,110,111.551
+Trade Summary,Data,Options,United States Dollar,OXY   221216C00105000,OXY 16DEC22 105 C,Energy,2,0.18,-36,-36.5076,-2,0.13,26,26.091
+Trade Summary,Data,Options,United States Dollar,OXY   221216P00050000,OXY 16DEC22 50 P,Energy,2,0.11,-22,-21.25992,-2,0.54,108,109.4514
+Trade Summary,Data,Options,United States Dollar,OXY   221216P00057500,OXY 16DEC22 57.5 P,Energy,2,0.24,-48,-46.5864,-2,0.34,68,65.71248
+Trade Summary,Data,Options,United States Dollar,OXY   221216P00065000,OXY 16DEC22 65 P,Energy,1,2.74,-274,-259.59582,-1,0.94,94,91.2317
+Trade Summary,Data,Options,United States Dollar,OXY   230217P00065000,OXY 17FEB23 65 P,Energy,1,4.55,-455,-427.64085,-1,5.95,595,563.72085
+Trade Summary,Data,Options,United States Dollar,OXY   230317P00052500,OXY 17MAR23 52.5 P,Energy,1,0.46,-46,-42.31034,-1,1.46,146,137.22102
+Trade Summary,Data,Options,United States Dollar,OXY   230519P00052500,OXY 19MAY23 52.5 P,Energy,0,0,0,0,-1,1.3,130,119.5727
+Trade Summary,Data,Options,United States Dollar,PFE   220617P00044000,PFE 17JUN22 44 P,Healthcare,2,0.105,-21,-19.61065,-2,0.045,9,8.38707
+Trade Summary,Data,Options,United States Dollar,PFE   220617P00048000,PFE 17JUN22 48 P,Healthcare,3,0.136666667,-41,-38.22053,-3,0.236666667,71,66.30079
+Trade Summary,Data,Options,United States Dollar,PFE   220624C00049000,PFE 24JUN22 49 C,Healthcare,1,0.61,-61,-57.72064,-1,0.16,16,15.19008
+Trade Summary,Data,Options,United States Dollar,PFE   220624C00050500,PFE 24JUN22 50.5 C,Healthcare,1,0.03,-3,-2.84814,-1,0.09,9,8.51616
+Trade Summary,Data,Options,United States Dollar,PFE   220624P00044000,PFE 24JUN22 44 P,Healthcare,1,0.05,-5,-4.7469,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,PFE   220624P00046500,PFE 24JUN22 46.5 P,Healthcare,1,0.07,-7,-6.62368,-1,0.2,20,18.9876
+Trade Summary,Data,Options,United States Dollar,PFE   220624P00047500,PFE 24JUN22 47.5 P,Healthcare,1,0,0,0,-1,0.14,14,13.24736
+Trade Summary,Data,Options,United States Dollar,PFE   220701P00047000,PFE 01JUL22 47 P,Healthcare,1,0.03,-3,-2.85168,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,PFE   220701P00049000,PFE 01JUL22 49 P,Healthcare,1,0.03,-3,-2.86167,-1,0.08,8,7.60448
+Trade Summary,Data,Options,United States Dollar,PFE   220708C00052000,PFE 08JUL22 52 C,Healthcare,2,1.4,-280,-275.576,-2,0.24,48,46.7616
+Trade Summary,Data,Options,United States Dollar,PFE   220708C00054000,PFE 08JUL22 54 C,Healthcare,2,0.04,-8,-7.7936,-2,0.19,38,37.3996
+Trade Summary,Data,Options,United States Dollar,PFE   220708P00049500,PFE 08JUL22 49.5 P,Healthcare,2,0.06,-12,-11.78496,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,PFE   220708P00051000,PFE 08JUL22 51 P,Healthcare,2,0,0,0,-2,0.23,46,45.17568
+Trade Summary,Data,Options,United States Dollar,PFE   220715C00050500,PFE 15JUL22 50.5 C,Healthcare,1,1.42,-142,-134.52228,-1,0.81,81,76.64544
+Trade Summary,Data,Options,United States Dollar,PFE   220715C00051500,PFE 15JUL22 51.5 C,Healthcare,1,1.43,-143,-140.43744,-1,0.99,99,93.78666
+Trade Summary,Data,Options,United States Dollar,PFE   220715C00053000,PFE 15JUL22 53 C,Healthcare,2,0.14,-28,-26.70168,-2,0.295,59,56.50302
+Trade Summary,Data,Options,United States Dollar,PFE   220715C00055000,PFE 15JUL22 55 C,Healthcare,1,0.03,-3,-2.98896,-1,0.15,15,14.9397
+Trade Summary,Data,Options,United States Dollar,PFE   220715C00056000,PFE 15JUL22 56 C,Healthcare,1,0.1,-10,-9.4734,-1,0.08,8,7.85664
+Trade Summary,Data,Options,United States Dollar,PFE   220715C00057000,PFE 15JUL22 57 C,Healthcare,1,0.03,-3,-2.98794,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,PFE   220715P00050000,PFE 15JUL22 50 P,Healthcare,4,0.08,-32,-31.87136,-4,0.12,48,47.90304
+Trade Summary,Data,Options,United States Dollar,PFE   220715P00051500,PFE 15JUL22 51.5 P,Healthcare,4,0.78,-312,-311.36976,-4,0.2,80,79.6784
+Trade Summary,Data,Options,United States Dollar,PFE   220722P00047500,PFE 22JUL22 47.5 P,Healthcare,1,0.11,-11,-10.97778,-1,0.02,2,1.95594
+Trade Summary,Data,Options,United States Dollar,PFE   220722P00049000,PFE 22JUL22 49 P,Healthcare,1,0.07,-7,-6.84579,-1,0.25,25,24.9495
+Trade Summary,Data,Options,United States Dollar,PFE   220819C00052500,PFE 19AUG22 52.5 C,Healthcare,3,0.05,-15,-14.62155,-3,1.31,393,387.56801
+Trade Summary,Data,Options,United States Dollar,PFE   220819C00055000,PFE 19AUG22 55 C,Healthcare,1,0.26,-26,-25.41682,-1,1.28,128,125.9776
+Trade Summary,Data,Options,United States Dollar,PFE   220819C00057500,PFE 19AUG22 57.5 C,Healthcare,3,0.266666667,-80,-78.89602,-3,0,0,0
+Trade Summary,Data,Options,United States Dollar,PFE   220819C00060000,PFE 19AUG22 60 C,Healthcare,1,0.27,-27,-26.5734,-1,0.02,2,1.95514
+Trade Summary,Data,Options,United States Dollar,PFE   220819P00035000,PFE 19AUG22 35 P,Healthcare,1,0.08,-8,-7.55936,-1,0.03,3,2.9526
+Trade Summary,Data,Options,United States Dollar,PFE   220819P00037500,PFE 19AUG22 37.5 P,Healthcare,4,0.0875,-35,-33.84943,-4,0.04,16,15.66432
+Trade Summary,Data,Options,United States Dollar,PFE   220819P00045000,PFE 19AUG22 45 P,Healthcare,1,0.31,-31,-30.5102,-1,0.55,55,51.9706
+Trade Summary,Data,Options,United States Dollar,PFE   220819P00047500,PFE 19AUG22 47.5 P,Healthcare,4,0.57,-228,-223.21656,-4,0.8325,333,321.96382
+Trade Summary,Data,Options,United States Dollar,PFE   220916C00051000,PFE 16SEP22 51 C,Healthcare,6,0.04,-24,-24.2304,-6,0.235,141,141.4704
+Trade Summary,Data,Options,United States Dollar,PFE   220916C00052500,PFE 16SEP22 52.5 C,Healthcare,6,0.105,-63,-63.21,-6,0.02,12,12.1152
+Trade Summary,Data,Options,United States Dollar,PFE   220916C00055000,PFE 16SEP22 55 C,Healthcare,3,0.05,-15,-15.048,-3,0.13,39,38.01603
+Trade Summary,Data,Options,United States Dollar,PFE   220916C00057500,PFE 16SEP22 57.5 C,Healthcare,3,0.05,-15,-14.62155,-3,0.01,3,3.0096
+Trade Summary,Data,Options,United States Dollar,PFE   220916P00045000,PFE 16SEP22 45 P,Healthcare,6,0.49,-294,-287.85182,-6,0.08,48,48.0048
+Trade Summary,Data,Options,United States Dollar,PFE   220916P00047000,PFE 16SEP22 47 P,Healthcare,6,1.09,-654,-654.0654,-6,0.788333333,473,463.1313
+Trade Summary,Data,Options,United States Dollar,PFE   221021C00050000,PFE 21OCT22 50 C,Healthcare,2,0.1,-20,-20.54,-2,0.53,106,107.0176
+Trade Summary,Data,Options,United States Dollar,PFE   221021C00052500,PFE 21OCT22 52.5 C,Healthcare,2,0.21,-42,-42.4032,-2,0.02,4,4.108
+Trade Summary,Data,Options,United States Dollar,PFE   221118C00050000,PFE 18NOV22 50 C,Healthcare,2,0.21,-42,-42.5334,-2,0.38,76,78.052
+Trade Summary,Data,Options,United States Dollar,PFE   221118C00055000,PFE 18NOV22 55 C,Healthcare,2,0.08,-16,-16.432,-2,0.02,4,4.0508
+Trade Summary,Data,Options,United States Dollar,PFE   221118P00040000,PFE 18NOV22 40 P,Healthcare,6,0.64,-384,-384.0384,-6,0.24,144,145.8288
+Trade Summary,Data,Options,United States Dollar,PFE   221118P00045000,PFE 18NOV22 45 P,Healthcare,6,1.4,-840,-850.668,-6,1.91,1146,1146.1146
+Trade Summary,Data,Options,United States Dollar,PFE   221216C00052500,PFE 16DEC22 52.5 C,Healthcare,3,1.5,-450,-423.225,-3,0.18,54,54.6858
+Trade Summary,Data,Options,United States Dollar,PFE   221216C00057500,PFE 16DEC22 57.5 C,Healthcare,3,0.06,-18,-18.2286,-3,0.02,6,5.643
+Trade Summary,Data,Options,United States Dollar,PFE   221216P00035000,PFE 16DEC22 35 P,Healthcare,3,0.03,-9,-8.71695,-3,0.16,48,48.6096
+Trade Summary,Data,Options,United States Dollar,PFE   221216P00045000,PFE 16DEC22 45 P,Healthcare,2,0.05,-10,-9.5307,-2,0.34,68,65.8614
+Trade Summary,Data,Options,United States Dollar,PFE   230217P00042500,PFE 17FEB23 42.5 P,Healthcare,2,0.18,-36,-33.858,-2,0.35,70,66.7149
+Trade Summary,Data,Options,United States Dollar,SNY   220819C00046000,SNY 19AUG22 46 C,Healthcare,2,0.07,-14,-13.7543,-2,0.45,90,87.1911
+Trade Summary,Data,Options,United States Dollar,SNY   220819C00055000,SNY 19AUG22 55 C,Healthcare,4,0.05,-20,-19.3758,-4,0.175,70,69.1739
+Trade Summary,Data,Options,United States Dollar,SNY   220819C00060000,SNY 19AUG22 60 C,Healthcare,2,0.1,-20,-19.8258,-2,0,0,0
+Trade Summary,Data,Options,United States Dollar,SNY   220819P00042000,SNY 19AUG22 42 P,Healthcare,2,0.2,-40,-39.6516,-2,0.84,168,165.0516
+Trade Summary,Data,Options,United States Dollar,SNY   220819P00047000,SNY 19AUG22 47 P,Healthcare,2,5.4,-1080,-1061.046,-2,0.51,102,101.11158
+Trade Summary,Data,Options,United States Dollar,SNY   220916P00036000,SNY 16SEP22 36 P,Healthcare,1,0.35,-35,-34.38575,-1,0,0,0
+Trade Summary,Data,Options,United States Dollar,SNY   220916P00038000,SNY 16SEP22 38 P,Healthcare,2,0.275,-55,-54.03475,-2,0.515,103,101.19235
+Trade Summary,Data,Options,United States Dollar,SPY   230317P00350000,SPY 17MAR23 350 P,Broad,4,1.54,-616,-564.34224,0,0,0,0
+Trade Summary,Data,Options,United States Dollar,SPY   230317P00360000,SPY 17MAR23 360 P,Broad,1,2.33,-233,-213.46062,-1,2.96,296,272.68112
+Trade Summary,Data,Options,United States Dollar,SPY   231215P00180000,SPY 15DEC23 180 P,Broad,4,0.93,-372,-342.69384,-4,2.02,808,808.0808
+Trade Summary,Data,Options,United States Dollar,SPY   231215P00360000,SPY 15DEC23 360 P,Broad,8,30.7575,-24606,-24549.77588,-8,28.075,22460,22609.84584
+Trade Summary,Data,Options,United States Dollar,TSM   230217P00070000,TSM 17FEB23 70 P,Technology,1,0.76,-76,-70.81452,-1,1.68,168,158.42736
+Trade Summary,Data,Options,United States Dollar,TSM   230317P00070000,TSM 17MAR23 70 P,Technology,1,0.39,-39,-36.15027,-1,1.3,130,121.1301
+Trade Summary,Data,Options,United States Dollar,TSM   230317P00075000,TSM 17MAR23 75 P,Technology,1,0.73,-73,-67.66589,-1,0.56,56,51.58832
+Trade Summary,Data,Options,United States Dollar,TSM   230421P00075000,TSM 21APR23 75 P,Technology,0,0,0,0,-2,1.11,222,204.51084
+Trade Summary,Data,Options,United States Dollar,TXN   221216P00155000,TXN 16DEC22 155 P,Technology,1,0.62,-62,-60.1741,-1,0.87,87,84.94941
+Trade Summary,Data,Options,United States Dollar,TXN   230120P00155000,TXN 20JAN23 155 P,Technology,1,1.67,-167,-158.47131,-1,2,200,194.11
+Trade Summary,Data,Options,United States Dollar,TXN   230317C00195000,TXN 17MAR23 195 C,Technology,0,0,0,0,-1,2.14,214,198.36302
+Trade Summary,Data,Options,United States Dollar,TXN   230317C00200000,TXN 17MAR23 200 C,Technology,0,0,0,0,-1,1.63,163,150.46856
+Trade Summary,Data,Options,United States Dollar,TXN   230317C00210000,TXN 17MAR23 210 C,Technology,2,0.58,-116,-107.29528,0,0,0,0
+Trade Summary,Data,Options,United States Dollar,TXN   230317P00150000,TXN 17MAR23 150 P,Technology,1,1.84,-184,-171.40888,-1,3.05,305,286.5231
+Trade Summary,Data,Options,United States Dollar,TXN   230317P00155000,TXN 17MAR23 155 P,Technology,0,0,0,0,-1,2.48,248,231.02936
+Trade Summary,Data,Options,United States Dollar,TXN   230317P00160000,TXN 17MAR23 160 P,Technology,0,0,0,0,-1,2.7,270,250.2711
+Trade Summary,Data,Options,United States Dollar,USB   221216P00032500,USB 16DEC22 32.5 P,Financials,3,0.05,-15,-14.64645,-3,0.21,63,63.8001
+Trade Summary,Data,Options,United States Dollar,USB   230120P00035000,USB 20JAN23 35 P,Financials,1,0.05,-5,-4.69935,-1,0.25,25,24.41075
+Trade Summary,Data,Options,United States Dollar,USB   230217P00035000,USB 17FEB23 35 P,Financials,0,0,0,0,-1,0.2,20,18.7974
+Trade Summary,Data,Stocks,United States Dollar,AAPL,APPLE INC,Technology,200,160,-32000,-32976,-200,144.7,28940,29177.8617
+Trade Summary,Data,Stocks,United States Dollar,INTC,INTEL CORP,Technology,100,39.15,-3915,-3859.52445,-100,38.5,3850,3816.4665
+Trade Summary,Data,Stocks,United States Dollar,KO,COCA-COLA CO/THE,Consumer Non-Cyc,100,63,-6300,-5952.996,-100,62,6200,5858.504
+Disclosure,"IMPORTANT NOTE: This portfolio analysis was generated using Interactive Brokers' PortfolioAnalyst tool, which allows Interactive Brokers clients to generate analyses of their accounts using market data provided by third parties along with trade and account data contained in Interactive Brokers' systems. This analysis is for information purposes only and is provided AS IS. Interactive Brokers makes no warranty of any kind, express or implied, as to this report analysis and its contents. The data provided for use in this Portfolio Analysis is believed to be accurate but completeness and accuracy of the information is not guaranteed, and Interactive Brokers has no liability with respect thereto. The data regarding accounts held outside of Interactive Brokers is obtained either directly from you or from the financial institutions holding those accounts through a third-party service provider and Interactive Brokers has not reviewed its accuracy.
+
+This material in this analysis is intended only as a reference and should not be relied upon for the maintenance of your books and records for tax, accounting, financial, or regulatory reporting or for any other purposes. This analysis is not an offer or a solicitation of an offer to buy or sell any security. This material does not and is not intended to take into account the particular financial conditions, investment objectives or requirements of individual customers. Before acting on this material, you should consider whether it is suitable for your particular circumstances and, as necessary, seek professional advice."
