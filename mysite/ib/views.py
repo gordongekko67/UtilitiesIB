@@ -164,7 +164,9 @@ def analisi_trade(request):
    
     df3 =  df2.groupby('Simbolo_opzione').sum()
     df3.loc['total']= df3.sum()
+    df3.drop(['Agg. costo', 'Realizzato Profitto L/T'], axis=1)
     print(df3)
+   
 
     #emissione videata
     trades = df3
