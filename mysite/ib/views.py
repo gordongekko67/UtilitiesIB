@@ -154,20 +154,32 @@ def importa_trades(request):
 
 
 
-def analisi_trade(request):
+def analisi_trade_scadenza(request):
     df = pd.read_csv('Analisi_trade.csv')
     df2 = df.drop(["Sommario profitti e perdite Realizzati e Non realizzati", "Header"], axis=1)
       
     df2['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
     df2['Simbolo_opzione'] = df['Simbolo'].str.split(' ').str[0] + df['Simbolo'].str.split(' ').str[1] 
     df2.sort_values(by=['Simbolo_opzione'], inplace = True)
-   
-    df3 =  df2.groupby('Simbolo_opzione').sum()
-    df3.loc['total']= df3.sum()
-    df3.drop(['Agg. costo', 'Realizzato Profitto L/T'], axis=1)
-    print(df3)
-   
-
+          
+    # raggruppa il dataframe per il campo "campo1" e somma i valori per ogni gruppo
+    df_grouped = df2.groupby('Simbolo_opzione')['Realizzato Totale', 'Non realizzato Totale','Totale'].sum().reset_index()
+    
     #emissione videata
-    trades = df3
+    trades = df_grouped
+    return render(request,"index4.html",{'trades':trades}) 
+
+
+def analisi_trade_titolo(request):
+    df = pd.read_csv('Analisi_trade.csv')
+    df2 = df.drop(["Sommario profitti e perdite Realizzati e Non realizzati", "Header"], axis=1)
+      
+    df2['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
+    df2['Simbolo_opzione'] = df['Simbolo'].str.split(' ').str[0] + df['Simbolo'].str.split(' ').str[1] 
+    df2.sort_values(by=['Simbolo_opzione'], inplace = True)
+          
+    # raggruppa il dataframe per il campo "campo1" e somma i valori per ogni gruppo
+    df_grouped = df2.groupby('Simbolo_solo')['Realizzato Totale', 'Non realizzato Totale','Totale'].sum().reset_index()
+    #emissione videata
+    trades = df_grouped
     return render(request,"index4.html",{'trades':trades}) 
