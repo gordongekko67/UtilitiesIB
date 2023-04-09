@@ -183,3 +183,4 @@ def analisi_trade_titolo(request):
     #emissione videata
     trades = df_grouped
     return render(request,"index4.html",{'trades':trades}) 
+
