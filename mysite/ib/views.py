@@ -184,3 +184,6 @@ def analisi_trade_titolo(request):
     trades = df_grouped
     return render(request,"index4.html",{'trades':trades}) 
 
+#
+
+
