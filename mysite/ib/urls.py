@@ -13,5 +13,6 @@ urlpatterns = [
     path('index7', views.importa_trades),
     path('index9', views.analisi_trade_scadenza),
     path('index10', views.analisi_trade_titolo),
+    path('index11', views.analisi_bilanciamento_delta),
     
 ]

@@ -184,6 +184,43 @@ def analisi_trade_titolo(request):
     trades = df_grouped
     return render(request,"index4.html",{'trades':trades}) 
 
-#
+
+def analisi_bilanciamento_delta(request):
+    template = loader.get_template('index4.html')
+    # inporto df 
+    df = pd.read_csv('portfolio.csv')
+
+    # aggiustamenti colonne e dati
+    df.rename(columns = {"Strumento finanziario":"Strumento_finanziario", "Giorni restanti all'UGT":"Giorni_rimanenti"}, inplace = True)
+    print(df)
+    df['Delta'] = df['Delta'].astype(float)
+    df['Deltasigned'] = df['Delta'].astype(float)
+    df['Giorni_rimanenti'] = df['Giorni_rimanenti'].astype(int)
+
+    df["Deltaabs"] = abs(df['Delta'].astype(float))
+    df["Posizione"] = df['Posizione'].astype(int)
+    df['Simbolo_solo'] = df['Strumento_finanziario'].str.split(' ').str[0]
+    #eseguo la selezione
+    df1 = df.loc[(df['Deltaabs'] < 0.075) & (df['Posizione'] < 0)]
+    df["Deltariga"] = df["Delta"]*df['Posizione']*100
+
+    
+    #li ordino 
+    df4= df.sort_values(by=['Deltaabs'],  ascending=False)
+    # raggruppa il dataframe per il campo "campo1" e somma i valori per ogni gruppo
+    df_grouped = df4.groupby('Simbolo_solo')['Deltariga'].sum().reset_index()
+    print(df_grouped)     
+
+    df_grouped50=  df_grouped.loc[df['Deltariga'] > 50]
+    
+  
+    #emissione videata
+    print(df_grouped50)   
+    trades = df_grouped50
+    return render(request,"index4.html",{'trades':trades})  
+
+
+
+
 
 
