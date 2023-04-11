@@ -210,11 +210,10 @@ def analisi_bilanciamento_delta(request):
     df_grouped = df4.groupby('Simbolo_solo')['Deltariga'].sum().reset_index()
 
     # seleziona solo le righe con valori maggiori di 50 in 'Deltariga'
-    df_grouped50 = df_grouped.loc[(df_grouped['Deltariga'] > 50)]
-    df_grouped50.sort_values(by=['Deltariga'], inplace = True, ascending=False)
+    df_grouped.sort_values(by=['Deltariga'], inplace = True, ascending=False)
       
     #emissione videata
-    trades = df_grouped50
+    trades = df_grouped
     return render(request,"index4.html",{'trades':trades})  
 
 
