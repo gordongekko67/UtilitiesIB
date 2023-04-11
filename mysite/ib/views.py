@@ -211,9 +211,9 @@ def analisi_bilanciamento_delta(request):
     df_grouped = df4.groupby('Simbolo_solo')['Deltariga'].sum().reset_index()
     print(df_grouped)     
 
-    df_grouped50=  df_grouped.loc[df['Deltariga'] > 50]
+    #df_grouped50=  df_grouped.loc[df['Deltariga'] > 50]
+    df_grouped50=  df_grouped.query(df_grouped['Deltariga'] > 50)
     
-  
     #emissione videata
     print(df_grouped50)   
     trades = df_grouped50
