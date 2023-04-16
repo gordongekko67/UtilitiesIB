@@ -221,3 +221,53 @@ def analisi_bilanciamento_delta(request):
 
 
 
+def opzioni_PUT_da_rollare(request):
+    template = loader.get_template('index5.html')
+    # inporto df 
+    df = pd.read_csv('portfolio.csv')
+    df2 = pd.DataFrame()
+    
+
+    # aggiustamenti colonne e dati
+    df.rename(columns = {"Strumento finanziario":"Strumento_finanziario", "Giorni restanti all'UGT":"Giorni_rimanenti"}, inplace = True)
+    df['Delta'] = df['Delta'].astype(float)
+    df['Giorni_rimanenti'] = df['Giorni_rimanenti'].astype(int)
+
+    df["Deltaabs"] = abs(df['Delta'].astype(float))
+    
+    df["Valore temporale (%)"].replace("", 99.999, inplace=True)
+    
+    df["Valore_tmp_fin"] = df["Valore temporale (%)"].str.extract(r"(\d+\.\d+)")
+    df["Valore_tmp_fin_float"] = df["Valore_tmp_fin"].astype(float)
+    df['PUT/CALL'] = df['Strumento_finanziario'].str.split(' ').str[3]
+   
+    df2 = df.loc[(df['Giorni_rimanenti'] < 21) & (df['Deltaabs'] > 0.5) & (df['PUT/CALL'] =="PUT")]
+ 
+    trades = df2
+    return render(request,"index4.html",{'trades':trades})  
+
+
+def opzioni_CALL_da_vedere_se_andare_invertito(request):
+    template = loader.get_template('index5.html')
+    # inporto df 
+    df = pd.read_csv('portfolio.csv')
+    df2 = pd.DataFrame()
+    
+
+    # aggiustamenti colonne e dati
+    df.rename(columns = {"Strumento finanziario":"Strumento_finanziario", "Giorni restanti all'UGT":"Giorni_rimanenti"}, inplace = True)
+    df['Delta'] = df['Delta'].astype(float)
+    df['Giorni_rimanenti'] = df['Giorni_rimanenti'].astype(int)
+
+    df["Deltaabs"] = abs(df['Delta'].astype(float))
+    
+    df["Valore temporale (%)"].replace("", 99.999, inplace=True)
+    
+    df["Valore_tmp_fin"] = df["Valore temporale (%)"].str.extract(r"(\d+\.\d+)")
+    df["Valore_tmp_fin_float"] = df["Valore_tmp_fin"].astype(float)
+    df['PUT/CALL'] = df['Strumento_finanziario'].str.split(' ').str[3]
+   
+    df2 = df.loc[(df['Giorni_rimanenti'] < 15) & (df['Deltaabs'] > 0.5) & (df['PUT/CALL'] =="CALL")]
+ 
+    trades = df2
+    return render(request,"index4.html",{'trades':trades})  
