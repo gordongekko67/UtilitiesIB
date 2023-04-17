@@ -267,7 +267,7 @@ def opzioni_CALL_da_vedere_se_andare_invertito(request):
     df["Valore_tmp_fin_float"] = df["Valore_tmp_fin"].astype(float)
     df['PUT/CALL'] = df['Strumento_finanziario'].str.split(' ').str[3]
    
-    df2 = df.loc[(df['Giorni_rimanenti'] < 15) & (df['Deltaabs'] > 0.5) & (df['PUT/CALL'] =="CALL")]
+    df2 = df.loc[(df['Giorni_rimanenti'] < 21) & (df['Deltaabs'] > 0.5) & (df['PUT/CALL'] =="CALL")]
  
     trades = df2
     return render(request,"index4.html",{'trades':trades})  
