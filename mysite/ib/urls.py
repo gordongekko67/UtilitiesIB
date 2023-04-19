@@ -16,6 +16,8 @@ urlpatterns = [
     path('index11', views.analisi_bilanciamento_delta),
     path('index21', views.opzioni_PUT_da_rollare),
     path('index22', views.opzioni_CALL_da_vedere_se_andare_invertito),
+    path('index12', views.analisi_trade_dettaglio),
+    
    
     
 ]
