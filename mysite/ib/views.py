@@ -16,6 +16,19 @@ def index2(request):
   template = loader.get_template('index2.html')
   return HttpResponse(template.render())
 
+
+def analisi_trades(request):
+    template = loader.get_template('index2.html')
+    df = pd.read_csv('trade01012023-19042023.csvtrades.csv')
+    #eseguo la selezione
+    df1 = df.loc[(df['Deltaabs'] > 0.499999) & (df['Posizione'] < 0)]
+
+
+
+
+
+
+
 def importa(request):
     template = loader.get_template('index2.html')
     df = pd.read_csv('trades.csv')
