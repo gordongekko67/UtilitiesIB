@@ -328,13 +328,15 @@ def analisi_di_portafoglio(request):
     
     df["Valore temporale (%)"].replace("", 99.999, inplace=True)
     
-    df["Valore_tmp_fin"] = df["Valore temporale (%)"].str.extract(r"(\d+\.\d+)")
-    df["Valore_tmp_fin_float"] = df["Valore_tmp_fin"].astype(float)
+    df["Val_tmp_fin"] = df["Valore temporale (%)"].str.extract(r"(\d+\.\d+)")
+    df["Val_tmp_fin_float"] = df["Val_tmp_fin"].astype(float)
     df['PUT/CALL'] = df['Strumento_finanziario'].str.split(' ').str[3]
     df['Simbolo_solo'] = df['Strumento_finanziario'].str.split(' ').str[0]
+    df.drop(['Operazione ticker'], axis = 1) 
+
    
     df2 = df.loc[(df['Giorni_rimanenti'] < 30) & (df['Deltaabs'] > 0.5) ]
-    df3 = df.loc[(df['Valore_tmp_fin_float'] < 1.5 ) & (df['Deltaabs'] > 0.5)]
+    df3 = df.loc[(df['Val_tmp_fin_float'] < 1.5 ) & (df['Deltaabs'] > 0.5)]
     
     df4= pd.concat([df2, df3])
     
