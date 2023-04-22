@@ -332,8 +332,6 @@ def analisi_di_portafoglio(request):
     df["Val_tmp_fin_float"] = df["Val_tmp_fin"].astype(float)
     df['PUT/CALL'] = df['Strumento_finanziario'].str.split(' ').str[3]
     df['Simbolo_solo'] = df['Strumento_finanziario'].str.split(' ').str[0]
-    df.drop(['Operazione ticker'], axis = 1) 
-
    
     df2 = df.loc[(df['Giorni_rimanenti'] < 30) & (df['Deltaabs'] > 0.5) ]
     df3 = df.loc[(df['Val_tmp_fin_float'] < 1.5 ) & (df['Deltaabs'] > 0.5)]
@@ -346,11 +344,13 @@ def analisi_di_portafoglio(request):
        price = stock.info['currentPrice']
        df4['current_price'] = price
        print(df4)
-
        
 
-
-
+    # eliminazione colonne 
+    df4 = df4.drop(['Operazione ticker'], axis = 1) 
+    df4 = df4.drop(['Val_tmp_fin_float'], axis = 1) 
+    df4 = df4.drop(['Unnamed: 15'], axis = 1) 
+   
     trades = df4
     return render(request,"index4.html",{'trades':trades})  
 
