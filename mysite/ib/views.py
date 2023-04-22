@@ -338,12 +338,11 @@ def analisi_di_portafoglio(request):
     
     df4= pd.concat([df2, df3])
     
-    # lettura df
-    for i in df4.index: 
-       stock = yf.Ticker(df4['Simbolo_solo'][i])
-       price = stock.info['currentPrice']
-       df4['current_price'] = price
-       print(df4)
+    for i in df4.index:
+        stock = yf.Ticker(df4['Simbolo_solo'][i])
+        price = stock.info['currentPrice']
+        df4.at[i, 'current_price'] = price
+        print(df4)
        
 
     # eliminazione colonne 
