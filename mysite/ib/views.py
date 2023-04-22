@@ -7,6 +7,7 @@ import pandas as pd
 import os, re 
 import datetime
 from .models import Trade2
+import yfinance as yf
 
 def index(request):
   template = loader.get_template('index.html')
@@ -310,3 +311,43 @@ def opzioni_CALL_da_vedere_se_andare_invertito(request):
  
     trades = df2
     return render(request,"index4.html",{'trades':trades})  
+
+
+
+def analisi_di_portafoglio(request):
+    template = loader.get_template('index4.html')
+    # inporto df 
+    df = pd.read_csv('portfolio.csv')
+    # aggiustamenti colonne e dati
+    df.rename(columns = {"Strumento finanziario":"Strumento_finanziario", "Giorni restanti all'UGT":"Giorni_rimanenti"}, inplace = True)
+
+    df['Delta'] = df['Delta'].astype(float)
+    df['Giorni_rimanenti'] = df['Giorni_rimanenti'].astype(int)
+
+    df["Deltaabs"] = abs(df['Delta'].astype(float))
+    
+    df["Valore temporale (%)"].replace("", 99.999, inplace=True)
+    
+    df["Valore_tmp_fin"] = df["Valore temporale (%)"].str.extract(r"(\d+\.\d+)")
+    df["Valore_tmp_fin_float"] = df["Valore_tmp_fin"].astype(float)
+    df['PUT/CALL'] = df['Strumento_finanziario'].str.split(' ').str[3]
+    df['Simbolo_solo'] = df['Strumento_finanziario'].str.split(' ').str[0]
+   
+    df2 = df.loc[(df['Giorni_rimanenti'] < 30) & (df['Deltaabs'] > 0.5) ]
+
+    # lettura df
+    for i in df2.index: 
+       ticker = df2['Simbolo_solo'][i]
+       stock = yf.Ticker(ticker)
+       price = stock.info['currentPrice']
+       print(ticker, price)
+       df2['current_price'] = price
+       print(df2)
+
+       
+
+
+
+    trades = df2
+    return render(request,"index4.html",{'trades':trades})  
+
