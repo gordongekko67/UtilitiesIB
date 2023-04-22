@@ -342,13 +342,16 @@ def analisi_di_portafoglio(request):
         stock = yf.Ticker(df4['Simbolo_solo'][i])
         price = stock.info['currentPrice']
         df4.at[i, 'current_price'] = price
-        print(df4)
+        
        
 
     # eliminazione colonne 
     df4 = df4.drop(['Operazione ticker'], axis = 1) 
     df4 = df4.drop(['Val_tmp_fin_float'], axis = 1) 
     df4 = df4.drop(['Unnamed: 15'], axis = 1) 
+
+    
+
    
     trades = df4
     return render(request,"index4.html",{'trades':trades})  
