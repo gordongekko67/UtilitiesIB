@@ -334,20 +334,21 @@ def analisi_di_portafoglio(request):
     df['Simbolo_solo'] = df['Strumento_finanziario'].str.split(' ').str[0]
    
     df2 = df.loc[(df['Giorni_rimanenti'] < 30) & (df['Deltaabs'] > 0.5) ]
-
+    df3 = df.loc[(df['Valore_tmp_fin_float'] < 1.5 ) & (df['Deltaabs'] > 0.5)]
+    
+    df4= pd.concat([df2, df3])
+    
     # lettura df
-    for i in df2.index: 
-       ticker = df2['Simbolo_solo'][i]
-       stock = yf.Ticker(ticker)
+    for i in df4.index: 
+       stock = yf.Ticker(df4['Simbolo_solo'][i])
        price = stock.info['currentPrice']
-       print(ticker, price)
-       df2['current_price'] = price
-       print(df2)
+       df4['current_price'] = price
+       print(df4)
 
        
 
 
 
-    trades = df2
+    trades = df4
     return render(request,"index4.html",{'trades':trades})  
 
