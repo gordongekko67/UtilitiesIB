@@ -350,7 +350,7 @@ def analisi_di_portafoglio(request):
     df4 = df4.drop(['Val_tmp_fin_float'], axis = 1) 
     df4 = df4.drop(['Unnamed: 15'], axis = 1) 
 
-    
+    #
 
    
     trades = df4
