@@ -351,8 +351,10 @@ def analisi_di_portafoglio(request):
     df4 = df4.drop(['Unnamed: 15'], axis = 1) 
 
     #
-
-   
+    # ordina per giorni rimaneti e delta discendente
+    df4.sort_values(by=['Giorni_rimanenti','Delta'], inplace = True, ascending=False)
+    
+         
     trades = df4
     return render(request,"index4.html",{'trades':trades})  
 
