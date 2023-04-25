@@ -342,7 +342,39 @@ def analisi_di_portafoglio(request):
         stock = yf.Ticker(df4['Simbolo_solo'][i])
         price = stock.info['currentPrice']
         df4.at[i, 'current_price'] = price
+
+
+    # analisi del portafoglio 
+    for i in df.index:
         
+        try:
+            stock = yf.Ticker(df['Simbolo_solo'][i])
+            price = stock.info['currentPrice']
+            pricefloat = float(price)
+            strike = df['Strumento_finanziario'][i].split(' ')[2]
+            strikefloat = float(strike)
+            putcall = df['Strumento_finanziario'][i].split(' ')[3]
+            valore_temporale = df["Val_tmp_fin_float"][i]
+            if ((pricefloat < strikefloat) & (putcall == 'PUT')):
+                print('la opzione è ITM',  stock, price, strike, putcall)
+                if (valore_temporale < 0.7):
+                         print(" attenzione alto rischio di assegnazione")
+                         return HttpResponse("attenzione alto rischio di assegnazione")
+
+            if ((pricefloat > strikefloat) & (putcall == 'CALL')):
+                print('la opzione è ITM', stock, price, strike, putcall)
+                if (valore_temporale < 0.7):
+                         print(" attenzione alto rischio di assegnazione")
+
+            return HttpResponse("attenzione alto rischio di assegnazione")
+
+
+
+
+        except:
+             print("An exception occurred")
+
+       
        
 
     # eliminazione colonne 
