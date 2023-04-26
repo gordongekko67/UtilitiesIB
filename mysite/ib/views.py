@@ -346,7 +346,8 @@ def analisi_di_portafoglio(request):
 
     # analisi del portafoglio 
     for i in df.index:
-        
+        datalist = []
+                
         try:
             stock = yf.Ticker(df['Simbolo_solo'][i])
             price = stock.info['currentPrice']
@@ -356,17 +357,18 @@ def analisi_di_portafoglio(request):
             putcall = df['Strumento_finanziario'][i].split(' ')[3]
             valore_temporale = df["Val_tmp_fin_float"][i]
             if ((pricefloat < strikefloat) & (putcall == 'PUT')):
-                print('la opzione è ITM',  stock, price, strike, putcall)
+                datalist.append('la opzione è ITM',  stock, price, strike, putcall)
                 if (valore_temporale < 0.7):
                          print(" attenzione alto rischio di assegnazione")
-                         return HttpResponse("attenzione alto rischio di assegnazione")
+                         #return HttpResponse("attenzione alto rischio di assegnazione")
 
             if ((pricefloat > strikefloat) & (putcall == 'CALL')):
-                print('la opzione è ITM', stock, price, strike, putcall)
+                datalist.append('la opzione è ITM',  stock, price, strike, putcall)
+               
                 if (valore_temporale < 0.7):
                          print(" attenzione alto rischio di assegnazione")
 
-            return HttpResponse("attenzione alto rischio di assegnazione")
+            #return HttpResponse("attenzione alto rischio di assegnazione")
 
 
 
@@ -375,7 +377,7 @@ def analisi_di_portafoglio(request):
              print("An exception occurred")
 
        
-       
+    #return datalist
 
     # eliminazione colonne 
     df4 = df4.drop(['Operazione ticker'], axis = 1) 
@@ -385,8 +387,8 @@ def analisi_di_portafoglio(request):
     #
     # ordina per giorni rimaneti e delta discendente
     df4.sort_values(by=['Giorni_rimanenti','Delta'], inplace = True, ascending=False)
-    
-         
-    trades = df4
+
+    print(datalist)  
+    trades = datalist
     return render(request,"index4.html",{'trades':trades})  
 
