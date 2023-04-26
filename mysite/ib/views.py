@@ -345,9 +345,8 @@ def analisi_di_portafoglio(request):
 
     
     
-    fruits = ['apple', 'banana', 'cherry']
-    fruits.append("orange")
-
+    fruits = ['riepilogo delle opzioni ']
+    
     # analisi del portafoglio 
     for i in df.index:
             
@@ -363,7 +362,7 @@ def analisi_di_portafoglio(request):
             strikefloat = float(strike)
             putcall = df['Strumento_finanziario'][i].split(' ')[3]
             valore_temporale = df["Val_tmp_fin_float"][i]
-            var = "ATTENZIONE La opzione è ITM " + simbolo+data + strike+ putcall
+            var = "ATTENZIONE La opzione è ITM " + simbolo+ "    " + data + "    " + strike+  "    " + putcall
 
             if ((pricefloat < strikefloat) & (putcall == 'PUT')):
                 fruits.append(var)
