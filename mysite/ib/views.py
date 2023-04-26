@@ -1,7 +1,7 @@
 
 # Create your views here.
 from django.http import HttpResponse
-from django.template import loader
+from django.template import loader, Template, Context
 from django.shortcuts import render, redirect  
 import pandas as pd
 import os, re 
@@ -315,7 +315,7 @@ def opzioni_CALL_da_vedere_se_andare_invertito(request):
 
 
 def analisi_di_portafoglio(request):
-    template = loader.get_template('index4.html')
+    template = loader.get_template('index7.html')
     # inporto df 
     df = pd.read_csv('portfolio.csv')
     # aggiustamenti colonne e dati
@@ -343,41 +343,44 @@ def analisi_di_portafoglio(request):
         price = stock.info['currentPrice']
         df4.at[i, 'current_price'] = price
 
+    
+    
+    fruits = ['apple', 'banana', 'cherry']
+    fruits.append("orange")
 
     # analisi del portafoglio 
     for i in df.index:
-        datalist = []
+            
+
                 
         try:
             stock = yf.Ticker(df['Simbolo_solo'][i])
             price = stock.info['currentPrice']
             pricefloat = float(price)
+            simbolo = df['Strumento_finanziario'][i].split(' ')[0]
+            data = df['Strumento_finanziario'][i].split(' ')[1]
             strike = df['Strumento_finanziario'][i].split(' ')[2]
             strikefloat = float(strike)
             putcall = df['Strumento_finanziario'][i].split(' ')[3]
             valore_temporale = df["Val_tmp_fin_float"][i]
+            var = "ATTENZIONE La opzione è ITM " + simbolo+data + strike+ putcall
+
             if ((pricefloat < strikefloat) & (putcall == 'PUT')):
-                datalist.append('la opzione è ITM',  stock, price, strike, putcall)
-                if (valore_temporale < 0.7):
-                         print(" attenzione alto rischio di assegnazione")
-                         #return HttpResponse("attenzione alto rischio di assegnazione")
+                fruits.append(var)
 
+                if (valore_temporale < 0.7):
+                         data.append('ATTENZIONE !!!! alto rischio di assegnazione')
+                        
             if ((pricefloat > strikefloat) & (putcall == 'CALL')):
-                datalist.append('la opzione è ITM',  stock, price, strike, putcall)
-               
+                
+                fruits.append(var)
                 if (valore_temporale < 0.7):
-                         print(" attenzione alto rischio di assegnazione")
-
-            #return HttpResponse("attenzione alto rischio di assegnazione")
-
-
-
-
+                         data.append('ATTENZIONE !!!! alto rischio di assegnazione')
+                        
         except:
              print("An exception occurred")
 
-       
-    #return datalist
+           
 
     # eliminazione colonne 
     df4 = df4.drop(['Operazione ticker'], axis = 1) 
@@ -388,7 +391,5 @@ def analisi_di_portafoglio(request):
     # ordina per giorni rimaneti e delta discendente
     df4.sort_values(by=['Giorni_rimanenti','Delta'], inplace = True, ascending=False)
 
-    print(datalist)  
-    trades = datalist
-    return render(request,"index4.html",{'trades':trades})  
+    return render(request,"index7.html",{'fruits':fruits})  
 
