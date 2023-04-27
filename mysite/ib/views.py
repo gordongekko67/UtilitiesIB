@@ -344,7 +344,7 @@ def analisi_di_portafoglio(request):
         df4.at[i, 'current_price'] = price
 
     
-    
+    print(df4)
     fruits = ['riepilogo delle opzioni ']
     
     # analisi del portafoglio 
@@ -362,19 +362,21 @@ def analisi_di_portafoglio(request):
             strikefloat = float(strike)
             putcall = df['Strumento_finanziario'][i].split(' ')[3]
             valore_temporale = df["Val_tmp_fin_float"][i]
+            valore_temporale_float= float(valore_temporale)
             var = "ATTENZIONE La opzione è ITM " + simbolo+ "    " + data + "    " + strike+  "    " + putcall
 
             if ((pricefloat < strikefloat) & (putcall == 'PUT')):
                 fruits.append(var)
 
-                if (valore_temporale < 0.7):
-                         data.append('ATTENZIONE !!!! alto rischio di assegnazione')
+                print(valore_temporale_float)
+                if (valore_temporale_float < 1.7):
+                         data.append("ATTENZIONE !!!! alto rischio di assegnazione")
                         
             if ((pricefloat > strikefloat) & (putcall == 'CALL')):
                 
                 fruits.append(var)
-                if (valore_temporale < 0.7):
-                         data.append('ATTENZIONE !!!! alto rischio di assegnazione')
+                if (valore_temporale_float < 1.7):
+                         data.append("ATTENZIONE !!!! alto rischio di assegnazione")
                         
         except:
              print("An exception occurred")
