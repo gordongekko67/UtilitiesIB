@@ -166,22 +166,27 @@ def importa_trades(request):
     return render(request,"index4.html",{'trades':trades}) 
 
 
-
-
 def analisi_trade_scadenza(request):
     df = pd.read_csv('Analisi_trade.csv')
     df2 = df.drop(["Sommario profitti e perdite Realizzati e Non realizzati", "Header"], axis=1)
       
     df2['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
     df2['Simbolo_opzione'] = df['Simbolo'].str.split(' ').str[0] + df['Simbolo'].str.split(' ').str[1] 
-    df2.sort_values(by=['Simbolo_opzione'], inplace = True)
+    df2.sort_values(by=['Simbolo_opzione'], inplace=True)
           
-    # raggruppa il dataframe per il campo "campo1" e somma i valori per ogni gruppo
-    df_grouped = df2.groupby('Simbolo_opzione')['Realizzato Totale', 'Non realizzato Totale','Totale'].sum().reset_index()
+    # raggruppa il dataframe per il campo "Simbolo_opzione" e somma i valori per ogni gruppo
+    #df_grouped = df2.groupby('Simbolo_opzione', as_index=False)['Realizzato Totale', 'Non realizzato Totale', 'Totale'].sum()
+    df_grouped = df2.groupby('Simbolo_opzione').agg({'Realizzato Totale': 'sum', 'Non realizzato Totale': 'sum', 'Totale': 'sum'}).reset_index()
+
+
+    #trades = df_grouped[['Simbolo_opzione', 'Realizzato Totale', 'Non realizzato Totale', 'Totale']]
+    trades = df_grouped[['Simbolo_opzione', 'Realizzato Totale', 'Non realizzato Totale', 'Totale']]
+
+    
+    
     
     #emissione videata
-    trades = df_grouped
-    return render(request,"index4.html",{'trades':trades}) 
+    return render(request, "index4.html", {'trades': trades})
 
 
 def analisi_trade_titolo(request):
@@ -189,14 +194,28 @@ def analisi_trade_titolo(request):
     df2 = df.drop(["Sommario profitti e perdite Realizzati e Non realizzati", "Header"], axis=1)
       
     df2['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
-    df2['Simbolo_opzione'] = df['Simbolo'].str.split(' ').str[0] + df['Simbolo'].str.split(' ').str[1] 
-    df2.sort_values(by=['Simbolo_opzione'], inplace = True)
+    df2.sort_values(by=['Simbolo_solo'], inplace=True)
           
-    # raggruppa il dataframe per il campo "campo1" e somma i valori per ogni gruppo
-    df_grouped = df2.groupby('Simbolo_solo')['Realizzato Totale', 'Non realizzato Totale','Totale'].sum().reset_index()
+    # raggruppa il dataframe per il campo "Simbolo_opzione" e somma i valori per ogni gruppo
+    #df_grouped = df2.groupby('Simbolo_opzione', as_index=False)['Realizzato Totale', 'Non realizzato Totale', 'Totale'].sum()
+    df_grouped = df2.groupby('Simbolo_solo').agg({'Realizzato Totale': 'sum', 'Non realizzato Totale': 'sum', 'Totale': 'sum'}).reset_index()
+
+
+    #trades = df_grouped[['Simbolo_opzione', 'Realizzato Totale', 'Non realizzato Totale', 'Totale']]
+    trades = df_grouped[['Simbolo_solo', 'Realizzato Totale', 'Non realizzato Totale', 'Totale']]
+
+    
+    
+    
     #emissione videata
-    trades = df_grouped
-    return render(request,"index4.html",{'trades':trades}) 
+    return render(request, "index4.html", {'trades': trades})
+
+
+
+
+
+
+
 
 
 def analisi_trade_dettaglio(request):
@@ -337,11 +356,20 @@ def analisi_di_portafoglio(request):
     df3 = df.loc[(df['Val_tmp_fin_float'] < 1.5 ) & (df['Deltaabs'] > 0.5)]
     
     df4= pd.concat([df2, df3])
+
+    print(df)
+    print(df4)
+        
     
+   
+   
     for i in df4.index:
-        stock = yf.Ticker(df4['Simbolo_solo'][i])
+        stringa = df4.loc[i, 'Simbolo_solo']
+        stock = yf.Ticker(str(stringa))
         price = stock.info['currentPrice']
         df4.at[i, 'current_price'] = price
+
+
 
     
     print(df4)
@@ -353,7 +381,8 @@ def analisi_di_portafoglio(request):
 
                 
         try:
-            stock = yf.Ticker(df['Simbolo_solo'][i])
+            stringa = (df4['Simbolo_solo'][i]).str
+            stock = yf.Ticker(stringa)
             price = stock.info['currentPrice']
             pricefloat = float(price)
             simbolo = df['Strumento_finanziario'][i].split(' ')[0]
