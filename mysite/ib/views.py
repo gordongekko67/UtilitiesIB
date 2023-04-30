@@ -341,7 +341,7 @@ def analisi_di_portafoglio(request):
     fruits = ['riepilogo delle opzioni ']
 
     # analisi del portafoglio
-    for i in df.index:
+    for i in df4.index:
 
         try:
             stringa = (df4['Simbolo_solo'][i]).str
@@ -385,3 +385,19 @@ def analisi_di_portafoglio(request):
                     inplace=True, ascending=False)
 
     return render(request, "index7.html", {'fruits': fruits})
+
+
+
+
+def calcolo_theta_portafoglio(request):
+    template = loader.get_template('index7.html')
+    # inporto df
+    df = pd.read_csv('portfolio.csv')
+       
+    Total = df['Theta portafoglio'].sum()
+    print(Total)
+    fruits = ['Totale Theta Portafoglio  ', Total]
+
+
+    return render(request, "index7.html", {'fruits': fruits})
+
