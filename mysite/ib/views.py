@@ -395,7 +395,7 @@ def calcolo_theta_portafoglio(request):
     df = pd.read_csv('portfolio.csv')
        
     Total = df['Theta portafoglio'].sum()
-    print(Total)
+    
     fruits = ['Totale Theta Portafoglio  ', Total]
 
 
