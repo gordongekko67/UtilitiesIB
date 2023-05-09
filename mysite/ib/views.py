@@ -365,6 +365,7 @@ def analisi_di_portafoglio(request):
             var = "ATTENZIONE La opzione è ITM " + simbolo + \
                 "    " + data + "    " + strike + "    " + putcall
 
+            #print(var)
             if ((pricefloat < strikefloat) & (putcall == 'PUT')):
                 fruits.append(var)
 
