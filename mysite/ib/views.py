@@ -9,6 +9,8 @@ import re
 import datetime
 from .models import Trade2
 import yfinance as yf
+import traceback
+import sys
 
 
 def index(request):
@@ -336,6 +338,7 @@ def analisi_di_portafoglio(request):
     print(df4)
 
     for i in df4.index:
+        print("ciclo")
         stringa = df4.loc[i, 'Simbolo_solo']
         stringa0 = str(stringa.iloc[0]) if isinstance(
             stringa, pd.Series) else str(stringa)
@@ -351,7 +354,7 @@ def analisi_di_portafoglio(request):
     for i in df4.index:
 
         try:
-            stringa = (df4['Simbolo_solo'][i]).str
+            stringa = df4.loc[i, 'Simbolo_solo']
             stock = yf.Ticker(stringa)
             price = stock.info['currentPrice']
             pricefloat = float(price)
@@ -371,17 +374,19 @@ def analisi_di_portafoglio(request):
 
                 print(valore_temporale_float)
                 if (valore_temporale_float < 1.7):
-                    data.append("ATTENZIONE !!!! alto rischio di assegnazione")
+                    fruits.append("ATTENZIONE !!!! alto rischio di assegnazione")
 
             if ((pricefloat > strikefloat) & (putcall == 'CALL')):
 
                 fruits.append(var)
                 if (valore_temporale_float < 1.7):
-                    data.append("ATTENZIONE !!!! alto rischio di assegnazione")
+                    fruits.append("ATTENZIONE !!!! alto rischio di assegnazione")
 
-        except:
-            print("An exception occurred")
-
+        except Exception:
+          print(traceback.format_exc())
+          # or
+          print(sys.exc_info()[2])
+    
     # eliminazione colonne
     df4 = df4.drop(['Operazione ticker'], axis=1)
     df4 = df4.drop(['Val_tmp_fin_float'], axis=1)
