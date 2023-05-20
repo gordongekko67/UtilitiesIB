@@ -354,7 +354,7 @@ def analisi_di_portafoglio(request):
     for i in df4.index:
 
         try:
-            stringa = df4.loc[i, 'Simbolo_solo']
+            stringa = str(df4.loc[i, 'Simbolo_solo'])
             stock = yf.Ticker(stringa)
             price = stock.info['currentPrice']
             pricefloat = float(price)
@@ -368,18 +368,15 @@ def analisi_di_portafoglio(request):
             var = "ATTENZIONE La opzione è ITM " + simbolo + \
                 "    " + data + "    " + strike + "    " + putcall
 
-            #print(var)
+            #print("prezzo" + pricefloat + "strike" +  strikefloat)
             if ((pricefloat < strikefloat) & (putcall == 'PUT')):
                 fruits.append(var)
-
-                print(valore_temporale_float)
-                if (valore_temporale_float < 1.7):
+                if (valore_temporale_float < 1.0):
                     fruits.append("ATTENZIONE !!!! alto rischio di assegnazione")
 
             if ((pricefloat > strikefloat) & (putcall == 'CALL')):
-
                 fruits.append(var)
-                if (valore_temporale_float < 1.7):
+                if (valore_temporale_float < 1.0):
                     fruits.append("ATTENZIONE !!!! alto rischio di assegnazione")
 
         except Exception:
