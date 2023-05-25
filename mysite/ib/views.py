@@ -313,6 +313,10 @@ def analisi_di_portafoglio(request):
     template = loader.get_template('index7.html')
     # inporto df
     df = pd.read_csv('portfolio.csv')
+    print(df)
+    
+    
+
     # aggiustamenti colonne e dati
     df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
               "Giorni restanti all'UGT": "Giorni_rimanenti"}, inplace=True)
@@ -328,6 +332,21 @@ def analisi_di_portafoglio(request):
     df["Val_tmp_fin_float"] = df["Val_tmp_fin"].astype(float)
     df['PUT/CALL'] = df['Strumento_finanziario'].str.split(' ').str[3]
     df['Simbolo_solo'] = df['Strumento_finanziario'].str.split(' ').str[0]
+    
+    df['Simbolo_solo_allineato'] = df['Simbolo_solo'].str.normalize('NFKD').str.encode('ascii', errors='ignore').str.decode('utf-8')
+    df['Simbolo_solo_allineato'] = df['Simbolo_solo'].str.lstrip()
+    df['Strumento_finanziario'] = df['Strumento_finanziario'].str.lstrip()
+    
+    for index, row in df.iterrows():
+      campo = row['Simbolo_solo_allineato']
+      if campo.startswith(' '):
+        campo = campo[1:]
+      df.at[index, 'Simbolo_solo_allineato'] = campo
+
+    
+    print(df)
+   
+
 
     df2 = df.loc[(df['Giorni_rimanenti'] < 30) & (df['Deltaabs'] > 0.5)]
     df3 = df.loc[(df['Val_tmp_fin_float'] < 1.5) & (df['Deltaabs'] > 0.5)]
@@ -338,8 +357,9 @@ def analisi_di_portafoglio(request):
     print(df4)
 
     for i in df4.index:
-        print("ciclo")
-        stringa = df4.loc[i, 'Simbolo_solo']
+        stringa = str(df4.loc[i, 'Simbolo_solo'])
+        print("ciclo"+stringa)
+        reperisci_corrente_prezzo(stringa)
         stringa0 = str(stringa.iloc[0]) if isinstance(
             stringa, pd.Series) else str(stringa)
 
@@ -411,3 +431,78 @@ def calcolo_theta_portafoglio(request):
 
     return render(request, "index7.html", {'fruits': fruits})
 
+
+
+def calcolo_totale_valore_temporale(request):
+    template = loader.get_template('index7.html')
+    # inporto df
+    df = pd.read_csv('portfolio.csv')
+
+
+    df["Posizione_int"] = df['Posizione'].astype(int)
+    df["Valore temporale (%)"].replace("", 99.999, inplace=True)
+    df["Val_tmp_fin"] = df["Valore temporale (%)"].str.extract(r"(\d+\.\d+)")
+    df["Val_tmp_fin_float"] = df["Val_tmp_fin"].astype(float)
+    df["Val_tmp_fin_float_Totale_riga"] = df["Val_tmp_fin_float"]*100*df["Posizione_int"] 
+    
+    Total = df['Val_tmp_fin_float_Totale_riga'].sum()
+    
+    fruits = ['Totale Valore temporale di Portafoglio  ', Total]
+
+
+    return render(request, "index7.html", {'fruits': fruits})
+
+    
+
+
+
+def reperisci_corrente_prezzo(stringa0):
+    stock = yf.Ticker(stringa0)
+    price = stock.info['currentPrice']
+    print("il prezzo è di" , price)
+
+
+
+
+def nuova_analisi_di_portafoglio(request):      
+
+    template = loader.get_template('index7.html')
+    # inporto df
+    df = pd.read_csv('portfolio.csv')
+    df.style.set_properties(**{'text-align': 'left'})
+     # aggiustamenti colonne e dati
+    df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
+              "Giorni restanti all'UGT": "Giorni_rimanenti"}, inplace=True)
+    
+    '''
+    for i in df.index:
+        stringa = str(df.loc[i, 'Strumento_finanziario']).strip()
+        x = stringa.split()
+        print(x)
+        df.loc[i, 'PUT/CALL'] = x[3]
+    
+
+    for i in df.index:
+        stringa = str(df.loc[i, 'Strumento_finanziario'])
+        x = stringa.split()
+        print(x)
+        put_call = x[3].lstrip()  # Rimuovi eventuali spazi bianchi a sinistra
+        df.loc[i, 'PUT/CALL'] = put_call
+    '''
+
+    df4=[]
+    for i in df.index:
+         stringa = str(df.loc[i, 'Strumento_finanziario'])
+         x = stringa.split()
+         print(x)
+         df4[i]= [x[0], x[1], x[2], x[3]]
+         
+         put_call = x[3].lstrip()[1:]  # Rimuovi spazi bianchi a sinistra e seleziona dal secondo carattere in poi
+         df.loc[i, 'PUT/CALL'] = put_call
+
+
+
+
+    print(df4)
+    print(df)
+    return render(request, "index7.html", )

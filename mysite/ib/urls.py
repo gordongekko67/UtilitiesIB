@@ -18,7 +18,9 @@ urlpatterns = [
     path('index22', views.opzioni_CALL_da_vedere_se_andare_invertito),
     path('index12', views.analisi_trade_dettaglio),
     path('index13', views.calcolo_theta_portafoglio),
+    path('index14', views.calcolo_totale_valore_temporale),
     path('index99', views.analisi_di_portafoglio),
+    path('index98', views.nuova_analisi_di_portafoglio),
     
    
     
