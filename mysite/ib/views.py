@@ -248,6 +248,34 @@ def analisi_bilanciamento_delta(request):
     return render(request, "index4.html", {'trades': trades})
 
 
+def analisi_opzioni_potenzialmente_da_rollare(request):
+    template = loader.get_template('index5.html')
+    # inporto df
+    df = pd.read_csv('portfolio.csv')
+    df2 = pd.DataFrame()
+
+    # aggiustamenti colonne e dati
+    df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
+              "Giorni restanti all'UGT": "Giorni_rimanenti"}, inplace=True)
+    df['Delta'] = df['Delta'].astype(float)
+    df['Giorni_rimanenti'] = df['Giorni_rimanenti'].astype(int)
+
+    df["Deltaabs"] = abs(df['Delta'].astype(float))
+
+    df["Valore temporale (%)"].replace("", 99.999, inplace=True)
+
+    df["Valore_tmp_fin"] = df["Valore temporale (%)"].str.extract(
+        r"(\d+\.\d+)")
+    df["Valore_tmp_fin_float"] = df["Valore_tmp_fin"].astype(float)
+    df['PUT/CALL'] = df['Strumento_finanziario'].str.split(' ').str[3]
+    df["Posizione_int"] = df['Posizione'].astype(int)
+
+    #df2 = df.loc[(df['Deltaabs'] > 0.35)  & (df["Posizione_int"] ) < 0 ]
+    df2 = df.loc[(df['Deltaabs'] > 0.35) &   (df['Deltaabs'] < 0.50) ]
+    print(df2)                     
+    
+    trades = df2
+    return render(request, "index4.html", {'trades': trades})
 
 
 
@@ -474,35 +502,27 @@ def nuova_analisi_di_portafoglio(request):
     df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
               "Giorni restanti all'UGT": "Giorni_rimanenti"}, inplace=True)
     
-    '''
-    for i in df.index:
-        stringa = str(df.loc[i, 'Strumento_finanziario']).strip()
-        x = stringa.split()
-        print(x)
-        df.loc[i, 'PUT/CALL'] = x[3]
+    df['Simbolo_solo'] = df['Strumento_finanziario'].str.split(' ').str[0]
+    
+    df['Simbolo_solo_allineato'] = df['Simbolo_solo'].str.normalize('NFKD').str.encode('ascii', errors='ignore').str.decode('utf-8')
+    df['Simbolo_solo_allineato'] = df['Simbolo_solo'].str.lstrip()
+    print(df)
+
+
+    
+        
     
 
-    for i in df.index:
-        stringa = str(df.loc[i, 'Strumento_finanziario'])
-        x = stringa.split()
-        print(x)
-        put_call = x[3].lstrip()  # Rimuovi eventuali spazi bianchi a sinistra
-        df.loc[i, 'PUT/CALL'] = put_call
-    '''
-
-    df4=[]
-    for i in df.index:
-         stringa = str(df.loc[i, 'Strumento_finanziario'])
-         x = stringa.split()
-         print(x)
-         df4[i]= [x[0], x[1], x[2], x[3]]
-         
-         put_call = x[3].lstrip()[1:]  # Rimuovi spazi bianchi a sinistra e seleziona dal secondo carattere in poi
-         df.loc[i, 'PUT/CALL'] = put_call
 
 
 
 
-    print(df4)
-    print(df)
+
+
+
+
+
+
+
+
     return render(request, "index7.html", )
