@@ -175,6 +175,35 @@ def analisi_trade_scadenza(request):
     return render(request, "index4.html", {'trades': trades})
 
 
+def analisi_trade_scadenza_simbolo(request):
+    df = pd.read_csv('Analisi_trade.csv')
+    df2 = df.drop(
+        ["Sommario profitti e perdite Realizzati e Non realizzati", "Header"], axis=1)
+
+    df2['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
+    df2['Simbolo_opzione'] = df['Simbolo'].str.split(
+        ' ').str[0] + df['Simbolo'].str.split(' ').str[1]
+    df2.sort_values(by=['Simbolo_opzione'], inplace=True)
+
+    # raggruppa il dataframe per il campo "Simbolo_opzione" e somma i valori per ogni gruppo
+    df_grouped = df2.groupby('Simbolo_opzione').agg(
+        {'Realizzato Totale': 'sum', 'Non realizzato Totale': 'sum', 'Totale': 'sum'}).reset_index()
+
+    trades0 = df_grouped[['Simbolo_opzione',
+                          'Realizzato Totale', 'Non realizzato Totale', 'Totale']]
+    trades = trades0.sort_values(by=['Simbolo_opzione'],  ascending=True)
+
+    # emissione videata
+    return render(request, "index4.html", {'trades': trades})
+
+
+
+
+
+
+
+
+
 def analisi_trade_titolo(request):
     df = pd.read_csv('Analisi_trade.csv')
     df2 = df.drop(
