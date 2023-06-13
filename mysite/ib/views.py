@@ -297,13 +297,18 @@ def analisi_opzioni_potenzialmente_da_rollare(request):
         r"(\d+\.\d+)")
     df["Valore_tmp_fin_float"] = df["Valore_tmp_fin"].astype(float)
     df['PUT/CALL'] = df['Strumento_finanziario'].str.split(' ').str[3]
-    df["Posizione_int"] = df['Posizione'].astype(int)
+    df["Posizione_int"] = df['Posizione'].astype(float)
 
-    #df2 = df.loc[(df['Deltaabs'] > 0.35)  & (df["Posizione_int"] ) < 0 ]
+    #df2 = df.loc[(df['Deltaabs'] > 0.35)  &  (df['Deltaabs'] < 0.50)     & (df["Posizione_int"] ) < 0 ]
     df2 = df.loc[(df['Deltaabs'] > 0.35) &   (df['Deltaabs'] < 0.50) ]
     print(df2)                     
     
-    trades = df2
+
+    # seleziona solo le righe con valori maggiori di 50 in 'Deltariga'
+    df2.sort_values(by=['Posizione_int'], inplace=True, ascending=False)
+    df3 = df2.loc[(df["Posizione_int"] ) < 0 ]
+    
+    trades = df3
     return render(request, "index4.html", {'trades': trades})
 
 
