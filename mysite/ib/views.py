@@ -307,8 +307,9 @@ def analisi_opzioni_potenzialmente_da_rollare(request):
     # seleziona solo le righe con valori maggiori di 50 in 'Deltariga'
     df2.sort_values(by=['Posizione_int'], inplace=True, ascending=False)
     df3 = df2.loc[(df["Posizione_int"] ) < 0 ]
+    df4 = df3.loc[(df['Giorni_rimanenti']) < 45 ]
     
-    trades = df3
+    trades = df4
     return render(request, "index4.html", {'trades': trades})
 
 
@@ -542,8 +543,11 @@ def nuova_analisi_di_portafoglio(request):
     df['Simbolo_solo_allineato'] = df['Simbolo_solo'].str.lstrip()
     print(df)
 
+     # analisi del portafoglio
+    for i in df.index:
+            reperisci_corrente_prezzo(df['Simbolo_solo_allineato']).astype(str)[i].upper()
 
-    
+            
         
     
 
