@@ -372,6 +372,8 @@ def opzioni_CALL_da_vedere_se_andare_invertito(request):
     return render(request, "index4.html", {'trades': trades})
 
 
+# QUESTO NON FUNZIONA PUOI RISCRIVERMI LA funziona analis di portafolgio vedendo dove è l'errore?
+
 def analisi_di_portafoglio(request):
     template = loader.get_template('index7.html')
     # inporto df
@@ -564,3 +566,11 @@ def nuova_analisi_di_portafoglio(request):
 
 
     return render(request, "index7.html", )
+
+
+
+            
+            
+
+
+
