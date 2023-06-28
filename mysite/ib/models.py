@@ -3,6 +3,7 @@ from django.db import models
 
 
 class Trade(models.Model):
+    id = models.AutoField(primary_key=True)
     operazione = models.CharField(max_length=5)
     num_contratti = models.IntegerField()
     descrizione = models.CharField(max_length=200)
@@ -15,6 +16,7 @@ class Trade(models.Model):
     descrizione12= models.CharField(max_length=12)
 
 class Trade2(models.Model):
+    id2 = models.AutoField(primary_key=True)
     operazione = models.CharField(max_length=5)
     num_contratti = models.IntegerField()
     descrizione = models.CharField(max_length=200)
