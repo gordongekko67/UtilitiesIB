@@ -544,21 +544,23 @@ def nuova_analisi_di_portafoglio(request):
     df['Simbolo_solo_allineato'] = df['Simbolo_solo'].str.normalize('NFKD').str.encode('ascii', errors='ignore').str.decode('utf-8')
     df['Simbolo_solo_allineato'] = df['Simbolo_solo'].str.lstrip()
     print(df)
-
-       
+    
+    # lettura del dataframe e reperimento del prezzo
     for index, row in df.iterrows():
-         
-         var = row['Simbolo_solo_allineato']
-         if (var  != 'IWM'):
-             
-            print(var)
+        var = row['Simbolo_solo_allineato']
+        if var != 'IWM':
             stock = yf.Ticker(var)
-            print("mi pianto su index ")
-            print(index,stock)
-
             price = stock.info['currentPrice']
-            print("Il prezzo è di", price)
-         
+            print(stock)
+            print(price)
+
+    fruits = ['Totale Valore temporale di Portafoglio  ']
+
+
+    return render(request, "index7.html", {'fruits': fruits})
+
+    
+
 
 
 
