@@ -545,32 +545,17 @@ def nuova_analisi_di_portafoglio(request):
     df['Simbolo_solo_allineato'] = df['Simbolo_solo'].str.lstrip()
     print(df)
 
-     # analisi del portafoglio
-    for i in df.index:
-            reperisci_corrente_prezzo(df['Simbolo_solo_allineato']).astype(str)[i].upper()
+    # questo è il codice per leggere dal dataframe e reperire il prezzo corrente
 
-            
-        
-    
-
-
-
-
+    for index, row in df.iterrows():
+         var = row['Simbolo_solo_allineato']
+         print(var)
+         stock = yf.Ticker(var)
+         price = stock.info['currentPrice']
+         print("Il prezzo è di", price)
+         print(index)
 
 
 
 
-
-
-
-
-
-    return render(request, "index7.html", )
-
-
-
-            
-            
-
-
-
+                
