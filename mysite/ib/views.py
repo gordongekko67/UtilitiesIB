@@ -532,10 +532,11 @@ def reperisci_corrente_prezzo(stringa0):
 def nuova_analisi_di_portafoglio(request):      
 
     template = loader.get_template('index7.html')
+    
     # inporto df
     df = pd.read_csv('portfolio.csv')
-    df.style.set_properties(**{'text-align': 'left'})
-     # aggiustamenti colonne e dati
+    
+    # aggiustamenti colonne e dati
     df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
               "Giorni restanti all'UGT": "Giorni_rimanenti"}, inplace=True)
     
