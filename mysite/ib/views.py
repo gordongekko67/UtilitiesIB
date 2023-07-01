@@ -242,6 +242,28 @@ def analisi_trade_dettaglio(request):
     return render(request, "index4.html", {'trades': trades})
 
 
+def analisi_trade_dettaglio_simbolo_ancora_aperte(request):
+    df = pd.read_csv('Analisi_trade.csv')
+    df2 = df.drop(
+        ["Sommario profitti e perdite Realizzati e Non realizzati", "Header"], axis=1)
+    df2 = df.drop(["Realizzato Profitto S/T",
+                  "Realizzato Perdita S/T"], axis=1)
+
+    # voglio includere solo le righe con  non realizzato maggiore di 0
+    df2 = df2[df2['Non realizzato Totale'] > 0] 
+
+    df2['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
+    df2['Simbolo_opzione'] = df['Simbolo'].str.split(
+        ' ').str[0] + df['Simbolo'].str.split(' ').str[1]
+    df2.sort_values(by=['Simbolo_opzione'], inplace=True)
+    
+    # emissione videata
+    trades = df2
+    return render(request, "index4.html", {'trades': trades})
+
+
+
+
 def analisi_bilanciamento_delta(request):
     fruits = ['Totale Delta Portafoglio  ']
     template = loader.get_template('index4.html')
