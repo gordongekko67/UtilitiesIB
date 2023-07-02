@@ -653,19 +653,20 @@ def nuova_analisi_di_portafoglio(request):
                 # eseguo l'elaborazione
                 # reperisco il prezzo corrente
                 prezzo_corrente = row['pricefloat']
+                prezzo_correntestringa = str(prezzo_corrente)
 
                 # se putcall è uguale a CALL
                 if (putcall == 'CALL'):
                    if (prezzo_corrente > break_even_point):
                     # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " ha superato il B/E point"  
-                    fruits.append('il titolo ' + simbolo + ' ' + putcall + ' '  + 'ha superato il B/E point: ' + str(break_even_point))
+                    fruits.append('il titolo ' + row['Strumento_finanziario'] + ' ha superato il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))
                                   
             
                 # se putcall è uguale a PUT
                 else:
                    if (prezzo_corrente < break_even_point):
                       # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " ha superato il B/E point"  
-                    fruits.append('il titolo ' + simbolo + ' ' + putcall + ' '  + 'ha superato il B/E point' + str(break_even_point))
+                    fruits.append('il titolo ' + row['Strumento_finanziario'] + ' ha superato il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))
                    
             else:
                 df.at[index, 'break_even_point'] = 0
