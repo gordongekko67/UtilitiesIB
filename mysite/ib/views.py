@@ -599,46 +599,53 @@ def nuova_analisi_di_portafoglio(request):
             
             # azzero la variabile comunque
             prezzo_medio_opzione_comprata = 0
+            differenza = 0
+            break_even_point = 0
+           
 
             # se posizione è minore di zero, reperisco tutte le opzioni vendute
             if (row['Posizione'] < 0):
                             
-                 # lancio una routine alla quale passo simbolo e putcall e restituisce il prezzo medio
-                 prezzo_medio_opzione_comprata = reperisci_premio_opzione_comprata(simbolo, putcall, df)
-                 if (prezzo_medio_opzione_comprata != 0):
+                # lancio una routine alla quale passo simbolo e putcall e restituisce il prezzo medio
+                prezzo_medio_opzione_comprata = reperisci_premio_opzione_comprata(simbolo, putcall, df)
+                if (prezzo_medio_opzione_comprata != 0):
                      print("prezzo medio opzione comprata"
                           , prezzo_medio_opzione_comprata)
                      
-            # a questo punto prendo il prezzo corrente e gli sottraggo prezzo medio opzione comprata e basta
-            differenza = row['Pr. medio'] - prezzo_medio_opzione_comprata
-            # aggiungo la colonna differenza al data frame
-            df.at[index, 'differenza'] = differenza
-            # a questo punto calcolo il break even point della riga e lo aggiungo al data frame
-            if (putcall == 'CALL'):
-                break_even_point = row['Pr. medio'] + differenza
-            else:
-                break_even_point = row['Pr. medio'] - differenza
+                 # a questo punto prendo il prezzo corrente e gli sottraggo prezzo medio opzione comprata e basta
+                differenza = row['Pr. medio'] - prezzo_medio_opzione_comprata
+                # aggiungo la colonna differenza al data frame
+                df.at[index, 'differenza'] = differenza
+                # a questo punto calcolo il break even point della riga e lo aggiungo al data frame
+                if (putcall == 'CALL'):
+                    break_even_point = row['Pr. medio'] + differenza
+                else:
+                    break_even_point = row['Pr. medio'] - differenza
 
-            df.at[index, 'break_even_point'] = break_even_point
+                df.at[index, 'break_even_point'] = break_even_point
 
-            # eseguo l'elaborazione
-            # reperisco il prezzo corrente
-            prezzo_corrente = row['Pr. medio']
+                # eseguo l'elaborazione
+                # reperisco il prezzo corrente
+                prezzo_corrente = row['Pr. medio']
 
-            # se putcall è uguale a CALL
-            if (putcall == 'CALL'):
-                if (prezzo_corrente > break_even_point):
+                # se putcall è uguale a CALL
+                if (putcall == 'CALL'):
+                   if (prezzo_corrente > break_even_point):
                     # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " ha superato il B/E point"  
 
                     fruits = ['il titolo ' , simbolo , ' ha superato il B/E point']
             
-            # se putcall è uguale a PUT
-            else:
-                if (prezzo_corrente < break_even_point):
-                    # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " ha superato il B/E point"  
+                # se putcall è uguale a PUT
+                else:
+                   if (prezzo_corrente < break_even_point):
+                      # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " ha superato il B/E point"  
 
                     fruits = ['il titolo ' , simbolo , ' ha superato il B/E point']
             
+            else:
+                df.at[index, 'break_even_point'] = 0
+                
+
 
 
     print(df)
