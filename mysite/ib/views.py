@@ -554,6 +554,8 @@ def reperisci_corrente_prezzo(stringa0):
 def nuova_analisi_di_portafoglio(request):      
 
     template = loader.get_template('index7.html')
+    # inizializza schiera errori
+    fruits = []
     
     # inporto df
     df = pd.read_csv('portfolio.csv')
@@ -656,16 +658,15 @@ def nuova_analisi_di_portafoglio(request):
                 if (putcall == 'CALL'):
                    if (prezzo_corrente > break_even_point):
                     # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " ha superato il B/E point"  
-
-                    fruits = ['il titolo ' , simbolo , ' ha superato il B/E point']
+                    fruits.append('il titolo ' + simbolo + ' ' + putcall + ' '  + 'ha superato il B/E point: ' + str(break_even_point))
+                                  
             
                 # se putcall è uguale a PUT
                 else:
                    if (prezzo_corrente < break_even_point):
                       # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " ha superato il B/E point"  
-
-                    fruits = ['il titolo ' , simbolo , ' ha superato il B/E point']
-            
+                    fruits.append('il titolo ' + simbolo + ' ' + putcall + ' '  + 'ha superato il B/E point' + str(break_even_point))
+                   
             else:
                 df.at[index, 'break_even_point'] = 0
                 
@@ -674,9 +675,7 @@ def nuova_analisi_di_portafoglio(request):
 
     print(df)
 
-
-    fruits = ['Totale Valore temporale di Portafoglio  ']
-
+ 
 
     return render(request, "index7.html", {'fruits': fruits})
 
