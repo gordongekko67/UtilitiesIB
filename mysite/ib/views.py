@@ -694,3 +694,26 @@ def reperisci_premio_opzione_comprata2(simbolop, putcallp, df):
                 prezzo_medio_long = row['Pr. medio']
     
         return prezzo_medio_long
+
+
+
+
+
+def ultimate_analisi_di_portafoglio(request):
+    # inizializza il template
+    template = loader.get_template('index7.html')
+    # inizializza schiera errori
+    fruits = []
+    # inizializza il dataframe
+    df = pd.read_csv('Analisi_trade.csv')
+    
+    df['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
+    df.sort_values(by=['Simbolo_solo'], inplace=True)
+
+    # raggruppa il dataframe per il campo "Simbolo_opzione" e somma i valori per ogni gruppo
+    df_grouped = df.groupby('Simbolo_solo')
+
+    print(df_grouped)
+
+
+    return render(request, "index7.html", {'fruits': fruits})
