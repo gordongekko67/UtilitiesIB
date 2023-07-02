@@ -655,8 +655,17 @@ def nuova_analisi_di_portafoglio(request):
                 prezzo_corrente = row['pricefloat']
                 prezzo_correntestringa = str(prezzo_corrente)
 
+                #reperisco il prezzo di strike
+                strike = row['strikefloat']
+                
                 # se putcall è uguale a CALL
                 if (putcall == 'CALL'):
+                   # se prezzo corrente è maggiore di strike ma minore di break_even_point
+                   if (prezzo_corrente >= strike) & (prezzo_corrente <= break_even_point):
+                     # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " è tra il prezzo di strike e il B/E point"
+                    fruits.append('il titolo ' + row['Strumento_finanziario'] + ' è tra il prezzo di strike e il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))    
+
+
                    if (prezzo_corrente > break_even_point):
                     # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " ha superato il B/E point"  
                     fruits.append('il titolo ' + row['Strumento_finanziario'] + ' ha superato il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))
@@ -664,6 +673,11 @@ def nuova_analisi_di_portafoglio(request):
             
                 # se putcall è uguale a PUT
                 else:
+                   # se prezzo corrente è minore di strike ma maggiore di break_even_point
+                   if (prezzo_corrente <= strike) & (prezzo_corrente >= break_even_point):
+                   # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " è tra il prezzo di strike e il B/E point"
+                    fruits.append('il titolo ' + row['Strumento_finanziario'] + ' è tra il prezzo di strike e il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))     
+                         
                    if (prezzo_corrente < break_even_point):
                       # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " ha superato il B/E point"  
                     fruits.append('il titolo ' + row['Strumento_finanziario'] + ' ha superato il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))
