@@ -566,6 +566,13 @@ def nuova_analisi_di_portafoglio(request):
     
     df['Simbolo_solo_allineato'] = df['Simbolo_solo'].str.normalize('NFKD').str.encode('ascii', errors='ignore').str.decode('utf-8')
     df['Simbolo_solo_allineato'] = df['Simbolo_solo'].str.lstrip()
+    # mi serve per dopo il prezzo di strike in formato float
+    # il prezzo di strike è il terzo elemento della stringa Strumento finanziario in formato float
+    # mi server il terzo elemento di Strumento finanziario
+    # reperisco dal campo Strumento finanziario il prezzo di strike , cioè il terzo elemento
+    # della stringa e lo converto in float e lo aggiungo al data frame
+    df['strikefloat2'] = df['Strumento_finanziario'].str.split(' ').str[2].astype(float)
+    #     
     print(df)
     
     # lettura del dataframe e reperimento del prezzo
@@ -601,7 +608,7 @@ def nuova_analisi_di_portafoglio(request):
             prezzo_medio_opzione_comprata = 0
             differenza = 0
             break_even_point = 0
-           
+            print(df)
 
             # se posizione è minore di zero, reperisco tutte le opzioni vendute
             if (row['Posizione'] < 0):
@@ -618,9 +625,15 @@ def nuova_analisi_di_portafoglio(request):
                 df.at[index, 'differenza'] = differenza
                 # a questo punto calcolo il break even point della riga e lo aggiungo al data frame
                 if (putcall == 'CALL'):
-                    break_even_point = row['Pr. medio'] + differenza
+                    # calcolo il break even point della riga e lo aggiungo al data frame
+                    # devo prendere il prezzo dello strike in float e sommare la differenza
+                    break_even_point = row['strikefloat2'] + differenza
                 else:
-                    break_even_point = row['Pr. medio'] - differenza
+                    # calcolo il break even point della riga e lo aggiungo al data frame
+                    # devo prendere il prezzo dello strike in float e sottrarre la differenza
+                    break_even_point = row['strikefloat2'] - differenza
+                # aggiungo la colonna break_even_point al data frame
+                
 
                 df.at[index, 'break_even_point'] = break_even_point
 
