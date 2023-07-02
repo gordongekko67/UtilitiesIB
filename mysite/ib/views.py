@@ -679,32 +679,6 @@ def nuova_analisi_di_portafoglio(request):
 
     return render(request, "index7.html", {'fruits': fruits})
 
-    
-
-
-
-
-
-
-'''''
-def reperisci_premio_opzione_comprata(simbolop, putcallp, df):
-
-    # azzero variabile prezzo medio
-    prezzo_medio_long = 0
-    # loop sul dataframe
-    for index, row in df.iterrows():
-        
-        # se simbolo passsato alla routine è uguale a simbolo nel df e putcallp è uguale a putcall e la posizione è > di 0
-        # allora ho trovato l'opzione comprata
-        if (simbolop == row['simbolo']) & (putcallp == row['putcall']) & (row['Posizione'] > 0):
-            # reperisco il prezzo medio
-            prezzo_medio_long = row['Pr. medio']
-
-    return prezzo_medio_long
-    
-'''
-
-
 def reperisci_premio_opzione_comprata2(simbolop, putcallp, df):
     
         # azzero variabile prezzo medio
