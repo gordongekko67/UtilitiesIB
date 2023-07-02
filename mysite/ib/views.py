@@ -573,8 +573,8 @@ def nuova_analisi_di_portafoglio(request):
     # della stringa e lo converto in float e lo aggiungo al data frame
     df['strikefloat2'] = df['Strumento_finanziario'].str.split(' ').str[2].astype(float)
     #     
-    print(df)
-    
+
+        
     # lettura del dataframe e reperimento del prezzo
     for index, row in df.iterrows():
         var = row['Simbolo_solo_allineato']
@@ -604,17 +604,28 @@ def nuova_analisi_di_portafoglio(request):
             df.at[index, 'simbolo'] = simbolo
             #
             
-            # azzero la variabile comunque
-            prezzo_medio_opzione_comprata = 0
-            differenza = 0
-            break_even_point = 0
-            print(df)
+    # azzero la variabile comunque
+    prezzo_medio_opzione_comprata = 0
+    differenza = 0
+    break_even_point = 0
+   
+    print(df)
+
+
+
+    # lettura del dataframe e reperimento del prezzo
+    for index, row in df.iterrows():
+        var = row['Simbolo_solo_allineato']
+        if var != 'IWM':
+
 
             # se posizione è minore di zero, reperisco tutte le opzioni vendute
             if (row['Posizione'] < 0):
                             
+                simbolo = row['simbolo']
+                putcall = row['putcall']            
                 # lancio una routine alla quale passo simbolo e putcall e restituisce il prezzo medio
-                prezzo_medio_opzione_comprata = reperisci_premio_opzione_comprata(simbolo, putcall, df)
+                prezzo_medio_opzione_comprata = reperisci_premio_opzione_comprata2(simbolo, putcall, df)
                 if (prezzo_medio_opzione_comprata != 0):
                      print("prezzo medio opzione comprata"
                           , prezzo_medio_opzione_comprata)
@@ -627,11 +638,11 @@ def nuova_analisi_di_portafoglio(request):
                 if (putcall == 'CALL'):
                     # calcolo il break even point della riga e lo aggiungo al data frame
                     # devo prendere il prezzo dello strike in float e sommare la differenza
-                    break_even_point = row['strikefloat2'] + differenza
+                    break_even_point = row['strikefloat'] + differenza
                 else:
                     # calcolo il break even point della riga e lo aggiungo al data frame
                     # devo prendere il prezzo dello strike in float e sottrarre la differenza
-                    break_even_point = row['strikefloat2'] - differenza
+                    break_even_point = row['strikefloat'] - differenza
                 # aggiungo la colonna break_even_point al data frame
                 
 
@@ -639,7 +650,7 @@ def nuova_analisi_di_portafoglio(request):
 
                 # eseguo l'elaborazione
                 # reperisco il prezzo corrente
-                prezzo_corrente = row['Pr. medio']
+                prezzo_corrente = row['pricefloat']
 
                 # se putcall è uguale a CALL
                 if (putcall == 'CALL'):
@@ -672,6 +683,11 @@ def nuova_analisi_di_portafoglio(request):
     
 
 
+
+
+
+
+'''''
 def reperisci_premio_opzione_comprata(simbolop, putcallp, df):
 
     # azzero variabile prezzo medio
@@ -686,8 +702,21 @@ def reperisci_premio_opzione_comprata(simbolop, putcallp, df):
             prezzo_medio_long = row['Pr. medio']
 
     return prezzo_medio_long
-     
-     
+    
+'''
 
 
-                
+def reperisci_premio_opzione_comprata2(simbolop, putcallp, df):
+    
+        # azzero variabile prezzo medio
+        prezzo_medio_long = 0
+        # loop sul dataframe
+        for index, row in df.iterrows():
+            
+            # se simbolo passsato alla routine è uguale a simbolo nel df e putcallp è uguale a putcall e la posizione è > di 0
+            # allora ho trovato l'opzione comprata
+            if (simbolop == row['simbolo']) & (putcallp == row['putcall']) & (row['Posizione'] > 0):
+                # reperisco il prezzo medio
+                prezzo_medio_long = row['Pr. medio']
+    
+        return prezzo_medio_long
