@@ -576,6 +576,44 @@ def nuova_analisi_di_portafoglio(request):
             price = stock.info['currentPrice']
             print(stock)
             print(price)
+            # reperisco dal campo Strumento finanziario il prezzo di strike , cioè il terzo elemento
+            # della stringa e lo converto in float
+            strike = row['Strumento_finanziario'].split(' ')[2]
+            strikefloat = float(strike)
+            # aggiungo la colonna strikefloat al data frame
+            df.at[index, 'strikefloat'] = strikefloat
+            # aggiungo la colonna price al data frame e lo converto in float
+            df.at[index, 'price'] = price
+            pricefloat = float(price)
+            # aggiungo la colonna pricefloat al data frame
+            df.at[index, 'pricefloat'] = pricefloat
+            # aggiungo la colonna PUTCALL al data frame e reperisco dal campo Strumento finanziario il tipo di opzione , cioè il quarto elemento
+            # della stringa
+            putcall = row['Strumento_finanziario'].split(' ')[3]
+            df.at[index, 'putcall'] = putcall
+
+            # se posizione è minore di zero
+            if (row['Posizione'] < 0):
+                 # ho bisogno di sapere se è una put o una call
+                 # reperisco dal campo Strumento finanziario il tipo di opzione , cioè il quarto elemento
+                 # della stringa
+                 putcall = row['Strumento_finanziario'].split(' ')[3]
+                 # 
+                 # ho bisogno di unire i primi due campi di Strumento finanziario
+                 simbolo = row['Strumento_finanziario'].split(' ')[0]
+                 simbolo = simbolo + row['Strumento_finanziario'].split(' ')[1]
+            
+                 # lancio una routine alla quale passo simbolo e putcall e restituisce il prezzo medio
+                 prezzo_medio_opzione_comprata = reperisci_premio_opzione_comprata(simbolo, putcall, df)
+                 if (prezzo_medio_opzione_comprata != 0):
+                     print("prezzo medio opzione comprata"
+                          , prezzo_medio_opzione_comprata)
+
+            
+
+
+    print(df)
+
 
     fruits = ['Totale Valore temporale di Portafoglio  ']
 
@@ -585,7 +623,22 @@ def nuova_analisi_di_portafoglio(request):
     
 
 
+def reperisci_premio_opzione_comprata(simbolo, putcall, df):
 
+    # azzero variabile prezzo medio
+    prezzo_medio = 0
+    # loop sul dataframe
+    for index, row in df.iterrows():
+        
+        # se simbolo è uguale a simbolo_solo_allineato e putcall è uguale a putcall e la posizione è > di 0
+        # allora ho trovato l'opzione comprata
+        if (simbolo == row['Simbolo_solo_allineato']) & (putcall == row['Put/Call']) & (row['Posizione'] > 0):
+            # reperisco il prezzo medio
+            prezzo_medio = row['Prezzo medio']
+
+    return prezzo_medio
+     
+     
 
 
                 
