@@ -197,13 +197,6 @@ def analisi_trade_scadenza_simbolo(request):
     return render(request, "index4.html", {'trades': trades})
 
 
-
-
-
-
-
-
-
 def analisi_trade_titolo(request):
     df = pd.read_csv('Analisi_trade.csv')
     df2 = df.drop(
@@ -250,18 +243,16 @@ def analisi_trade_dettaglio_simbolo_ancora_aperte(request):
                   "Realizzato Perdita S/T"], axis=1)
 
     # voglio includere solo le righe con  non realizzato maggiore di 0
-    df2 = df2[df2['Non realizzato Totale'] > 0] 
+    df2 = df2[df2['Non realizzato Totale'] > 0]
 
     df2['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
     df2['Simbolo_opzione'] = df['Simbolo'].str.split(
         ' ').str[0] + df['Simbolo'].str.split(' ').str[1]
     df2.sort_values(by=['Simbolo_opzione'], inplace=True)
-    
+
     # emissione videata
     trades = df2
     return render(request, "index4.html", {'trades': trades})
-
-
 
 
 def analisi_bilanciamento_delta(request):
@@ -293,8 +284,8 @@ def analisi_bilanciamento_delta(request):
     # seleziona solo le righe con valori maggiori di 50 in 'Deltariga'
     df_grouped.sort_values(by=['Deltariga'], inplace=True, ascending=False)
 
-    df_grouped.loc['Totale Delta']= df_grouped.sum(numeric_only=True, axis=0)
-    
+    df_grouped.loc['Totale Delta'] = df_grouped.sum(numeric_only=True, axis=0)
+
     trades = df_grouped
     return render(request, "index4.html", {'trades': trades})
 
@@ -321,21 +312,17 @@ def analisi_opzioni_potenzialmente_da_rollare(request):
     df['PUT/CALL'] = df['Strumento_finanziario'].str.split(' ').str[3]
     df["Posizione_int"] = df['Posizione'].astype(float)
 
-    #df2 = df.loc[(df['Deltaabs'] > 0.35)  &  (df['Deltaabs'] < 0.50)     & (df["Posizione_int"] ) < 0 ]
-    df2 = df.loc[(df['Deltaabs'] > 0.35) &   (df['Deltaabs'] < 0.50) ]
-    print(df2)                     
-    
+    # df2 = df.loc[(df['Deltaabs'] > 0.35)  &  (df['Deltaabs'] < 0.50)     & (df["Posizione_int"] ) < 0 ]
+    df2 = df.loc[(df['Deltaabs'] > 0.35) & (df['Deltaabs'] < 0.50)]
+    print(df2)
 
     # seleziona solo le righe con valori maggiori di 50 in 'Deltariga'
     df2.sort_values(by=['Posizione_int'], inplace=True, ascending=False)
-    df3 = df2.loc[(df["Posizione_int"] ) < 0 ]
-    df4 = df3.loc[(df['Giorni_rimanenti']) < 45 ]
-    
+    df3 = df2.loc[(df["Posizione_int"]) < 0]
+    df4 = df3.loc[(df['Giorni_rimanenti']) < 45]
+
     trades = df4
     return render(request, "index4.html", {'trades': trades})
-
-
-
 
 
 def opzioni_PUT_da_rollare(request):
@@ -401,8 +388,6 @@ def analisi_di_portafoglio(request):
     # inporto df
     df = pd.read_csv('portfolio.csv')
     print(df)
-    
-    
 
     # aggiustamenti colonne e dati
     df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
@@ -419,21 +404,19 @@ def analisi_di_portafoglio(request):
     df["Val_tmp_fin_float"] = df["Val_tmp_fin"].astype(float)
     df['PUT/CALL'] = df['Strumento_finanziario'].str.split(' ').str[3]
     df['Simbolo_solo'] = df['Strumento_finanziario'].str.split(' ').str[0]
-    
-    df['Simbolo_solo_allineato'] = df['Simbolo_solo'].str.normalize('NFKD').str.encode('ascii', errors='ignore').str.decode('utf-8')
+
+    df['Simbolo_solo_allineato'] = df['Simbolo_solo'].str.normalize(
+        'NFKD').str.encode('ascii', errors='ignore').str.decode('utf-8')
     df['Simbolo_solo_allineato'] = df['Simbolo_solo'].str.lstrip()
     df['Strumento_finanziario'] = df['Strumento_finanziario'].str.lstrip()
-    
+
     for index, row in df.iterrows():
-      campo = row['Simbolo_solo_allineato']
-      if campo.startswith(' '):
-        campo = campo[1:]
-      df.at[index, 'Simbolo_solo_allineato'] = campo
+        campo = row['Simbolo_solo_allineato']
+        if campo.startswith(' '):
+            campo = campo[1:]
+        df.at[index, 'Simbolo_solo_allineato'] = campo
 
-    
     print(df)
-   
-
 
     df2 = df.loc[(df['Giorni_rimanenti'] < 30) & (df['Deltaabs'] > 0.5)]
     df3 = df.loc[(df['Val_tmp_fin_float'] < 1.5) & (df['Deltaabs'] > 0.5)]
@@ -475,22 +458,24 @@ def analisi_di_portafoglio(request):
             var = "ATTENZIONE La opzione è ITM " + simbolo + \
                 "    " + data + "    " + strike + "    " + putcall
 
-            #print("prezzo" + pricefloat + "strike" +  strikefloat)
+            # print("prezzo" + pricefloat + "strike" +  strikefloat)
             if ((pricefloat < strikefloat) & (putcall == 'PUT')):
                 fruits.append(var)
                 if (valore_temporale_float < 1.0):
-                    fruits.append("ATTENZIONE !!!! alto rischio di assegnazione")
+                    fruits.append(
+                        "ATTENZIONE !!!! alto rischio di assegnazione")
 
             if ((pricefloat > strikefloat) & (putcall == 'CALL')):
                 fruits.append(var)
                 if (valore_temporale_float < 1.0):
-                    fruits.append("ATTENZIONE !!!! alto rischio di assegnazione")
+                    fruits.append(
+                        "ATTENZIONE !!!! alto rischio di assegnazione")
 
         except Exception:
-          print(traceback.format_exc())
-          # or
-          print(sys.exc_info()[2])
-    
+            print(traceback.format_exc())
+            # or
+            print(sys.exc_info()[2])
+
     # eliminazione colonne
     df4 = df4.drop(['Operazione ticker'], axis=1)
     df4 = df4.drop(['Val_tmp_fin_float'], axis=1)
@@ -504,20 +489,16 @@ def analisi_di_portafoglio(request):
     return render(request, "index7.html", {'fruits': fruits})
 
 
-
-
 def calcolo_theta_portafoglio(request):
     template = loader.get_template('index7.html')
     # inporto df
     df = pd.read_csv('portfolio.csv')
-       
+
     Total = df['Theta portafoglio'].sum()
-    
+
     fruits = ['Totale Theta Portafoglio  ', Total]
 
-
     return render(request, "index7.html", {'fruits': fruits})
-
 
 
 def calcolo_totale_valore_temporale(request):
@@ -525,61 +506,56 @@ def calcolo_totale_valore_temporale(request):
     # inporto df
     df = pd.read_csv('portfolio.csv')
 
-
     df["Posizione_int"] = df['Posizione'].astype(int)
     df["Valore temporale (%)"].replace("", 99.999, inplace=True)
     df["Val_tmp_fin"] = df["Valore temporale (%)"].str.extract(r"(\d+\.\d+)")
     df["Val_tmp_fin_float"] = df["Val_tmp_fin"].astype(float)
-    df["Val_tmp_fin_float_Totale_riga"] = df["Val_tmp_fin_float"]*100*df["Posizione_int"] 
-    
+    df["Val_tmp_fin_float_Totale_riga"] = df["Val_tmp_fin_float"] * \
+        100*df["Posizione_int"]
+
     Total = df['Val_tmp_fin_float_Totale_riga'].sum()
-    
+
     fruits = ['Totale Valore temporale di Portafoglio  ', Total]
 
-
     return render(request, "index7.html", {'fruits': fruits})
-
-    
-
 
 
 def reperisci_corrente_prezzo(stringa0):
     stock = yf.Ticker(stringa0)
     price = stock.info['currentPrice']
-    print("il prezzo è di" , price)
+    print("il prezzo è di", price)
 
 
-
-
-def nuova_analisi_di_portafoglio(request):      
+def nuova_analisi_di_portafoglio(request):
 
     template = loader.get_template('index7.html')
     # inizializza schiera errori
     fruits = []
     itm = []
     bep = []
+    operazioni = []
 
-    
     # inporto df
     df = pd.read_csv('portfolio.csv')
-    
+
     # aggiustamenti colonne e dati
     df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
               "Giorni restanti all'UGT": "Giorni_rimanenti"}, inplace=True)
-    
+
     df['Simbolo_solo'] = df['Strumento_finanziario'].str.split(' ').str[0]
-    
-    df['Simbolo_solo_allineato'] = df['Simbolo_solo'].str.normalize('NFKD').str.encode('ascii', errors='ignore').str.decode('utf-8')
+
+    df['Simbolo_solo_allineato'] = df['Simbolo_solo'].str.normalize(
+        'NFKD').str.encode('ascii', errors='ignore').str.decode('utf-8')
     df['Simbolo_solo_allineato'] = df['Simbolo_solo'].str.lstrip()
     # mi serve per dopo il prezzo di strike in formato float
     # il prezzo di strike è il terzo elemento della stringa Strumento finanziario in formato float
     # mi server il terzo elemento di Strumento finanziario
     # reperisco dal campo Strumento finanziario il prezzo di strike , cioè il terzo elemento
     # della stringa e lo converto in float e lo aggiungo al data frame
-    df['strikefloat2'] = df['Strumento_finanziario'].str.split(' ').str[2].astype(float)
-    #     
+    df['strikefloat2'] = df['Strumento_finanziario'].str.split(
+        ' ').str[2].astype(float)
+    #
 
-        
     # lettura del dataframe e reperimento del prezzo
     for index, row in df.iterrows():
         var = row['Simbolo_solo_allineato']
@@ -603,39 +579,37 @@ def nuova_analisi_di_portafoglio(request):
             # della stringa
             putcall = row['Strumento_finanziario'].split(' ')[3]
             df.at[index, 'putcall'] = putcall
-            ## ho bisogno di unire i primi due campi di Strumento finanziario
+            # ho bisogno di unire i primi due campi di Strumento finanziario
             simbolo = row['Strumento_finanziario'].split(' ')[0]
             simbolo = simbolo + row['Strumento_finanziario'].split(' ')[1]
             df.at[index, 'simbolo'] = simbolo
             #
-            
+
     # azzero la variabile comunque
     prezzo_medio_opzione_comprata = 0
     differenza = 0
     break_even_point = 0
-   
+
     print(df)
-
-
 
     # lettura del dataframe e reperimento del prezzo
     for index, row in df.iterrows():
         var = row['Simbolo_solo_allineato']
         if var != 'IWM':
 
-
             # se posizione è minore di zero, reperisco tutte le opzioni vendute
             if (row['Posizione'] < 0):
-                            
+
                 simbolo = row['simbolo']
-                putcall = row['putcall']            
+                putcall = row['putcall']
                 # lancio una routine alla quale passo simbolo e putcall e restituisce il prezzo medio
-                prezzo_medio_opzione_comprata = reperisci_premio_opzione_comprata2(simbolo, putcall, df)
-                if (prezzo_medio_opzione_comprata != 0):
-                     print("prezzo medio opzione comprata"
-                          , prezzo_medio_opzione_comprata)
-                     
-                 # a questo punto prendo il prezzo corrente e gli sottraggo prezzo medio opzione comprata e basta
+                prezzo_medio_opzione_comprata = reperisci_premio_opzione_comprata2(
+                    simbolo, putcall, df)
+                # if (prezzo_medio_opzione_comprata != 0):
+                # print("prezzo medio opzione comprata",
+                #  prezzo_medio_opzione_comprata)
+
+                # a questo punto prendo il prezzo corrente e gli sottraggo prezzo medio opzione comprata e basta
                 differenza = row['Pr. medio'] - prezzo_medio_opzione_comprata
                 # aggiungo la colonna differenza al data frame
                 df.at[index, 'differenza'] = differenza
@@ -649,7 +623,6 @@ def nuova_analisi_di_portafoglio(request):
                     # devo prendere il prezzo dello strike in float e sottrarre la differenza
                     break_even_point = row['strikefloat'] - differenza
                 # aggiungo la colonna break_even_point al data frame
-                
 
                 df.at[index, 'break_even_point'] = break_even_point
 
@@ -658,38 +631,57 @@ def nuova_analisi_di_portafoglio(request):
                 prezzo_corrente = row['pricefloat']
                 prezzo_correntestringa = str(prezzo_corrente)
 
-                #reperisco il prezzo di strike
+                # reperisco il prezzo di strike
                 strike = row['strikefloat']
-                
+
                 # se putcall è uguale a CALL
                 if (putcall == 'CALL'):
-                   # se prezzo corrente è maggiore di strike ma minore di break_even_point
-                   if (prezzo_corrente >= strike) & (prezzo_corrente <= break_even_point):
+                    # se prezzo corrente è maggiore di strike ma minore di break_even_point
+                    if (prezzo_corrente >= strike) & (prezzo_corrente <= break_even_point):
                      # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " è tra il prezzo di strike e il B/E point"
-                    #fruits.append('il titolo ' + row['Strumento_finanziario'] + ' è tra il prezzo di strike e il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))    
-                    bep.append('il titolo ' + row['Strumento_finanziario'] + ' è tra il prezzo di strike e il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point)+ '  giorni rimanenti  '+ str(row['Giorni_rimanenti']))
+                     # fruits.append('il titolo ' + row['Strumento_finanziario'] + ' è tra il prezzo di strike e il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))
+                        bep.append('il titolo ' + row['Strumento_finanziario'] + ' è tra il prezzo di strike e il B/E point: ' + '    prezzo corrente   ' +
+                                   prezzo_correntestringa + '   B/E point   ' + str(break_even_point) + '  giorni rimanenti  ' + str(row['Giorni_rimanenti']))
+                        # se i giorni rimanenti sono minori di 21
+                        if (row['Giorni_rimanenti'] < 21):
+                            operazioni.append(
+                                'bisogna intervenire su ' + row['Strumento_finanziario'] + ' perchè i giorni rimanenti sono minori di 21')
 
+                    if (prezzo_corrente > break_even_point):
+                        # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " ha superato il B/E point"
+                        # fruits.append('il titolo ' + row['Strumento_finanziario'] + ' ha superato il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))
+                        itm.append('il titolo ' + row['Strumento_finanziario'] + ' ha superato il B/E point: ' + '    prezzo corrente   ' +
+                                   prezzo_correntestringa + '   B/E point   ' + str(break_even_point) + '  giorni rimanenti  ' + str(row['Giorni_rimanenti']))
+                        # se i giorni rimanenti sono minori di 21
+                        if (row['Giorni_rimanenti'] < 21):
+                            operazioni.append(
+                                'bisogna intervenire su ' + row['Strumento_finanziario'] + ' perchè i giorni rimanenti sono minori di 21')
 
-                   if (prezzo_corrente > break_even_point):
-                    # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " ha superato il B/E point"  
-                    #fruits.append('il titolo ' + row['Strumento_finanziario'] + ' ha superato il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))
-                    itm.append('il titolo ' + row['Strumento_finanziario'] + ' ha superato il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point) + '  giorni rimanenti  '+ str(row['Giorni_rimanenti']))            
-            
                 # se putcall è uguale a PUT
                 else:
-                   # se prezzo corrente è minore di strike ma maggiore di break_even_point
-                   if (prezzo_corrente <= strike) & (prezzo_corrente >= break_even_point):
-                   # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " è tra il prezzo di strike e il B/E point"
-                    #fruits.append('il titolo ' + row['Strumento_finanziario'] + ' è tra il prezzo di strike e il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))     
-                    bep.append('il titolo ' + row['Strumento_finanziario'] + ' è tra il prezzo di strike e il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point)+ '  giorni rimanenti  '+ str(row['Giorni_rimanenti']))     
+                    # se prezzo corrente è minore di strike ma maggiore di break_even_point
+                    if (prezzo_corrente <= strike) & (prezzo_corrente >= break_even_point):
+                        # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " è tra il prezzo di strike e il B/E point"
+                        # fruits.append('il titolo ' + row['Strumento_finanziario'] + ' è tra il prezzo di strike e il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))
+                        bep.append('il titolo ' + row['Strumento_finanziario'] + ' è tra il prezzo di strike e il B/E point: ' + '    prezzo corrente   ' +
+                                   prezzo_correntestringa + '   B/E point   ' + str(break_even_point) + '  giorni rimanenti  ' + str(row['Giorni_rimanenti']))
+                        # se i giorni rimanenti sono minori di 21
+                        if (row['Giorni_rimanenti'] < 21):
+                            operazioni.append(
+                                'bisogna intervenire su ' + row['Strumento_finanziario'] + ' perchè i giorni rimanenti sono minori di 21')
+                    if (prezzo_corrente < break_even_point):
+                        # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " ha superato il B/E point"
+                        # fruits.append('il titolo ' + row['Strumento_finanziario'] + ' ha superato il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))
+                        itm.append('il titolo ' + row['Strumento_finanziario'] + ' ha superato il B/E point: ' + '    prezzo corrente   ' +
+                                   prezzo_correntestringa + '   B/E point   ' + str(break_even_point) + '  giorni rimanenti  ' + str(row['Giorni_rimanenti']))
+                        # se i giorni rimanenti sono minori di 21
+                        if (row['Giorni_rimanenti'] < 21):
+                            operazioni.append(
+                                'bisogna intervenire su ' + row['Strumento_finanziario'] + ' perchè i giorni rimanenti sono minori di 21')
 
-                   if (prezzo_corrente < break_even_point):
-                      # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " ha superato il B/E point"  
-                    #fruits.append('il titolo ' + row['Strumento_finanziario'] + ' ha superato il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))
-                    itm.append('il titolo ' + row['Strumento_finanziario'] + ' ha superato il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point)+ '  giorni rimanenti  '+ str(row['Giorni_rimanenti']))
             else:
                 df.at[index, 'break_even_point'] = 0
-                
+
     print(df)
 
     # aggiungo un elemento vuoto a bep
@@ -697,27 +689,24 @@ def nuova_analisi_di_portafoglio(request):
     #
     # aggiungo gli elementi di bep e itm a fruits
     fruits = fruits + bep + itm
- 
 
     return render(request, "index7.html", {'fruits': fruits})
 
+
 def reperisci_premio_opzione_comprata2(simbolop, putcallp, df):
-    
-        # azzero variabile prezzo medio
-        prezzo_medio_long = 0
-        # loop sul dataframe
-        for index, row in df.iterrows():
-            
-            # se simbolo passsato alla routine è uguale a simbolo nel df e putcallp è uguale a putcall e la posizione è > di 0
-            # allora ho trovato l'opzione comprata
-            if (simbolop == row['simbolo']) & (putcallp == row['putcall']) & (row['Posizione'] > 0):
-                # reperisco il prezzo medio
-                prezzo_medio_long = row['Pr. medio']
-    
-        return prezzo_medio_long
 
+    # azzero variabile prezzo medio
+    prezzo_medio_long = 0
+    # loop sul dataframe
+    for index, row in df.iterrows():
 
+        # se simbolo passsato alla routine è uguale a simbolo nel df e putcallp è uguale a putcall e la posizione è > di 0
+        # allora ho trovato l'opzione comprata
+        if (simbolop == row['simbolo']) & (putcallp == row['putcall']) & (row['Posizione'] > 0):
+            # reperisco il prezzo medio
+            prezzo_medio_long = row['Pr. medio']
 
+    return prezzo_medio_long
 
 
 def ultimate_analisi_di_portafoglio(request):
@@ -727,7 +716,7 @@ def ultimate_analisi_di_portafoglio(request):
     fruits = []
     # inizializza il dataframe
     df = pd.read_csv('Analisi_trade.csv')
-    
+
     df['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
     df.sort_values(by=['Simbolo_solo'], inplace=True)
 
@@ -735,6 +724,5 @@ def ultimate_analisi_di_portafoglio(request):
     df_grouped = df.groupby('Simbolo_solo')
 
     print(df_grouped)
-
 
     return render(request, "index7.html", {'fruits': fruits})
