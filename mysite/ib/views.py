@@ -556,6 +556,9 @@ def nuova_analisi_di_portafoglio(request):
     template = loader.get_template('index7.html')
     # inizializza schiera errori
     fruits = []
+    itm = []
+    bep = []
+
     
     # inporto df
     df = pd.read_csv('portfolio.csv')
@@ -663,33 +666,37 @@ def nuova_analisi_di_portafoglio(request):
                    # se prezzo corrente è maggiore di strike ma minore di break_even_point
                    if (prezzo_corrente >= strike) & (prezzo_corrente <= break_even_point):
                      # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " è tra il prezzo di strike e il B/E point"
-                    fruits.append('il titolo ' + row['Strumento_finanziario'] + ' è tra il prezzo di strike e il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))    
+                    #fruits.append('il titolo ' + row['Strumento_finanziario'] + ' è tra il prezzo di strike e il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))    
+                    bep.append('il titolo ' + row['Strumento_finanziario'] + ' è tra il prezzo di strike e il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point)+ '  giorni rimanenti  '+ str(row['Giorni_rimanenti']))
 
 
                    if (prezzo_corrente > break_even_point):
                     # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " ha superato il B/E point"  
-                    fruits.append('il titolo ' + row['Strumento_finanziario'] + ' ha superato il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))
-                                  
+                    #fruits.append('il titolo ' + row['Strumento_finanziario'] + ' ha superato il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))
+                    itm.append('il titolo ' + row['Strumento_finanziario'] + ' ha superato il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point) + '  giorni rimanenti  '+ str(row['Giorni_rimanenti']))            
             
                 # se putcall è uguale a PUT
                 else:
                    # se prezzo corrente è minore di strike ma maggiore di break_even_point
                    if (prezzo_corrente <= strike) & (prezzo_corrente >= break_even_point):
                    # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " è tra il prezzo di strike e il B/E point"
-                    fruits.append('il titolo ' + row['Strumento_finanziario'] + ' è tra il prezzo di strike e il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))     
-                         
+                    #fruits.append('il titolo ' + row['Strumento_finanziario'] + ' è tra il prezzo di strike e il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))     
+                    bep.append('il titolo ' + row['Strumento_finanziario'] + ' è tra il prezzo di strike e il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point)+ '  giorni rimanenti  '+ str(row['Giorni_rimanenti']))     
+
                    if (prezzo_corrente < break_even_point):
                       # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " ha superato il B/E point"  
-                    fruits.append('il titolo ' + row['Strumento_finanziario'] + ' ha superato il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))
-                   
+                    #fruits.append('il titolo ' + row['Strumento_finanziario'] + ' ha superato il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))
+                    itm.append('il titolo ' + row['Strumento_finanziario'] + ' ha superato il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point)+ '  giorni rimanenti  '+ str(row['Giorni_rimanenti']))
             else:
                 df.at[index, 'break_even_point'] = 0
                 
-
-
-
     print(df)
 
+    # aggiungo un elemento vuoto a bep
+    bep.append('')
+    #
+    # aggiungo gli elementi di bep e itm a fruits
+    fruits = fruits + bep + itm
  
 
     return render(request, "index7.html", {'fruits': fruits})
