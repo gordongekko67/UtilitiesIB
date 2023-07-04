@@ -673,11 +673,11 @@ def nuova_analisi_di_portafoglio(request):
 
                 # reperisco il valore di quanto è in the money chiamando la routine reperisci_quanto_in_the_money
                 quanto_in_the_money = calcolo_di_quanto_itm(strike, prezzo_corrente, putcall)
-                totale_premio_incassato_per_simbolo = reperisci_premio_totale_simbolo(simbolo, df)
+                totale_premio_incassato_per_simbolo = reperisci_premio_totale_simbolo(simbolo, df)   
 
                 # totale valore a rischio per simbolo 
-                totale_valore_a_rischio_per_simbolo = totale_premio_incassato_per_simbolo - ( strike - strike_opzione_comprata) * abs(row['Posizione'])    
-                print(simbolo, strike, strike_opzione_comprata, totale_premio_incassato_per_simbolo, totale_valore_a_rischio_per_simbolo) 
+                totale_valore_a_rischio_per_simbolo = totale_premio_incassato_per_simbolo - abs(( strike - strike_opzione_comprata) * abs(row['Posizione'])*100)    
+                print(simbolo,putcall, strike, strike_opzione_comprata, totale_premio_incassato_per_simbolo, totale_valore_a_rischio_per_simbolo) 
 
                 # se putcall è uguale a CALL
                 if (putcall == 'CALL'):
@@ -801,7 +801,7 @@ def reperisci_premio_totale_simbolo(simbolop, df):
         # allora ho trovato l'opzione comprata
         if (simbolop == row['simbolo']):
             # reperisco il prezzo medio
-            valore = valore +  row['Pr. medio'] * row['Posizione']
+            valore = valore +  row['Pr. medio'] * row['Posizione']*100
     
     # arrotondo a due decimali e lo porto comunque ad un valore positivo
     valore = abs(round(valore, 2))
