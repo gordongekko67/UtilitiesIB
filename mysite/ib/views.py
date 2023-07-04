@@ -526,6 +526,45 @@ def reperisci_corrente_prezzo(stringa0):
     print("il prezzo è di", price)
 
 
+def calcolo_di_quanto_itm(strike_price, prezzo_corrente, putcall):
+    # vorrei esprimere in un a percentuale di quanto è itm un determinato prezzo di una azione rispetto allo strike price
+    # che io posseggo e naturalmente dal fatto se sia PUT o CALL
+
+    # se putcall è uguale a CALL
+    if (putcall == 'CALL'):
+        # calcolo la differenza tra prezzo corrente e strike price
+        differenza = prezzo_corrente - strike_price
+        # calcolo la percentuale di quanto è itm
+        percentuale_itm = differenza/strike_price
+        # calcolo la percentuale di quanto è itm
+        percentuale_itm = percentuale_itm*100
+        # arrotondo a due decimali
+        percentuale_itm = round(percentuale_itm, 2)
+        # restituisco la percentuale
+        return percentuale_itm
+    
+    # se putcall è uguale a PUT
+    else:
+        # calcolo la differenza tra prezzo corrente e strike price
+        differenza = strike_price - prezzo_corrente
+        # calcolo la percentuale di quanto è itm
+        percentuale_itm = differenza/strike_price
+        # calcolo la percentuale di quanto è itm
+        percentuale_itm = percentuale_itm*100
+        # arrotondo a due decimali
+        percentuale_itm = round(percentuale_itm, 2)
+        # restituisco la percentuale
+        return percentuale_itm
+    
+    # se putcall è diverso da CALL e da PUT
+    return 0
+
+
+
+
+
+
+
 def nuova_analisi_di_portafoglio(request):
 
     template = loader.get_template('index7.html')
@@ -634,6 +673,10 @@ def nuova_analisi_di_portafoglio(request):
                 # reperisco il prezzo di strike
                 strike = row['strikefloat']
 
+
+                # reperisco il valore di quanto è in the money chiamando la routine reperisci_quanto_in_the_money
+                quanto_in_the_money = calcolo_di_quanto_itm(strike, prezzo_corrente, putcall)
+
                 # se putcall è uguale a CALL
                 if (putcall == 'CALL'):
                     # se prezzo corrente è maggiore di strike ma minore di break_even_point
@@ -641,7 +684,7 @@ def nuova_analisi_di_portafoglio(request):
                      # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " è tra il prezzo di strike e il B/E point"
                      # fruits.append('il titolo ' + row['Strumento_finanziario'] + ' è tra il prezzo di strike e il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))
                         bep.append('il titolo ' + row['Strumento_finanziario'] + ' è tra il prezzo di strike e il B/E point: ' + '    prezzo corrente   ' +
-                                   prezzo_correntestringa + '   B/E point   ' + str(break_even_point) + '  giorni rimanenti  ' + str(row['Giorni_rimanenti']))
+                                   prezzo_correntestringa + '   B/E point   ' + str(break_even_point) + '  giorni rimanenti  ' + str(row['Giorni_rimanenti']) + '  quanto in the money  ' + str(quanto_in_the_money) + '%')
                         # se i giorni rimanenti sono minori di 21
                         if (row['Giorni_rimanenti'] < 21):
                             operazioni.append(
@@ -651,7 +694,7 @@ def nuova_analisi_di_portafoglio(request):
                         # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " ha superato il B/E point"
                         # fruits.append('il titolo ' + row['Strumento_finanziario'] + ' ha superato il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))
                         itm.append('il titolo ' + row['Strumento_finanziario'] + ' ha superato il B/E point: ' + '    prezzo corrente   ' +
-                                   prezzo_correntestringa + '   B/E point   ' + str(break_even_point) + '  giorni rimanenti  ' + str(row['Giorni_rimanenti']))
+                                   prezzo_correntestringa + '   B/E point   ' + str(break_even_point) + '  giorni rimanenti  ' + str(row['Giorni_rimanenti']) + '  quanto in the money  ' + str(quanto_in_the_money) + '%')
                         # se i giorni rimanenti sono minori di 21
                         if (row['Giorni_rimanenti'] < 21):
                             operazioni.append(
@@ -664,7 +707,7 @@ def nuova_analisi_di_portafoglio(request):
                         # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " è tra il prezzo di strike e il B/E point"
                         # fruits.append('il titolo ' + row['Strumento_finanziario'] + ' è tra il prezzo di strike e il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))
                         bep.append('il titolo ' + row['Strumento_finanziario'] + ' è tra il prezzo di strike e il B/E point: ' + '    prezzo corrente   ' +
-                                   prezzo_correntestringa + '   B/E point   ' + str(break_even_point) + '  giorni rimanenti  ' + str(row['Giorni_rimanenti']))
+                                   prezzo_correntestringa + '   B/E point   ' + str(break_even_point) + '  giorni rimanenti  ' + str(row['Giorni_rimanenti']) + '  quanto in the money  ' + str(quanto_in_the_money) + '%')
                         # se i giorni rimanenti sono minori di 21
                         if (row['Giorni_rimanenti'] < 21):
                             operazioni.append(
@@ -673,7 +716,7 @@ def nuova_analisi_di_portafoglio(request):
                         # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " ha superato il B/E point"
                         # fruits.append('il titolo ' + row['Strumento_finanziario'] + ' ha superato il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))
                         itm.append('il titolo ' + row['Strumento_finanziario'] + ' ha superato il B/E point: ' + '    prezzo corrente   ' +
-                                   prezzo_correntestringa + '   B/E point   ' + str(break_even_point) + '  giorni rimanenti  ' + str(row['Giorni_rimanenti']))
+                                   prezzo_correntestringa + '   B/E point   ' + str(break_even_point) + '  giorni rimanenti  ' + str(row['Giorni_rimanenti']) + '  quanto in the money  ' + str(quanto_in_the_money) + '%' )
                         # se i giorni rimanenti sono minori di 21
                         if (row['Giorni_rimanenti'] < 21):
                             operazioni.append(
@@ -726,3 +769,7 @@ def ultimate_analisi_di_portafoglio(request):
     print(df_grouped)
 
     return render(request, "index7.html", {'fruits': fruits})
+
+
+
+
