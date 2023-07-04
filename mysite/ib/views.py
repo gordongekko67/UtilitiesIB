@@ -644,9 +644,7 @@ def nuova_analisi_di_portafoglio(request):
                 # lancio una routine alla quale passo simbolo e putcall e restituisce il prezzo medio
                 prezzo_medio_opzione_comprata = reperisci_premio_opzione_comprata2(simbolo, putcall, df)
                 strike_opzione_comprata = reperisci_strike_opzione_comprata(simbolo, putcall, df)
-                # totale valore a rischio per simbolo 
-                totale_valore_a_rischio_per_simbolo = reperisci_valore_a_rischio_per_simbolo(simbolo, df)               
-                
+                                
                 # a questo punto prendo il prezzo corrente e gli sottraggo prezzo medio opzione comprata e basta
                 differenza = row['Pr. medio'] - prezzo_medio_opzione_comprata
                 # aggiungo la colonna differenza al data frame
@@ -678,7 +676,8 @@ def nuova_analisi_di_portafoglio(request):
                 totale_premio_incassato_per_simbolo = reperisci_premio_totale_simbolo(simbolo, df)
 
                 # totale valore a rischio per simbolo 
-                totale_valore_a_rischio_per_simbolo = totale_premio_incassato_per_simbolo - ( strike - strike_opzione_comprata) * abs(row['Posizione'])     
+                totale_valore_a_rischio_per_simbolo = totale_premio_incassato_per_simbolo - ( strike - strike_opzione_comprata) * abs(row['Posizione'])    
+                print(simbolo, strike, strike_opzione_comprata, totale_premio_incassato_per_simbolo, totale_valore_a_rischio_per_simbolo) 
 
                 # se putcall è uguale a CALL
                 if (putcall == 'CALL'):
@@ -754,7 +753,7 @@ def reperisci_premio_opzione_comprata2(simbolop, putcallp, df):
 
     return prezzo_medio_long
 
-def reperisci_strike_opzione_comprata2(simbolop, putcallp, df):
+def reperisci_strike_opzione_comprata(simbolop, putcallp, df):
     
         # azzero variabile prezzo medio
         strike = 0
@@ -804,8 +803,8 @@ def reperisci_premio_totale_simbolo(simbolop, df):
             # reperisco il prezzo medio
             valore = valore +  row['Pr. medio'] * row['Posizione']
     
-    # arrotondo a due decimali
-    valore = round(valore, 2)
+    # arrotondo a due decimali e lo porto comunque ad un valore positivo
+    valore = abs(round(valore, 2))
     # restituisco il valore
     
     return valore 
