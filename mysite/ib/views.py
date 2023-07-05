@@ -316,10 +316,13 @@ def analisi_opzioni_potenzialmente_da_rollare(request):
     df2 = df.loc[(df['Deltaabs'] > 0.35) & (df['Deltaabs'] < 0.50)]
     print(df2)
 
-    # seleziona solo le righe con valori maggiori di 50 in 'Deltariga'
-    df2.sort_values(by=['Posizione_int'], inplace=True, ascending=False)
+    # seleziona righe con valore di 'Posizione_int' minore di 0 e 'Giorni_rimanenti' minore di 55
+        
     df3 = df2.loc[(df["Posizione_int"]) < 0]
-    df4 = df3.loc[(df['Giorni_rimanenti']) < 45]
+    df4 = df3.loc[(df['Giorni_rimanenti']) < 55]
+
+    # li ordino per delta discendente
+    df4.sort_values(by=['Deltaabs'], inplace=True, ascending=False)
 
     trades = df4
     return render(request, "index4.html", {'trades': trades})
