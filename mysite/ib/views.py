@@ -171,6 +171,21 @@ def analisi_trade_scadenza(request):
                           'Realizzato Totale', 'Non realizzato Totale', 'Totale']]
     trades = trades0.sort_values(by=['Totale'],  ascending=True)
 
+    # vorrei solo aggiungere un contatopre di riga a trades per poterlo usare in html come indice sequenziale
+    # per vedere quante righe ho in totale
+    trades['contatore'] = range(1, len(trades) + 1)
+    # perfetto solo il valore dovrebbe essere allineato a destra
+    trades['contatore'] = trades['contatore'].astype(str).str.rjust(3, '0')
+
+    
+
+
+    
+      
+
+    
+
+
     # emissione videata
     return render(request, "index4.html", {'trades': trades})
 
