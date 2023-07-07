@@ -616,7 +616,9 @@ def nuova_analisi_di_portafoglio(request):
     # lettura del dataframe e reperimento del prezzo
     for index, row in df.iterrows():
         var = row['Simbolo_solo_allineato']
-        if var != 'IWM':
+        # se il simbolo è diverso da IWM e anche da SPY
+        if var != 'IWM' and var != 'SPY':
+            # eseguo la routine
             stock = yf.Ticker(var)
             price = stock.info['currentPrice']
             #print(stock)
