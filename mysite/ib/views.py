@@ -117,8 +117,8 @@ def importa_portfolio_ITM_valore_temporale(request):
 
 
     # li ordino
-    df4 = df1.sort_values(['Giorni_rimanenti', 'Valore_tmp_fin_float'],
-                                                   ascending=[True, True])
+    df4 = df1.sort_values(['Valore_tmp_fin_float'],
+                                                   ascending=[True])
 
     # emissione videata
     trades = df4
