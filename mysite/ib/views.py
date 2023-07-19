@@ -259,10 +259,6 @@ def analisi_trade_scadenza_simbolo_ancora_aperte(request):
     df2 = df.drop(
         ["Sommario profitti e perdite Realizzati e Non realizzati", "Header"], axis=1)
 
-    # voglio includere solo le righe con  non realizzato diverso da 0
-    # significa che sono ancora aperte
-    #df2 = df2[df2['Non realizzato Totale'] != 0]
-
     df2['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
     df2['Simbolo_opzione'] = df['Simbolo'].str.split(
         ' ').str[0] + df['Simbolo'].str.split(' ').str[1]
