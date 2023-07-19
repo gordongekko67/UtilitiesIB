@@ -261,7 +261,7 @@ def analisi_trade_scadenza_simbolo_ancora_aperte(request):
 
     # voglio includere solo le righe con  non realizzato diverso da 0
     # significa che sono ancora aperte
-    df2 = df2[df2['Non realizzato Totale'] != 0]
+    #df2 = df2[df2['Non realizzato Totale'] != 0]
 
     df2['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
     df2['Simbolo_opzione'] = df['Simbolo'].str.split(
@@ -276,6 +276,10 @@ def analisi_trade_scadenza_simbolo_ancora_aperte(request):
                           'Realizzato Totale', 'Non realizzato Totale', 'Totale']]
     trades = trades0.sort_values(by=['Simbolo_opzione'],  ascending=True)
 
+    # devo prendere di trades solo le righe con non realizzato diverso da 0
+    trades = trades[trades['Non realizzato Totale'] != 0]
+    
+    
     # emissione videata
     return render(request, "index4.html", {'trades': trades})
 
