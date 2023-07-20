@@ -86,7 +86,6 @@ def importa_portfolio_ITM(request):
     return render(request, "index4.html", {'trades': trades})
 
 
-
 def importa_portfolio_ITM_valore_temporale(request):
     template = loader.get_template('index4.html')
     # inporto df
@@ -114,18 +113,13 @@ def importa_portfolio_ITM_valore_temporale(request):
     # elimino la colonna simbolo_solo e operazione ticker
     df1.drop(["Operazione ticker"], axis=1, inplace=True)
 
-
-
     # li ordino
     df4 = df1.sort_values(['Valore_tmp_fin_float'],
-                                                   ascending=[True])
+                          ascending=[True])
 
     # emissione videata
     trades = df4
     return render(request, "index4.html", {'trades': trades})
-
-
-
 
 
 def importa_portfolio_con_rischio_di_assegnazione(request):
@@ -219,15 +213,6 @@ def analisi_trade_scadenza(request):
     # perfetto solo il valore dovrebbe essere allineato a destra
     trades['contatore'] = trades['contatore'].astype(str).str.rjust(3, '0')
 
-    
-
-
-    
-      
-
-    
-
-
     # emissione videata
     return render(request, "index4.html", {'trades': trades})
 
@@ -274,14 +259,9 @@ def analisi_trade_scadenza_simbolo_ancora_aperte(request):
 
     # devo prendere di trades solo le righe con non realizzato diverso da 0
     trades = trades[trades['Non realizzato Totale'] != 0]
-    
-    
+
     # emissione videata
     return render(request, "index4.html", {'trades': trades})
-
-
-
-
 
 
 def analisi_trade_titolo(request):
@@ -404,7 +384,7 @@ def analisi_opzioni_potenzialmente_da_rollare(request):
     print(df2)
 
     # seleziona righe con valore di 'Posizione_int' minore di 0 e 'Giorni_rimanenti' minore di 55
-        
+
     df3 = df2.loc[(df["Posizione_int"]) < 0]
     df4 = df3.loc[(df['Giorni_rimanenti']) < 55]
 
@@ -517,7 +497,7 @@ def analisi_di_portafoglio(request):
     print(df4)
 
     for i in df4.index:
-        stringa = str(df4.loc[i, 'Simbolo_solo'])
+        stringa = str(df4.loc[i, 'Simbolo_solo_allineato'])
         print("ciclo"+stringa)
         reperisci_corrente_prezzo(stringa)
         stringa0 = str(stringa.iloc[0]) if isinstance(
@@ -532,39 +512,43 @@ def analisi_di_portafoglio(request):
 
     # analisi del portafoglio
     for i in df4.index:
+        var = row['Simbolo_solo_allineato']
+        # se il simbolo è diverso da IWM e anche da SPY
+        if var != 'IWM' and var != 'SPY':
+        
+            try:
+                stringa = str(df4.loc[i, 'Simbolo_solo'])
+                print("ciclo"+stringa)
+                stock = yf.Ticker(stringa)
+                price = stock.info['currentPrice']
+                pricefloat = float(price)
+                simbolo = df['Strumento_finanziario'][i].split(' ')[0]
+                data = df['Strumento_finanziario'][i].split(' ')[1]
+                strike = df['Strumento_finanziario'][i].split(' ')[2]
+                strikefloat = float(strike)
+                putcall = df['Strumento_finanziario'][i].split(' ')[3]
+                valore_temporale = df["Val_tmp_fin_float"][i]
+                valore_temporale_float = float(valore_temporale)
+                var = "ATTENZIONE La opzione è ITM " + simbolo + \
+                    "    " + data + "    " + strike + "    " + putcall
 
-        try:
-            stringa = str(df4.loc[i, 'Simbolo_solo'])
-            stock = yf.Ticker(stringa)
-            price = stock.info['currentPrice']
-            pricefloat = float(price)
-            simbolo = df['Strumento_finanziario'][i].split(' ')[0]
-            data = df['Strumento_finanziario'][i].split(' ')[1]
-            strike = df['Strumento_finanziario'][i].split(' ')[2]
-            strikefloat = float(strike)
-            putcall = df['Strumento_finanziario'][i].split(' ')[3]
-            valore_temporale = df["Val_tmp_fin_float"][i]
-            valore_temporale_float = float(valore_temporale)
-            var = "ATTENZIONE La opzione è ITM " + simbolo + \
-                "    " + data + "    " + strike + "    " + putcall
+                # print("prezzo" + pricefloat + "strike" +  strikefloat)
+                if ((pricefloat < strikefloat) & (putcall == 'PUT')):
+                    fruits.append(var)
+                    if (valore_temporale_float < 1.0):
+                        fruits.append(
+                            "ATTENZIONE !!!! alto rischio di assegnazione")
 
-            # print("prezzo" + pricefloat + "strike" +  strikefloat)
-            if ((pricefloat < strikefloat) & (putcall == 'PUT')):
-                fruits.append(var)
-                if (valore_temporale_float < 1.0):
-                    fruits.append(
-                        "ATTENZIONE !!!! alto rischio di assegnazione")
+                if ((pricefloat > strikefloat) & (putcall == 'CALL')):
+                    fruits.append(var)
+                    if (valore_temporale_float < 1.0):
+                        fruits.append(
+                            "ATTENZIONE !!!! alto rischio di assegnazione")
 
-            if ((pricefloat > strikefloat) & (putcall == 'CALL')):
-                fruits.append(var)
-                if (valore_temporale_float < 1.0):
-                    fruits.append(
-                        "ATTENZIONE !!!! alto rischio di assegnazione")
-
-        except Exception:
-            print(traceback.format_exc())
-            # or
-            print(sys.exc_info()[2])
+            except Exception:
+                print(traceback.format_exc())
+                # or
+                print(sys.exc_info()[2])
 
     # eliminazione colonne
     df4 = df4.drop(['Operazione ticker'], axis=1)
@@ -632,7 +616,7 @@ def calcolo_di_quanto_itm(strike_price, prezzo_corrente, putcall):
         percentuale_itm = round(percentuale_itm, 2)
         # restituisco la percentuale
         return percentuale_itm
-    
+
     # se putcall è uguale a PUT
     else:
         # calcolo la differenza tra prezzo corrente e strike price
@@ -645,14 +629,9 @@ def calcolo_di_quanto_itm(strike_price, prezzo_corrente, putcall):
         percentuale_itm = round(percentuale_itm, 2)
         # restituisco la percentuale
         return percentuale_itm
-    
+
     # se putcall è diverso da CALL e da PUT
     return 0
-
-
-
-
-
 
 
 def nuova_analisi_di_portafoglio(request):
@@ -693,8 +672,8 @@ def nuova_analisi_di_portafoglio(request):
             # eseguo la routine
             stock = yf.Ticker(var)
             price = stock.info['currentPrice']
-            #print(stock)
-            #print(price)
+            # print(stock)
+            # print(price)
             # reperisco dal campo Strumento finanziario il prezzo di strike , cioè il terzo elemento
             # della stringa e lo converto in float
             strike = row['Strumento_finanziario'].split(' ')[2]
@@ -734,9 +713,11 @@ def nuova_analisi_di_portafoglio(request):
                 simbolo = row['simbolo']
                 putcall = row['putcall']
                 # lancio una routine alla quale passo simbolo e putcall e restituisce il prezzo medio
-                prezzo_medio_opzione_comprata = reperisci_premio_opzione_comprata2(simbolo, putcall, df)
-                strike_opzione_comprata = reperisci_strike_opzione_comprata(simbolo, putcall, df)
-                                
+                prezzo_medio_opzione_comprata = reperisci_premio_opzione_comprata2(
+                    simbolo, putcall, df)
+                strike_opzione_comprata = reperisci_strike_opzione_comprata(
+                    simbolo, putcall, df)
+
                 # a questo punto prendo il prezzo corrente e gli sottraggo prezzo medio opzione comprata e basta
                 differenza = row['Pr. medio'] - prezzo_medio_opzione_comprata
                 # aggiungo la colonna differenza al data frame
@@ -762,14 +743,18 @@ def nuova_analisi_di_portafoglio(request):
                 # reperisco il prezzo di strike
                 strike = row['strikefloat']
 
-
                 # reperisco il valore di quanto è in the money chiamando la routine reperisci_quanto_in_the_money
-                quanto_in_the_money = calcolo_di_quanto_itm(strike, prezzo_corrente, putcall)
-                totale_premio_incassato_per_simbolo = reperisci_premio_totale_simbolo(simbolo, df)   
+                quanto_in_the_money = calcolo_di_quanto_itm(
+                    strike, prezzo_corrente, putcall)
+                totale_premio_incassato_per_simbolo = reperisci_premio_totale_simbolo(
+                    simbolo, df)
 
-                # totale valore a rischio per simbolo 
-                totale_valore_a_rischio_per_simbolo = totale_premio_incassato_per_simbolo - abs(( strike - strike_opzione_comprata) * abs(row['Posizione'])*100)    
-                print(simbolo,putcall, strike, strike_opzione_comprata, totale_premio_incassato_per_simbolo, totale_valore_a_rischio_per_simbolo) 
+                # totale valore a rischio per simbolo
+                totale_valore_a_rischio_per_simbolo = totale_premio_incassato_per_simbolo - \
+                    abs((strike - strike_opzione_comprata)
+                        * abs(row['Posizione'])*100)
+                print(simbolo, putcall, strike, strike_opzione_comprata,
+                      totale_premio_incassato_per_simbolo, totale_valore_a_rischio_per_simbolo)
 
                 # se putcall è uguale a CALL
                 if (putcall == 'CALL'):
@@ -778,7 +763,7 @@ def nuova_analisi_di_portafoglio(request):
                      # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " è tra il prezzo di strike e il B/E point"
                      # fruits.append('il titolo ' + row['Strumento_finanziario'] + ' è tra il prezzo di strike e il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))
                         bep.append('il titolo ' + row['Strumento_finanziario'] + ' è tra il prezzo di strike e il B/E point: ' + '    prezzo corrente   ' +
-                                   prezzo_correntestringa + '   B/E point   ' + str(break_even_point) + '  giorni rimanenti  ' + str(row['Giorni_rimanenti']) + '  quanto in the money  ' + str(quanto_in_the_money) + '%'+ '  tot.premio x simbolo  ' + str(totale_premio_incassato_per_simbolo)+ '  tot.valore a rischio x simbolo  ' + str(totale_valore_a_rischio_per_simbolo))
+                                   prezzo_correntestringa + '   B/E point   ' + str(break_even_point) + '  giorni rimanenti  ' + str(row['Giorni_rimanenti']) + '  quanto in the money  ' + str(quanto_in_the_money) + '%' + '  tot.premio x simbolo  ' + str(totale_premio_incassato_per_simbolo) + '  tot.valore a rischio x simbolo  ' + str(totale_valore_a_rischio_per_simbolo))
                         # se i giorni rimanenti sono minori di 21
                         if (row['Giorni_rimanenti'] < 21):
                             operazioni.append(
@@ -788,7 +773,7 @@ def nuova_analisi_di_portafoglio(request):
                         # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " ha superato il B/E point"
                         # fruits.append('il titolo ' + row['Strumento_finanziario'] + ' ha superato il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))
                         itm.append('il titolo ' + row['Strumento_finanziario'] + ' ha superato il B/E point: ' + '    prezzo corrente   ' +
-                                   prezzo_correntestringa + '   B/E point   ' + str(break_even_point) + '  giorni rimanenti  ' + str(row['Giorni_rimanenti']) + '  quanto in the money  ' + str(quanto_in_the_money) + '%' + '  tot.premio x simbolo  ' + str(totale_premio_incassato_per_simbolo)+ '  tot.valore a rischio x simbolo  ' + str(totale_valore_a_rischio_per_simbolo))
+                                   prezzo_correntestringa + '   B/E point   ' + str(break_even_point) + '  giorni rimanenti  ' + str(row['Giorni_rimanenti']) + '  quanto in the money  ' + str(quanto_in_the_money) + '%' + '  tot.premio x simbolo  ' + str(totale_premio_incassato_per_simbolo) + '  tot.valore a rischio x simbolo  ' + str(totale_valore_a_rischio_per_simbolo))
                         # se i giorni rimanenti sono minori di 21
                         if (row['Giorni_rimanenti'] < 21):
                             operazioni.append(
@@ -801,7 +786,7 @@ def nuova_analisi_di_portafoglio(request):
                         # aggiungi a fruits il seguernte messaggio " il titolo "  + simbolo + " è tra il prezzo di strike e il B/E point"
                         # fruits.append('il titolo ' + row['Strumento_finanziario'] + ' è tra il prezzo di strike e il B/E point: ' + '    prezzo corrente   ' + prezzo_correntestringa  +  '   B/E point   ' + str(break_even_point))
                         bep.append('il titolo ' + row['Strumento_finanziario'] + ' è tra il prezzo di strike e il B/E point: ' + '    prezzo corrente   ' +
-                                   prezzo_correntestringa + '   B/E point   ' + str(break_even_point) + '  giorni rimanenti  ' + str(row['Giorni_rimanenti']) + '  quanto in the money  ' + str(quanto_in_the_money) + '%' + '  tot.premio x simbolo  ' + str(totale_premio_incassato_per_simbolo)+ '  tot.valore a rischio x simbolo  ' + str(totale_valore_a_rischio_per_simbolo)) 
+                                   prezzo_correntestringa + '   B/E point   ' + str(break_even_point) + '  giorni rimanenti  ' + str(row['Giorni_rimanenti']) + '  quanto in the money  ' + str(quanto_in_the_money) + '%' + '  tot.premio x simbolo  ' + str(totale_premio_incassato_per_simbolo) + '  tot.valore a rischio x simbolo  ' + str(totale_valore_a_rischio_per_simbolo))
                         # se i giorni rimanenti sono minori di 21
                         if (row['Giorni_rimanenti'] < 21):
                             operazioni.append(
@@ -845,21 +830,21 @@ def reperisci_premio_opzione_comprata2(simbolop, putcallp, df):
 
     return prezzo_medio_long
 
-def reperisci_strike_opzione_comprata(simbolop, putcallp, df):
-    
-        # azzero variabile prezzo medio
-        strike = 0
-        # loop sul dataframe
-        for index, row in df.iterrows():
-    
-            # se simbolo passsato alla routine è uguale a simbolo nel df e putcallp è uguale a putcall e la posizione è > di 0
-            # allora ho trovato l'opzione comprata
-            if (simbolop == row['simbolo']) & (putcallp == row['putcall']) & (row['Posizione'] > 0):
-                # reperisco il prezzo medio
-                strike = row['strikefloat']
-    
-        return strike
 
+def reperisci_strike_opzione_comprata(simbolop, putcallp, df):
+
+    # azzero variabile prezzo medio
+    strike = 0
+    # loop sul dataframe
+    for index, row in df.iterrows():
+
+        # se simbolo passsato alla routine è uguale a simbolo nel df e putcallp è uguale a putcall e la posizione è > di 0
+        # allora ho trovato l'opzione comprata
+        if (simbolop == row['simbolo']) & (putcallp == row['putcall']) & (row['Posizione'] > 0):
+            # reperisco il prezzo medio
+            strike = row['strikefloat']
+
+    return strike
 
 
 def ultimate_analisi_di_portafoglio(request):
@@ -885,19 +870,18 @@ def reperisci_premio_totale_simbolo(simbolop, df):
 
     # azzero variabile prezzo medio
     valore = 0
-     
+
     # loop sul dataframe
     for index, row in df.iterrows():
 
-        # se simbolo passsato alla routine è uguale a simbolo nel df 
+        # se simbolo passsato alla routine è uguale a simbolo nel df
         # allora ho trovato l'opzione comprata
         if (simbolop == row['simbolo']):
             # reperisco il prezzo medio
-            valore = valore +  row['Pr. medio'] * row['Posizione']*100
-    
+            valore = valore + row['Pr. medio'] * row['Posizione']*100
+
     # arrotondo a due decimali e lo porto comunque ad un valore positivo
     valore = abs(round(valore, 2))
     # restituisco il valore
-    
-    return valore 
 
+    return valore
