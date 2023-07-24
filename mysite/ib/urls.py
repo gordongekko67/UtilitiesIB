@@ -28,8 +28,12 @@ urlpatterns = [
     path('index17', views.analisi_trade_dettaglio_simbolo_ancora_aperte),
     path('index99', views.analisi_di_portafoglio),
     path('index98', views.nuova_analisi_di_portafoglio),
-    path('index100',views.ultimate_analisi_di_portafoglio)
-    
+    path('index100',views.ultimate_analisi_di_portafoglio),
+
+
+    path('index4', views.analisi_opzioni_vendute_comprate),
+
+        
    
     
 ]

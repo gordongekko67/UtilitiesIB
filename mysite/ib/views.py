@@ -67,10 +67,10 @@ def importa_portfolio_ITM(request):
 
     # aggiustamenti colonne e dati
     df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
-              "Giorni restanti all'UGT": "Giorni_rimanenti"}, inplace=True)
+              "Giorni restanti all'UGT": "GG_rim"}, inplace=True)
     print(df)
     df['Delta'] = df['Delta'].astype(float)
-    df['Giorni_rimanenti'] = df['Giorni_rimanenti'].astype(int)
+    df['GG_rim'] = df['GG_rim'].astype(int)
 
     df["Deltaabs"] = abs(df['Delta'].astype(float))
 
@@ -78,7 +78,7 @@ def importa_portfolio_ITM(request):
     df1 = df.loc[(df['Deltaabs'] > 0.499999) & (df['Posizione'] < 0)]
 
     # li ordino
-    df4 = df1.sort_values(['Giorni_rimanenti', 'Deltaabs', 'Strumento_finanziario'],
+    df4 = df1.sort_values(['GG_rim', 'Deltaabs', 'Strumento_finanziario'],
                           ascending=[True, False, True])
 
     # emissione videata
@@ -93,10 +93,10 @@ def importa_portfolio_ITM_valore_temporale(request):
 
     # aggiustamenti colonne e dati
     df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
-              "Giorni restanti all'UGT": "Giorni_rimanenti"}, inplace=True)
+              "Giorni restanti all'UGT": "GG_rim"}, inplace=True)
     print(df)
     df['Delta'] = df['Delta'].astype(float)
-    df['Giorni_rimanenti'] = df['Giorni_rimanenti'].astype(int)
+    df['GG_rim'] = df['GG_rim'].astype(int)
 
     df["Deltaabs"] = abs(df['Delta'].astype(float))
 
@@ -918,3 +918,26 @@ def reperisci_premio_totale_simbolo(simbolop, df):
     # restituisco il valore
 
     return valore
+
+
+
+
+#-------------------------------------------------------------------------------------------
+def analisi_opzioni_vendute_comprate(request):
+    df = pd.read_csv('Analisi_trade.csv')
+
+    df2 = df.drop(
+        ["Sommario profitti e perdite Realizzati e Non realizzati", "Header"], axis=1)
+    df2 = df.drop(["Realizzato Profitto S/T",
+                  "Realizzato Perdita S/T"], axis=1)
+    
+    df['PUT/CALL'] = df['Simbolo'].str.split(' ').str[3]
+    
+    # ordina per put cal  e per profitto e perdita Totale
+    df2.sort_values(by=['PUT/CALL', 'Profitto e perdita Totale'],
+                    inplace=True, ascending=False)
+
+    trades = df2
+   
+    return render(request, "index4.html", {'trades': trades})
+
