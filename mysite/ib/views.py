@@ -260,6 +260,13 @@ def analisi_trade_scadenza_simbolo_ancora_aperte(request):
     # devo prendere di trades solo le righe con non realizzato diverso da 0
     trades = trades[trades['Non realizzato Totale'] != 0]
 
+    # li ordino per Non realizzato Totale discendente
+    trades = trades.sort_values(by=['Non realizzato Totale'],  ascending=False)
+
+    # faccio una somma finale per avere il totale del realizzato e non realizzato Totale
+    trades.loc['Totale'] = trades.sum(numeric_only=True, axis=0)
+
+
     # emissione videata
     return render(request, "index4.html", {'trades': trades})
 
@@ -941,3 +948,40 @@ def analisi_opzioni_vendute_comprate(request):
    
     return render(request, "index4.html", {'trades': trades})
 
+
+
+def analisi_operazioni(request):
+    df = pd.read_csv('Analisi_operazioni.csv')
+
+    # escludo dal dataframe le righe che sono di tipo Subtotal
+    df = df[df['Header'] != 'Subtotal']
+    # escludo dal dataframe le righe che sono di tipo Total
+    df = df[df['Header'] == 'Data']
+
+    # aggiungo al data frame le colonne PUT/CALL e Simbolo_solo, strike e data scadenza e le popolo
+    df['PUT/CALL'] = df['Simbolo'].str.split(' ').str[3]
+    df['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
+    df['Strike'] = df['Simbolo'].str.split(' ').str[2]
+    df['Data_scadenza'] = df['Simbolo'].str.split(' ').str[1]
+
+    # converto il campo Quantità in intero
+    df['Quantità'] = df['Quantità'].astype(float)
+
+    # df1 sono le operazioni di tipo PUT comprate( quando la posizione è > di 0)
+    df1 = df[df['Quantità'] > 0] & df[df['PUT/CALL'] == 'PUT']
+    # df2 sono le operazioni di tipo PUT vendute( quando la posizione è < di 0)
+    df2 = df[df['Quantità'] < 0] & df[df['PUT/CALL'] == 'PUT']
+    # df3 sono le operazioni di tipo CALL vendute( quando la posizione è < di 0)
+    df3 = df[df['Quantità'] < 0] & df[df['PUT/CALL'] == 'CALL']
+     # df4 sono le operazioni di tipo CALL comprate( quando la posizione è > di 0)
+    df4 = df[df['Quantità'] > 0] & df[df['PUT/CALL'] == 'CALL']
+
+    # adesso faccio il merge dei 4 dataframe
+    df5 = pd.concat([df1, df2, df3, df4])
+     
+    
+   
+   
+    trades = df5
+   
+    return render(request, "index4.html", {'trades': trades})
