@@ -396,6 +396,50 @@ def analisi_bilanciamento_delta(request):
     trades = df_grouped
     return render(request, "index4.html", {'trades': trades})
 
+def analisi_bilanciamento_delta_titolo_scadenza(request):
+    # vorrei riscrivere la routine esattamente come quella sopra solo che invece che raggruppare per simbolo_solo
+    # raggruppo per simbolo_scadenza , cioeà i primi due campi di strumento finanziario e poi sommo i valori di deltariga
+    # e poi li ordino per deltariga discendente
+    # inporto df
+    fruits = ['Totale Delta Portafoglio  ']
+    template = loader.get_template('index4.html')
+    # inporto df
+    df = pd.read_csv('portfolio.csv')
+
+    # aggiustamenti colonne e dati
+    df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
+              "Giorni restanti all'UGT": "Giorni_rimanenti"}, inplace=True)
+    print(df)
+    df['Delta'] = df['Delta'].astype(float)
+    df['Deltasigned'] = df['Delta'].astype(float)
+    df['Giorni_rimanenti'] = df['Giorni_rimanenti'].astype(int)
+
+    df["Deltaabs"] = abs(df['Delta'].astype(float))
+    df["Posizione"] = df['Posizione'].astype(int)
+    df['Simbolo_solo'] = df['Strumento_finanziario'].str.split(' ').str[0]
+    # eseguo la selezione
+    df1 = df.loc[(df['Deltaabs'] < 0.075) & (df['Posizione'] < 0)]
+    df["Deltariga"] = df["Delta"]*df['Posizione']*100
+
+    df['Simbolo_scadenza'] = df['Strumento_finanziario'].str.split(' ').str[0] + df['Strumento_finanziario'].str.split(' ').str[1]
+
+    # li ordino
+    df4 = df.sort_values(by=['Deltaabs'],  ascending=False)
+    # raggruppa il dataframe per il campo "campo1" e somma i valori per ogni gruppo
+    df_grouped = df4.groupby('Simbolo_scadenza')['Deltariga'].sum().reset_index()
+
+    # seleziona solo le righe con valori maggiori di 50 in 'Deltariga'
+    df_grouped.sort_values(by=['Simbolo_scadenza'], inplace=True, ascending=True)
+
+    df_grouped.loc['Totale Delta'] = df_grouped.sum(numeric_only=True, axis=0)
+
+    trades = df_grouped
+    return render(request, "index4.html", {'trades': trades})
+
+
+
+
+
 
 def analisi_opzioni_potenzialmente_da_rollare(request):
     template = loader.get_template('index5.html')
