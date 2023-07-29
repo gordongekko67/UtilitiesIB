@@ -428,9 +428,9 @@ def analisi_bilanciamento_delta_titolo_scadenza(request):
     # raggruppa il dataframe per il campo "campo1" e somma i valori per ogni gruppo
     df_grouped = df4.groupby('Simbolo_scadenza')['Deltariga'].sum().reset_index()
 
-    # seleziona solo le righe con valori maggiori di 50 in 'Deltariga'
+    
     df_grouped.sort_values(by=['Simbolo_scadenza'], inplace=True, ascending=True)
-
+   
     df_grouped.loc['Totale Delta'] = df_grouped.sum(numeric_only=True, axis=0)
 
     trades = df_grouped
