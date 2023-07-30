@@ -1029,3 +1029,36 @@ def analisi_operazioni(request):
     trades = df5
    
     return render(request, "index4.html", {'trades': trades})
+
+
+def analisi_operazioni_di_un_determinato_mese(request):
+    df = pd.read_csv('Analisi_operazioni.csv')
+
+    # estraggo il primo campo di simbolo
+    df['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
+
+    # estraggo un campo che mi prende il secondo campo di simbolo
+    df['Simbolo_solo_mese'] = df['Simbolo'].str.split(' ').str[1]
+    
+    # estraggo quelli che in simbolo_solo_mese = a 21JUL23
+    df = df[df['Simbolo_solo_mese'] == '21JUL23']
+    
+    
+    # escludo dal dataframe le righe che sono di tipo Subtotal
+    df = df[df['Header'] != 'Subtotal']
+    # escludo dal dataframe le righe che sono di tipo Total
+    df = df[df['Header'] == 'Data']
+
+    print(df)
+
+    # ragguppo per simbolo solo facendo il totale di P/L realizzato
+    df_grouped = df.groupby('Simbolo_solo')['P/L realizzato'].sum()
+
+    print(df_grouped)
+   
+    trades = df_grouped
+   
+    return render(request, "index4.html", {'trades': trades})
+
+
+

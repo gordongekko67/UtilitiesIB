@@ -33,7 +33,9 @@ urlpatterns = [
 
 
     path('index4', views.analisi_opzioni_vendute_comprate),
-    path('index23', views.analisi_operazioni),     
+    path('index23', views.analisi_operazioni), 
+    path('index25', views.analisi_operazioni_di_un_determinato_mese),
+    
    
     
 ]
