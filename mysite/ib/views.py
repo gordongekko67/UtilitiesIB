@@ -1053,12 +1053,50 @@ def analisi_operazioni_di_un_determinato_mese(request):
 
     # ragguppo per simbolo solo facendo il totale di P/L realizzato
     df_grouped = df.groupby('Simbolo_solo')['P/L realizzato'].sum()
+    # aggiungo una riga con il totale finale
+    df_grouped.loc['Total'] = df_grouped.sum()
 
     print(df_grouped)
    
-    trades = df_grouped
-   
+
+    trades = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+
+    print(trades)
+
+    # perchè non funziona? a video non mi da il dataframe
+    return render(request, "index4.html", {'trades': trades})
+    
+
+
+
+def analisi_opzioni_con_il_minore_Theta(request):
+    df = pd.read_csv('portfolio.csv')
+
+    # aggiustamenti colonne e dati
+    df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
+                "Giorni restanti all'UGT": "Giorni_rimanenti"}, inplace=True)
+    
+    # vado a vedere le opzioni che hanno il minore theta
+
+    # prendo il THeta e lo converto in float
+    df["Theta_float"] = df['Theta'].astype(float)
+    # prendo il valore assoluto di Theta
+    df["Thetaabs"] = df['Theta_float'].abs()
+
+    # prendo solo quelli che hanno il theta assoluto minere di 0.08 e scadenza  minore di 21 giorni e posizione minore di 0
+    df = df[df['Thetaabs'] < 0.08]
+    df = df[df['Giorni_rimanenti'] < 21]
+    df = df[df['Posizione'] < 0]
+    
+
+    # ordino per theta
+    df.sort_values(by=['Theta'], inplace=True, ascending=False)
+    
+    # le visulaizzo su html
+
+    trades = df
+
     return render(request, "index4.html", {'trades': trades})
 
 
-
+    
