@@ -260,8 +260,8 @@ def analisi_trade_scadenza_simbolo_ancora_aperte(request):
     # devo prendere di trades solo le righe con non realizzato diverso da 0
     trades = trades[trades['Non realizzato Totale'] != 0]
 
-    # li ordino per Non realizzato Totale discendente
-    trades = trades.sort_values(by=['Non realizzato Totale'],  ascending=False)
+    # li ordino per Simbolo_opzione crescente
+    trades = trades.sort_values(by=['Simbolo_opzione'],  ascending=True)
 
     # faccio una somma finale per avere il totale del realizzato e non realizzato Totale
     trades.loc['Totale'] = trades.sum(numeric_only=True, axis=0)
