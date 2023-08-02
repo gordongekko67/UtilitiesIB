@@ -213,6 +213,9 @@ def analisi_trade_scadenza(request):
     # perfetto solo il valore dovrebbe essere allineato a destra
     trades['contatore'] = trades['contatore'].astype(str).str.rjust(3, '0')
 
+     # faccio una somma finale per avere il totale del realizzato e non realizzato Totale
+    trades.loc['Totale'] = trades.sum(numeric_only=True, axis=0)
+
     # emissione videata
     return render(request, "index4.html", {'trades': trades})
 
@@ -235,6 +238,9 @@ def analisi_trade_scadenza_simbolo(request):
                           'Realizzato Totale', 'Non realizzato Totale', 'Totale']]
     trades = trades0.sort_values(by=['Simbolo_opzione'],  ascending=True)
 
+    # faccio un totale finale
+    trades.loc['Totale'] = trades.sum(numeric_only=True, axis=0)
+
     # emissione videata
     return render(request, "index4.html", {'trades': trades})
 
@@ -248,24 +254,24 @@ def analisi_trade_scadenza_simbolo_2(request):
     df2['Data_scadenza'] = df['Simbolo'].str.split(' ').str[1]
     df2['Simbolo_opzione'] = df['Simbolo'].str.split(
         ' ').str[0] + df['Simbolo'].str.split(' ').str[1]
-    
-
-    # seleziono solo quelli che hanno data scaedenza == '18AUG23'
-    df2 = df2[df2['Data_scadenza'] == '18AUG23']
-    
+        
     # vorrei raggruppare df2 per data_scadenza e simbolo_solo e poi sommare i valori di realizzato totale e non realizzato totale
     # e poi ordinare per data_scadenza e simbolo_solo crescente e fare i totali per ogni data_scadenza
     # e poi un totale finale
         
-    df_grouped = df2.groupby(['Data_scadenza','Simbolo_solo']).agg(
+    df2.sort_values(by=['Data_scadenza', 'Simbolo_solo'], inplace=True)
+    # raggruppa il dataframe per il campo "Data_scadenza" e "Simbolo_solo" e somma i valori per ogni gruppo
+    df_grouped = df2.groupby(['Data_scadenza', 'Simbolo_solo']).agg(
         {'Realizzato Totale': 'sum', 'Non realizzato Totale': 'sum', 'Totale': 'sum'}).reset_index()
-     
+    # ogni volta che cambia la data_scadenza devo fare un totale
+    trades0 = df_grouped[['Data_scadenza', 'Simbolo_solo', 'Realizzato Totale', 'Non realizzato Totale', 'Totale']]
+    #trades.loc['Totale_data'] = trades0.sum(numeric_only=True, axis=0)
 
-    trades = df_grouped.sort_values(by=['Data_scadenza','Simbolo_solo'],  ascending=True)
-
-    # faccio un totale finale
+    # faccio un totale finale di tutto
+    trades = trades0.sort_values(by=['Data_scadenza', 'Simbolo_solo'],  ascending=True)
     trades.loc['Totale'] = trades.sum(numeric_only=True, axis=0)
-    
+         
+        
     # emissione videata
     return render(request, "index4.html", {'trades': trades})
 
@@ -346,6 +352,9 @@ def analisi_trade_titolo(request):
     df2['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
     df2.sort_values(by=['Simbolo_solo'], inplace=True)
 
+    # devo eliminare dal dataframe quelli  che hanno simbolo solo = 'USD'
+    df2 = df2[df2['Simbolo_solo'] != 'USD']
+
     # raggruppa il dataframe per il campo "Simbolo_opzione" e somma i valori per ogni gruppo
     df_grouped = df2.groupby('Simbolo_solo').agg(
         {'Realizzato Totale': 'sum', 'Non realizzato Totale': 'sum', 'Totale': 'sum'}).reset_index()
@@ -354,6 +363,10 @@ def analisi_trade_titolo(request):
     trades0 = df_grouped[[
         'Simbolo_solo', 'Non realizzato Totale', 'Realizzato Totale',  'Totale']]
     trades = trades0.sort_values(by=['Totale'],  ascending=True)
+
+
+    # faccio una somma finale per avere il totale del realizzato e non realizzato Totale
+    trades.loc['Totale'] = trades.sum(numeric_only=True, axis=0)
 
     # emissione videata
     return render(request, "index4.html", {'trades': trades})
