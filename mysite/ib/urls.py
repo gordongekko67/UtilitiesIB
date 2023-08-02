@@ -10,6 +10,8 @@ urlpatterns = [
     path('index6', views.importa_portfolio_da_rollare_profitto),
     path('index8', views.importa_portfolio_ITM),
     path('index19', views.importa_portfolio_ITM_valore_temporale),
+    path('index28', views.importa_portfolio_ITM_valore_temporale_percentuale),
+    
 
     
     path('index7', views.importa_trades),
