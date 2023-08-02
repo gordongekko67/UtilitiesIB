@@ -239,6 +239,40 @@ def analisi_trade_scadenza_simbolo(request):
     return render(request, "index4.html", {'trades': trades})
 
 
+def analisi_trade_scadenza_simbolo_2(request):
+    df = pd.read_csv('Analisi_trade.csv')
+    df2 = df.drop(
+        ["Sommario profitti e perdite Realizzati e Non realizzati", "Header"], axis=1)
+
+    df2['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
+    df2['Data_scadenza'] = df['Simbolo'].str.split(' ').str[1]
+    df2['Simbolo_opzione'] = df['Simbolo'].str.split(
+        ' ').str[0] + df['Simbolo'].str.split(' ').str[1]
+    
+
+    # seleziono solo quelli che hanno data scaedenza == '18AUG23'
+    df2 = df2[df2['Data_scadenza'] == '18AUG23']
+    
+    # vorrei raggruppare df2 per data_scadenza e simbolo_solo e poi sommare i valori di realizzato totale e non realizzato totale
+    # e poi ordinare per data_scadenza e simbolo_solo crescente e fare i totali per ogni data_scadenza
+    # e poi un totale finale
+        
+    df_grouped = df2.groupby(['Data_scadenza','Simbolo_solo']).agg(
+        {'Realizzato Totale': 'sum', 'Non realizzato Totale': 'sum', 'Totale': 'sum'}).reset_index()
+     
+
+    trades = df_grouped.sort_values(by=['Data_scadenza','Simbolo_solo'],  ascending=True)
+
+    # faccio un totale finale
+    trades.loc['Totale'] = trades.sum(numeric_only=True, axis=0)
+    
+    # emissione videata
+    return render(request, "index4.html", {'trades': trades})
+
+
+
+
+
 def analisi_trade_scadenza_simbolo_ancora_aperte(request):
     df = pd.read_csv('Analisi_trade.csv')
     df2 = df.drop(
@@ -984,9 +1018,8 @@ def analisi_opzioni_vendute_comprate(request):
     
     df['PUT/CALL'] = df['Simbolo'].str.split(' ').str[3]
     
-    # ordina per put cal  e per profitto e perdita Totale
-    df2.sort_values(by=['PUT/CALL', 'Profitto e perdita Totale'],
-                    inplace=True, ascending=False)
+    # ordina per put call
+    df2.sort_values(by=['PUT/CALL'], inplace=True, ascending=False)
 
     trades = df2
    
@@ -1008,25 +1041,34 @@ def analisi_operazioni(request):
     df['Strike'] = df['Simbolo'].str.split(' ').str[2]
     df['Data_scadenza'] = df['Simbolo'].str.split(' ').str[1]
 
+    # elimino quelli che hanno simbolo solo = a EUR.USD 
+    df = df[df['Simbolo_solo'] != 'EUR.USD']
+   
     # converto il campo Quantità in intero
-    df['Quantità'] = df['Quantità'].astype(float)
-
-    # df1 sono le operazioni di tipo PUT comprate( quando la posizione è > di 0)
-    df1 = df[df['Quantità'] > 0] & df[df['PUT/CALL'] == 'PUT']
-    # df2 sono le operazioni di tipo PUT vendute( quando la posizione è < di 0)
-    df2 = df[df['Quantità'] < 0] & df[df['PUT/CALL'] == 'PUT']
-    # df3 sono le operazioni di tipo CALL vendute( quando la posizione è < di 0)
-    df3 = df[df['Quantità'] < 0] & df[df['PUT/CALL'] == 'CALL']
-     # df4 sono le operazioni di tipo CALL comprate( quando la posizione è > di 0)
-    df4 = df[df['Quantità'] > 0] & df[df['PUT/CALL'] == 'CALL']
-
-    # adesso faccio il merge dei 4 dataframe
-    df5 = pd.concat([df1, df2, df3, df4])
-     
+    df['Quantità'] = df['Quantità'].str.replace(',', '').astype(int)
     
+    # df1 sono le operazioni di tipo PUT comprate( quando la quantita è Maggiore di 0
+    # e il tipo di opzione è PUT)
+    df1 = df[(df['Quantità'] > 0) & (df['PUT/CALL'] == 'P')]
+    # df2 sono le operazioni di tipo PUT vendute( quando la quantita è Minore di 0
+    # e il tipo di opzione è PUT)
+    df2 = df[(df['Quantità'] < 0) & (df['PUT/CALL'] == 'P')]
+    # df3 sono le operazioni di tipo CALL comprate( quando la quantita è Maggiore di 0
+    # e il tipo di opzione è CALL)
+    df3 = df[(df['Quantità'] > 0) & (df['PUT/CALL'] == 'C')]
+    # df4 sono le operazioni di tipo CALL vendute( quando la quantita è Minore di 0
+    # e il tipo di opzione è CALL)
+    df4 = df[(df['Quantità'] < 0) & (df['PUT/CALL'] == 'C')]
+
+    print(df1)
+    print(df2)
+    print(df3)
+    print(df4)
+
+ 
    
    
-    trades = df5
+    trades = df1
    
     return render(request, "index4.html", {'trades': trades})
 
@@ -1041,7 +1083,7 @@ def analisi_operazioni_di_un_determinato_mese(request):
     df['Simbolo_solo_mese'] = df['Simbolo'].str.split(' ').str[1]
     
     # estraggo quelli che in simbolo_solo_mese = a 21JUL23
-    df = df[df['Simbolo_solo_mese'] == '21JUL23']
+    df = df[df['Simbolo_solo_mese'] == '18AUG23']
     
     
     # escludo dal dataframe le righe che sono di tipo Subtotal
@@ -1059,9 +1101,10 @@ def analisi_operazioni_di_un_determinato_mese(request):
     print(df_grouped)
    
 
-    trades = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    trades = df_grouped
 
     print(trades)
+    print(df_grouped)
 
     # perchè non funziona? a video non mi da il dataframe
     return render(request, "index4.html", {'trades': trades})

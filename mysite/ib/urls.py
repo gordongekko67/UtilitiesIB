@@ -24,6 +24,7 @@ urlpatterns = [
     path('index14', views.calcolo_totale_valore_temporale),
     path('index15', views.analisi_opzioni_potenzialmente_da_rollare),
     path('index16', views.analisi_trade_scadenza_simbolo),
+    path('index27', views.analisi_trade_scadenza_simbolo_2),
     path('index18', views.analisi_trade_scadenza_simbolo_ancora_aperte),
     path('index20', views.analisi_trade_scadenza_simbolo_completamente_chiuse),
     path('index17', views.analisi_trade_dettaglio_simbolo_ancora_aperte),
