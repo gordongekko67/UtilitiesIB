@@ -138,9 +138,11 @@ def importa_portfolio_ITM_valore_temporale_percentuale(request):
     # eseguo la selezione
     df1 = df.loc[(df['Deltaabs'] > 0.499999) & (df['Posizione'] < 0)]
 
-
-    # estraggo il secondo campo ( quello compreso tra parentesi)
-    df1["Valore temporale (%)"].replace("", 99.999, inplace=True)
+    stringa = df1["Valore temporale (%)"].str.extract(
+        r"\((\d+\.\d+)\)")
+    
+    # vado a vedere in stringa in che posizione cìè '(' e poi prendo il valore successivo)
+       
 
 
     df1["Valore_tmp_perc"] = df1["Valore temporale (%)"].str.extract(
@@ -1138,7 +1140,7 @@ def analisi_operazioni_di_un_determinato_mese(request):
     df['Simbolo_solo_mese'] = df['Simbolo'].str.split(' ').str[1]
     
     # estraggo quelli che in simbolo_solo_mese = a 21JUL23
-    df = df[df['Simbolo_solo_mese'] == '18AUG23']
+    df = df[df['Simbolo_solo_mese'] == '21JUL23']
     
     
     # escludo dal dataframe le righe che sono di tipo Subtotal
