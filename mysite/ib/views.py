@@ -1194,10 +1194,15 @@ def analisi_opzioni_con_il_minore_Theta(request):
     df["Theta_float"] = df['Theta'].astype(float)
     # prendo il valore assoluto di Theta
     df["Thetaabs"] = df['Theta_float'].abs()
+    # calcolo il theta a giorno e lo aggiungo al data frame e lo arrotondo a due decimali
+    df["Theta_gg"] = df["Thetaabs"] *100
+    df["Theta_gg"] = round(df["Theta_gg"], 2)
+
+    
 
     # prendo solo quelli che hanno il theta assoluto minere di 0.08 e scadenza  minore di 21 giorni e posizione minore di 0
     df = df[df['Thetaabs'] < 0.08]
-    #df = df[df['Giorni_rimanenti'] < 21]
+    df = df[df['Giorni_rimanenti'] < 45]
     df = df[df['Posizione'] < 0]
     
 
