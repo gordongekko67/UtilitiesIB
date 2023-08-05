@@ -138,22 +138,17 @@ def importa_portfolio_ITM_valore_temporale_percentuale(request):
     # eseguo la selezione
     df1 = df.loc[(df['Deltaabs'] > 0.499999) & (df['Posizione'] < 0)]
 
-    stringa = df1["Valore temporale (%)"].str.extract(
-        r"\((\d+\.\d+)\)")
+    stringa = str(df1["Valore temporale (%)"].str.extract(
+        r"\((\d+\.\d+)\)"))
     
-    # vado a vedere in stringa in che posizione cìè '(' e poi prendo il valore successivo)
-       
-
-
-
-
-
-
-
+   
 
     df1["Valore_tmp_perc"] = df1["Valore temporale (%)"].str.extract(
         r"\((\d+\.\d+)\)")
     df1["Valore_tmp_perc_float"] = df1["Valore_tmp_perc"].astype(float)
+
+    # se il valore temporale float è maggiore di 4,5 lo elimino
+    df1 = df1[df1['Valore_tmp_perc_float'] < 4,5]
     
      # li ordino
     df4 = df1.sort_values(['Valore_tmp_perc_float'],
