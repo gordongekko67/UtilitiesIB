@@ -145,6 +145,12 @@ def importa_portfolio_ITM_valore_temporale_percentuale(request):
        
 
 
+
+
+
+
+
+
     df1["Valore_tmp_perc"] = df1["Valore temporale (%)"].str.extract(
         r"\((\d+\.\d+)\)")
     df1["Valore_tmp_perc_float"] = df1["Valore_tmp_perc"].astype(float)
@@ -298,6 +304,10 @@ def analisi_trade_scadenza_simbolo_2(request):
     df2['Data_scadenza'] = df['Simbolo'].str.split(' ').str[1]
     df2['Simbolo_opzione'] = df['Simbolo'].str.split(
         ' ').str[0] + df['Simbolo'].str.split(' ').str[1]
+    
+
+    # estraggo quelli che in simbolo_solo_mese = a 21JUL23
+    #df2 = df2[df2['Data_scadenza'] == '21JUL23']
         
     # vorrei raggruppare df2 per data_scadenza e simbolo_solo e poi sommare i valori di realizzato totale e non realizzato totale
     # e poi ordinare per data_scadenza e simbolo_solo crescente e fare i totali per ogni data_scadenza
@@ -310,6 +320,10 @@ def analisi_trade_scadenza_simbolo_2(request):
     # ogni volta che cambia la data_scadenza devo fare un totale
     trades0 = df_grouped[['Data_scadenza', 'Simbolo_solo', 'Realizzato Totale', 'Non realizzato Totale', 'Totale']]
     #trades.loc['Totale_data'] = trades0.sum(numeric_only=True, axis=0)
+
+    # faccio un totlae a cambio di data scadenza
+    trades0.loc['Totale_data'] = trades0.sum(numeric_only=True, axis=0)
+    
 
     # faccio un totale finale di tutto
     trades = trades0.sort_values(by=['Data_scadenza', 'Simbolo_solo'],  ascending=True)
@@ -1140,7 +1154,7 @@ def analisi_operazioni_di_un_determinato_mese(request):
     df['Simbolo_solo_mese'] = df['Simbolo'].str.split(' ').str[1]
     
     # estraggo quelli che in simbolo_solo_mese = a 21JUL23
-    df = df[df['Simbolo_solo_mese'] == '21JUL23']
+    df = df[df['Simbolo_solo_mese'] == '18AUG23']
     
     
     # escludo dal dataframe le righe che sono di tipo Subtotal
@@ -1155,17 +1169,15 @@ def analisi_operazioni_di_un_determinato_mese(request):
     # aggiungo una riga con il totale finale
     df_grouped.loc['Total'] = df_grouped.sum()
 
+          
     print(df_grouped)
-   
 
     trades = df_grouped
-
-    print(trades)
-    print(df_grouped)
-
-    # perchè non funziona? a video non mi da il dataframe
+   
     return render(request, "index4.html", {'trades': trades})
-    
+
+
+   
 
 
 
@@ -1185,7 +1197,7 @@ def analisi_opzioni_con_il_minore_Theta(request):
 
     # prendo solo quelli che hanno il theta assoluto minere di 0.08 e scadenza  minore di 21 giorni e posizione minore di 0
     df = df[df['Thetaabs'] < 0.08]
-    df = df[df['Giorni_rimanenti'] < 21]
+    #df = df[df['Giorni_rimanenti'] < 21]
     df = df[df['Posizione'] < 0]
     
 
