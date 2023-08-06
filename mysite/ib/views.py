@@ -113,6 +113,11 @@ def importa_portfolio_ITM_valore_temporale(request):
     # elimino la colonna simbolo_solo e operazione ticker
     df1.drop(["Operazione ticker"], axis=1, inplace=True)
 
+     # se il valore temporale float è maggiore di 4,5 lo elimino
+    #df1 = df1[df1['Valore_tmp_fin_float'] < 4.5]
+    print(df1)
+
+
     # li ordino
     df4 = df1.sort_values(['Valore_tmp_fin_float'],
                           ascending=[True])
@@ -147,8 +152,9 @@ def importa_portfolio_ITM_valore_temporale_percentuale(request):
         r"\((\d+\.\d+)\)")
     df1["Valore_tmp_perc_float"] = df1["Valore_tmp_perc"].astype(float)
 
-    # se il valore temporale float è maggiore di 4,5 lo elimino
-    df1 = df1[df1['Valore_tmp_perc_float'] < 4,5]
+    print(df1)
+
+    
     
      # li ordino
     df4 = df1.sort_values(['Valore_tmp_perc_float'],
@@ -175,9 +181,9 @@ def importa_portfolio_con_rischio_di_assegnazione(request):
 
     # aggiustamenti colonne e dati
     df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
-              "Giorni restanti all'UGT": "Giorni_rimanenti"}, inplace=True)
+              "Giorni restanti all'UGT": "GG"}, inplace=True)
     df['Delta'] = df['Delta'].astype(float)
-    df['Giorni_rimanenti'] = df['Giorni_rimanenti'].astype(int)
+    df['GG'] = df['GG'].astype(int)
 
     df["Deltaabs"] = abs(df['Delta'].astype(float))
 
@@ -187,10 +193,15 @@ def importa_portfolio_con_rischio_di_assegnazione(request):
         r"(\d+\.\d+)")
     df["Valore_tmp_fin_float"] = df["Valore_tmp_fin"].astype(float)
 
-    df2 = df.loc[(df['Deltaabs'] > 0.499) & (df['Valore_tmp_fin_float'] < 0.5)]
+    df2 = df.loc[(df['Deltaabs'] > 0.499) & (df['Valore_tmp_fin_float'] < 2.5)]
+
+    # li ordino per valore temporale crescente
+    df4 = df2.sort_values(['Valore_tmp_fin_float'],
+                            ascending=[True])
+    
 
     # emissione videata
-    trades = df2
+    trades = df4
     print(trades)
     return render(request, "index5.html", {'trades': trades})
 
@@ -1149,7 +1160,7 @@ def analisi_operazioni_di_un_determinato_mese(request):
     df['Simbolo_solo_mese'] = df['Simbolo'].str.split(' ').str[1]
     
     # estraggo quelli che in simbolo_solo_mese = a 21JUL23
-    df = df[df['Simbolo_solo_mese'] == '18AUG23']
+    #df = df[df['Simbolo_solo_mese'] == '18AUG23']
     
     
     # escludo dal dataframe le righe che sono di tipo Subtotal
@@ -1197,7 +1208,8 @@ def analisi_opzioni_con_il_minore_Theta(request):
 
     # prendo solo quelli che hanno il theta assoluto minere di 0.08 e scadenza  minore di 21 giorni e posizione minore di 0
     df = df[df['Thetaabs'] < 0.08]
-    df = df[df['Giorni_rimanenti'] < 45]
+    
+    # df = df[df['Giorni_rimanenti'] < 45]
     df = df[df['Posizione'] < 0]
     
 
