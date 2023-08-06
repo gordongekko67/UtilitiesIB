@@ -154,8 +154,48 @@ def importa_portfolio_ITM_valore_temporale_percentuale(request):
 
     print(df1)
 
-    
-    
+    # faccio un ciclo di lettura sul df1
+    for i in df1.index:
+        # con simbolo solo vado a predenermi il ticker su yahoo finance
+        simbolo_solo = df1['Strumento_finanziario'][i].split(' ')[0]
+        # vado a prednere il prezzo su yahho  finance
+        ticker = yf.Ticker(simbolo_solo)
+        # prendo il prezzo
+        prezzo = ticker.info['currentPrice']
+       
+        # prendo il valore temporale come primo campo di valore temporale % e lo converto in float
+        valore_temporale = df1['Valore temporale (%)'][i].split(' ')[0]
+        valore_temporale = float(valore_temporale)
+
+        # vado a prendere il vaore dello strike e lo converto in float
+        strike = df1['Strumento_finanziario'][i].split(' ')[2]
+        strike_float = float(strike)
+        # faccio la diferenza  tra prezzo e strike in valore assoluto
+        differenza = abs(prezzo - strike_float)
+
+       
+        # reperisco il prezzo medio pagato e lo converto in float
+        prezzo_medio = df1['Pr. medio'][i]
+        prezzo_medio = float(prezzo_medio)
+
+        # calcolo la percentuale come valore temporale/prezzo medio
+        percentuale = (valore_temporale/prezzo_medio)*100
+
+             
+
+        print(simbolo_solo, prezzo_medio, strike,   valore_temporale, differenza, percentuale)
+        # adesso devo aggiungere la precentuale alla riga i del mio df1
+        df1['Valore_tmp_perc'][i] = percentuale
+
+
+      
+        
+
+
+
+    print (df1)
+
+        
      # li ordino
     df4 = df1.sort_values(['Valore_tmp_perc_float'],
                           ascending=[True])
