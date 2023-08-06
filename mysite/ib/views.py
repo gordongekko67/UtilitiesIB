@@ -175,33 +175,32 @@ def importa_portfolio_ITM_valore_temporale_percentuale(request):
 
        
         # reperisco il prezzo medio pagato e lo converto in float
-        prezzo_medio = df1['Pr. medio'][i]
-        prezzo_medio = float(prezzo_medio)
+        prezzo_ultimo = df1['Ultimo'][i]
+        prezzo_ultimo = float(prezzo_ultimo)
 
-        # calcolo la percentuale come valore temporale/prezzo medio
-        percentuale = (valore_temporale/prezzo_medio)*100
+        # calcolo la percentuale come valore temporale/prezzo medio e arrotiondo a 2 decimali
+        percentuale = round((valore_temporale/prezzo_ultimo)*100, 2)
+                    
 
-             
-
-        print(simbolo_solo, prezzo_medio, strike,   valore_temporale, differenza, percentuale)
+        print(simbolo_solo, prezzo_ultimo, strike,   valore_temporale, differenza, percentuale)
         # adesso devo aggiungere la precentuale alla riga i del mio df1
         df1['Valore_tmp_perc'][i] = percentuale
-
-
-      
-        
-
-
-
-    print (df1)
+        df1['Valore_tmp_perc_float'][i] = valore_temporale
 
         
-     # li ordino
-    df4 = df1.sort_values(['Valore_tmp_perc_float'],
-                          ascending=[True])
 
-    print(df4)
 
+    # copia la colonna Valore_tmp_perc in prima posizione nel dataframe 
+    df1.insert(2, "Valore_temporale espresso in %   ", df1['Valore_tmp_perc'], True)
+    df1.insert(3, "Valore_temporale espresso in valore assoluto  ", df1['Valore_tmp_perc_float'], True)
+
+
+
+    # ordino il data_frame per Valore_tmp_perc
+
+    df4 = df1.sort_values(['Valore_tmp_perc'],
+                            ascending=[True])
+    
 
     # emissione videata
     trades = df4
