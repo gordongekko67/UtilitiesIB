@@ -156,36 +156,51 @@ def importa_portfolio_ITM_valore_temporale_percentuale(request):
 
     # faccio un ciclo di lettura sul df1
     for i in df1.index:
-        # con simbolo solo vado a predenermi il ticker su yahoo finance
-        simbolo_solo = df1['Strumento_finanziario'][i].split(' ')[0]
-        # vado a prednere il prezzo su yahho  finance
-        ticker = yf.Ticker(simbolo_solo)
-        # prendo il prezzo
-        prezzo = ticker.info['currentPrice']
+        # se df1['Strumento_finanziario'][i] non comincia con QQQ
+
+        if not df1['Strumento_finanziario'][i].startswith('QQQ'):
        
-        # prendo il valore temporale come primo campo di valore temporale % e lo converto in float
-        valore_temporale = df1['Valore temporale (%)'][i].split(' ')[0]
-        valore_temporale = float(valore_temporale)
+            print(df1['Strumento_finanziario'][i])
+            # con simbolo solo vado a predenermi il ticker su yahoo finance
+            simbolo_solo = df1['Strumento_finanziario'][i].split(' ')[0]
+            # vado a prednere il prezzo su yahho  finance
+            ticker = yf.Ticker(simbolo_solo)
+            # prendo il prezzo
+            prezzo = ticker.info['currentPrice']
+       
+            # prendo il valore temporale come primo campo di valore temporale % e lo converto in float
+            valore_temporale = df1['Valore temporale (%)'][i].split(' ')[0]
+            valore_temporale = float(valore_temporale)
 
-        # vado a prendere il vaore dello strike e lo converto in float
-        strike = df1['Strumento_finanziario'][i].split(' ')[2]
-        strike_float = float(strike)
-        # faccio la diferenza  tra prezzo e strike in valore assoluto
-        differenza = abs(prezzo - strike_float)
+            # vado a prendere il vaore dello strike e lo converto in float
+            strike = df1['Strumento_finanziario'][i].split(' ')[2]
+            strike_float = float(strike)
+            # faccio la diferenza  tra prezzo e strike in valore assoluto
+            differenza = abs(prezzo - strike_float)
 
        
-        # reperisco il prezzo medio pagato e lo converto in float
-        prezzo_ultimo = df1['Ultimo'][i]
-        prezzo_ultimo = float(prezzo_ultimo)
+            # se in df['Ultimo'] ho una stringa che comincia con 'c'
+            # elimino la c e converto in float
+            if df1['Ultimo'][i].startswith('C'):
+               df1['Ultimo'][i] = df1['Ultimo'][i].replace('C', '')
+               df1['Ultimo'][i] = float(df1['Ultimo'][i])
+               print("ho trovato una c")
+               print(df1['Ultimo'][i])
+        
 
-        # calcolo la percentuale come valore temporale/prezzo medio e arrotiondo a 2 decimali
-        percentuale = round((valore_temporale/prezzo_ultimo)*100, 2)
+            # reperisco il prezzo medio pagato e lo converto in float
+            prezzo_ultimo = df1['Ultimo'][i]
+            print(df1['Ultimo'][i], df1['Strumento_finanziario'][i])
+            prezzo_ultimo = float(prezzo_ultimo)
+
+            # calcolo la percentuale come valore temporale/prezzo medio e arrotiondo a 2 decimali
+            percentuale = round((valore_temporale/prezzo_ultimo)*100, 2)
                     
 
-        print(simbolo_solo, prezzo_ultimo, strike,   valore_temporale, differenza, percentuale)
-        # adesso devo aggiungere la precentuale alla riga i del mio df1
-        df1['Valore_tmp_perc'][i] = percentuale
-        df1['Valore_tmp_perc_float'][i] = valore_temporale
+            print(simbolo_solo, prezzo_ultimo, strike,   valore_temporale, differenza, percentuale)
+            # adesso devo aggiungere la precentuale alla riga i del mio df1
+            df1['Valore_tmp_perc'][i] = percentuale
+            df1['Valore_tmp_perc_float'][i] = valore_temporale
 
         
 
