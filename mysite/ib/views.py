@@ -11,6 +11,7 @@ from .models import Trade2
 import yfinance as yf
 import traceback
 import sys
+import matplotlib.pyplot as plt
 
 
 def index(request):
@@ -325,6 +326,21 @@ def analisi_trade_scadenza(request):
 
      # faccio una somma finale per avere il totale del realizzato e non realizzato Totale
     trades.loc['Totale'] = trades.sum(numeric_only=True, axis=0)
+
+    # copio il datframe in un altro per poterlo modificare con solo totale
+    trades2 = trades.copy()
+    # lascio solo la colonna totale
+    trades2 = trades2[['Simbolo_opzione', 'Totale']]
+    
+    # lo trasformo in numeri con due decimali per la visulaizzazione solo 
+    trades2['Totale'] = trades2['Totale'].round(2)
+    # lo visualizzo con matplotlib
+    trades2.plot.bar(x='Simbolo_opzione', y=['Totale'], rot=0, figsize=(15, 10))
+    
+    # salvo il grafico
+    plt.savefig('scadenza.png')
+   
+       
 
     # emissione videata
     return render(request, "index4.html", {'trades': trades})
