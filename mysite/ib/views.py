@@ -211,6 +211,13 @@ def importa_portfolio_ITM_valore_temporale_percentuale(request):
     df1.insert(3, "Valore_temporale espresso in valore assoluto  ", df1['Valore_tmp_perc_float'], True)
 
 
+    # elimino la colonna Modifica
+    df1.drop(["Modifica"], axis=1, inplace=True)
+    # elimino la colonna Variazione % e Deltaabs
+    df1.drop(["Variazione %", "Deltaabs"], axis=1, inplace=True)
+    
+        
+    
 
     # ordino il data_frame per Valore_tmp_perc
 
