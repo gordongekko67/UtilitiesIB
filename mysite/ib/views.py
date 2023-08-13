@@ -224,6 +224,10 @@ def importa_portfolio_ITM_valore_temporale_percentuale(request):
     df4 = df1.sort_values(['Valore_tmp_perc'],
                             ascending=[True])
     
+    # elimino la colonna Valore_tmp_perc_float, e Valore_tmp_perc
+    df4.drop(["Valore_tmp_perc_float", "Valore_tmp_perc"], axis=1, inplace=True)
+    
+    
 
     # emissione videata
     trades = df4
