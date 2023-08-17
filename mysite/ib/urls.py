@@ -27,6 +27,9 @@ urlpatterns = [
     path('index15', views.analisi_opzioni_potenzialmente_da_rollare),
     path('index16', views.analisi_trade_scadenza_simbolo),
     path('index27', views.analisi_trade_scadenza_simbolo_2),
+    path('index29', views.analisi_trade_scadenza_simbolo_3),
+     
+
     path('index18', views.analisi_trade_scadenza_simbolo_ancora_aperte),
     path('index20', views.analisi_trade_scadenza_simbolo_completamente_chiuse),
     path('index17', views.analisi_trade_dettaglio_simbolo_ancora_aperte),
@@ -39,8 +42,5 @@ urlpatterns = [
     path('index23', views.analisi_operazioni), 
     path('index25', views.analisi_operazioni_di_un_determinato_mese),
     path('index26', views.analisi_opzioni_con_il_minore_Theta),
-    path('index29', views.analisi_operazioni_di_un_determinato_mese_esecuzione),
-    
-   
     
 ]

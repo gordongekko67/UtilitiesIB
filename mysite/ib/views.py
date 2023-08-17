@@ -422,6 +422,52 @@ def analisi_trade_scadenza_simbolo_2(request):
 
 
 
+def analisi_trade_scadenza_simbolo_3(request):
+    df = pd.read_csv('Analisi_trade.csv')
+    df2 = df.drop(
+        ["Sommario profitti e perdite Realizzati e Non realizzati", "Header"], axis=1)
+
+    df2['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
+    df2['Data_scadenza'] = df['Simbolo'].str.split(' ').str[1]
+    df2['Simbolo_opzione'] = df['Simbolo'].str.split(
+        ' ').str[0] + df['Simbolo'].str.split(' ').str[1]
+    
+
+    # estraggo quelli che in simbolo_solo_mese = a 21JUL23
+    df2 = df2[df2['Data_scadenza'] == '18AUG23']
+        
+    # vorrei raggruppare df2 per data_scadenza e simbolo_solo e poi sommare i valori di realizzato totale e non realizzato totale
+    # e poi ordinare per data_scadenza e simbolo_solo crescente e fare i totali per ogni data_scadenza
+    # e poi un totale finale
+        
+    df2.sort_values(by=['Data_scadenza', 'Simbolo_solo'], inplace=True)
+    # raggruppa il dataframe per il campo "Data_scadenza" e "Simbolo_solo" e somma i valori per ogni gruppo
+    df_grouped = df2.groupby(['Data_scadenza', 'Simbolo_solo']).agg(
+        {'Realizzato Totale': 'sum', 'Non realizzato Totale': 'sum', 'Totale': 'sum'}).reset_index()
+    # ogni volta che cambia la data_scadenza devo fare un totale
+    trades0 = df_grouped[['Data_scadenza', 'Simbolo_solo', 'Realizzato Totale', 'Non realizzato Totale', 'Totale']]
+    #trades.loc['Totale_data'] = trades0.sum(numeric_only=True, axis=0)
+
+    # faccio un totlae a cambio di data scadenza
+    trades0.loc['Totale_data'] = trades0.sum(numeric_only=True, axis=0)
+    
+
+    # faccio un totale finale di tutto
+    trades = trades0.sort_values(by=['Data_scadenza', 'Simbolo_solo'],  ascending=True)
+    #trades.loc['Totale'] = trades.sum(numeric_only=True, axis=0)
+         
+        
+    # emissione videata
+    return render(request, "index4.html", {'trades': trades})
+
+
+
+
+
+
+
+
+
 
 
 def analisi_trade_scadenza_simbolo_ancora_aperte(request):
@@ -1244,7 +1290,7 @@ def analisi_operazioni_di_un_determinato_mese(request):
 
 
 def analisi_operazioni_di_un_determinato_mese_esecuzione(request):
-    template = loader.get_template('index4.html')
+    template = loader.get_template('index9.html')
 
     df = pd.read_csv('Analisi_trade.csv')
 

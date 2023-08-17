@@ -15,8 +15,6 @@
     <!--vorrei fare una combo box  per richiedere un dato con csrf  token-->
 
     
-    <form action="/index29" method="post"      <form method="post">{% csrf_token %}  class="btn btn-primary btn-lg active" role="button" aria-pressed="true">analisi trades di un
-        determinato mese </a>
     
   
       <label for="data_scadenza">Scegli una scadenza:</label>
@@ -38,10 +36,11 @@
         <option value="Mar15'23">Mar15'23</option>
       </select>
   
+      <a href="/index29" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Analisi movimentazioni di un determinato mese </a>
 
       <input type="submit" value="Submit">
 
-      </form>
+     
 
       <h1>Benvenuto nella pagina di analisi dei trades</h1>
 
