@@ -620,8 +620,13 @@ def analisi_bilanciamento_delta_titolo_scadenza(request):
     # raggruppa il dataframe per il campo "campo1" e somma i valori per ogni gruppo
     df_grouped = df4.groupby('Simbolo_scadenza')['Deltariga'].sum().reset_index()
 
+    # seleziona solo le righe con valori maggiori di 35 in 'Deltariga'
+    df_grouped.sort_values(by=['Deltariga'], inplace=True, ascending=False)
+
+
+
     
-    df_grouped.sort_values(by=['Simbolo_scadenza'], inplace=True, ascending=True)
+    #df_grouped.sort_values(by=['Simbolo_scadenza'], inplace=True, ascending=True)
    
     df_grouped.loc['Totale Delta'] = df_grouped.sum(numeric_only=True, axis=0)
 
@@ -1232,22 +1237,33 @@ def analisi_operazioni(request):
 
 
 def analisi_operazioni_di_un_determinato_mese(request):
-    df = pd.read_csv('Analisi_operazioni.csv')
+    template = loader.get_template('index9.html')
+
+
+    return render(request, "index9.html")
+
+
+def analisi_operazioni_di_un_determinato_mese_esecuzione(request):
+    template = loader.get_template('index4.html')
+
+    df = pd.read_csv('Analisi_trade.csv')
 
     # estraggo il primo campo di simbolo
-    df['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
-
-    # estraggo un campo che mi prende il secondo campo di simbolo
-    df['Simbolo_solo_mese'] = df['Simbolo'].str.split(' ').str[1]
     
-    # estraggo quelli che in simbolo_solo_mese = a 21JUL23
-    #df = df[df['Simbolo_solo_mese'] == '18AUG23']
+    print(df)
     
+    # estraggo quelli che in simbolo_solo_mese hanno il valore che c'è nella combobox data_scadenza
+    # estraggo il valore selzionato nella combobox
+    data_scadenza = request.POST.get('data_scadenza')
+    print("questa è la data scadenza")
+    print(data_scadenza)
+    # estraggo quelli che in simbolo_solo_mese hanno il valore che c'è nella combobox data_scadenza
+    df = df[df['Simbolo_solo_mese'] == data_scadenza]
+    # a simbolo_solo_mese elimino tutti i caratteri a destra e a sinistra che non sono blank
+    df['Simbolo_solo_mese'] = df['Simbolo_solo_mese'].str.strip()
+      
     
-    # escludo dal dataframe le righe che sono di tipo Subtotal
-    df = df[df['Header'] != 'Subtotal']
-    # escludo dal dataframe le righe che sono di tipo Total
-    df = df[df['Header'] == 'Data']
+   
 
     print(df)
 
@@ -1259,8 +1275,9 @@ def analisi_operazioni_di_un_determinato_mese(request):
           
     print(df_grouped)
 
-    trades = df_grouped
+    trades = df
    
+    return render_to_response('index.html', context_instance=RequestContext(request))
     return render(request, "index4.html", {'trades': trades})
 
 

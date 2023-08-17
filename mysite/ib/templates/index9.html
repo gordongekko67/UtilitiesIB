@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<title>Bootstrap demo</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+<body>
+
+    <h1>Benvenuto nella pagina di analisi dei trades</h1>
+    <!--vorrei fare una combo box  per richiedere un dato con csrf  token-->
+
+    
+    <form action="/index29" method="post"      <form method="post">{% csrf_token %}  class="btn btn-primary btn-lg active" role="button" aria-pressed="true">analisi trades di un
+        determinato mese </a>
+    
+  
+      <label for="data_scadenza">Scegli una scadenza:</label>
+  
+      <select name="data_scadenza" id="data_scadenza">
+        <option value="Tutte">Tutte</option>
+        <option value="17FEB23">17FEB23</option>
+        <option value="Apr15'22">Apr15'22</option>  
+        <option value="May20'22">May20'22</option>
+        <option value="Jun17'22">Jun17'22</option>
+        <option value="Jul15'22">Jul15'22</option>
+        <option value="18AUG23">18AUG23</option>
+        <option value="Sep15'23">Sep15'23</option>
+        <option value="Oct20'23">Oct20'23</option>
+        <option value="Nov17'23">Nov17'23</option>
+        <option value="Dec15'23">Dec15'23</option>
+        <option value="Jan19'23">Jan19'23</option>
+        <option value="Feb16'23">Feb16'23</option>
+        <option value="Mar15'23">Mar15'23</option>
+      </select>
+  
+
+      <input type="submit" value="Submit">
+
+      </form>
+
+      <h1>Benvenuto nella pagina di analisi dei trades</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+</body>
+</html>
+
+
+
