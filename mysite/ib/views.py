@@ -432,29 +432,34 @@ def analisi_trade_scadenza_simbolo_3(request):
     df2['Simbolo_opzione'] = df['Simbolo'].str.split(
         ' ').str[0] + df['Simbolo'].str.split(' ').str[1]
     
+
+    print(df2)
+        
     # estraggo da data scadenza solo il mese cge sarebbe solo il terzo quarto quinto carattere 
     df2['Data_scadenza_mese'] = df2['Data_scadenza'].str[2:5]
 
-    # aggiungo una colonna con il mese in NUMERO JAN = 1, FEB =2 ECC
-    df2['Data_scadenza_mese_numero'] = df2['Data_scadenza_mese'].map({'JAN': 1, 'FEB': 2, 'MAR': 3, 'APR': 4,
-                                                                          'MAY': 5, 'JUN': 6, 'JUL': 7, 'AUG': 8,
-                                                                          'SEP': 9, 'OCT': 10, 'NOV': 11, 'DEC': 12})
-
+    # associao a data_scadenza_mese un numero
+    df2['Data_scadenza_mese_numero'] = df2['Data_scadenza_mese'].replace(['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG',
+                                                                     'SEP', 'OCT', 'NOV', 'DEC'], ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10',
+                                                                                     
+                                                                                                    '11', '12'])
     
-    # vorrei raggruppare df2 per data_scadenza e poi sommare i valori di realizzato totale e non realizzato totale
-    # e poi ordinare per data_scadenza e fare i totali per ogni data_scadenza
-    # e poi un totale finale
-        
-    df2.sort_values(by=['Data_scadenza_mese_numero', 'Simbolo_solo'], inplace=True)
-    # raggruppa il dataframe per il campo "Data_scadenza"  e somma i valori per ogni gruppo
-    df_grouped = df2.groupby(['Data_scadenza_mese_numero']).agg(
+    # estraggo da data scadenza solo l'anno che sarebbe solo il sesto e settimo carattere
+    df2['Data_scadenza_anno'] = df2['Data_scadenza'].str[6:7]
+    
+    # aggiungo un campo con datascadenza_anno + datascadenza_mese
+    df2['Data_scadenza_mese_anno'] = df2['Data_scadenza_anno'] + df2['Data_scadenza_mese_numero']
+
+    # adesso ordino per data_scadenza_mese_anno e simbolo_solo
+
+    df2.sort_values(by=['Data_scadenza_mese_anno', 'Simbolo_solo'], inplace=True)
+
+    # raggruppa il dataframe per il campo "Data_scadenza_mese_anno" e "Simbolo_solo" e somma i valori per ogni gruppo
+    # a cambiamento di data_scadenza_mese_anno devo fare un totale
+    df_grouped = df2.groupby(['Data_scadenza_mese_anno']).agg(
         {'Realizzato Totale': 'sum', 'Non realizzato Totale': 'sum', 'Totale': 'sum'}).reset_index()
-    # ogni volta che cambia la data_scadenza devo fare un totale
-    trades0 = df_grouped[['Data_scadenza_mese_numero', 'Realizzato Totale', 'Non realizzato Totale', 'Totale']]
-   
-    trades = trades0.sort_values(by=['Data_scadenza_mese_numero'],  ascending=True)
-
     
+    trades = df_grouped[['Data_scadenza_mese_anno', 'Realizzato Totale', 'Non realizzato Totale', 'Totale']]
 
     # faccio un totale finale di tutto
     trades.loc['Totale'] = trades.sum(numeric_only=True, axis=0)         
