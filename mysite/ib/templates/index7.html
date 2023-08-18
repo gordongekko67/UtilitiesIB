@@ -12,28 +12,21 @@
 <body>
 
   <body>
-    <table class="table table-striped table-bordered table-sm">
-      <thead class="thead-dark">
-        <tr>
+    
+        <table class="table table-striped table-bordered table-sm">
+          <thead class="thead-dark">
+         
 
-          <th>Descrizione</th>
-          <th>delta</th>
-          <th>Operazione</th>
-          <th>Num contratti</th>
 
-        </tr>
+        
       </thead>
       <tbody>
      
 
 
-        <table>
-          <tr>
-            {% for col in data.columns %}
-              <td>
-                {{col}}
-              </td>
-            {% endfor %}
+        <table class="table table-striped table-bordered table-sm">
+          <thead class="thead-dark">
+           
           </tr>
             {% for index, row in data.iterrows %}
               <tr>
