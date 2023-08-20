@@ -321,6 +321,17 @@ def analisi_trade_scadenza(request):
         ' ').str[0] + df['Simbolo'].str.split(' ').str[1]
     df2.sort_values(by=['Simbolo_opzione'], inplace=True)
 
+    print(df2)
+
+    # prendo il quarto elemento di Simbolo che sarebbe se CALL o PUT
+    df2['Tipo_CALL_PUT'] = df['Simbolo'].str.split(' ').str[3]    
+
+    print(df2)
+
+    # prendo solo le righe con Tipo_CALL_PUT = 'C'
+    df2 = df2[df2['Tipo_CALL_PUT'] == 'P']
+
+
     # raggruppa il dataframe per il campo "Simbolo_opzione" e somma i valori per ogni gruppo
     df_grouped = df2.groupby('Simbolo_opzione').agg(
         {'Realizzato Totale': 'sum', 'Non realizzato Totale': 'sum', 'Totale': 'sum'}).reset_index()
@@ -347,6 +358,14 @@ def analisi_trade_scadenza(request):
     trades2['Totale'] = trades2['Totale'].round(2)
     # lo visualizzo con matplotlib
     trades2.plot.bar(x='Simbolo_opzione', y=['Totale'], rot=0, figsize=(15, 10))
+    # faccio un diagramma a punti
+    #trades2.plot(x='Simbolo_opzione', y=['Totale'], kind='scatter', figsize=(15, 10))
+
+
+    print(trades2)
+
+    # visualizzo trade2
+    plt.show()
     
     # salvo il grafico
     plt.savefig('scadenza.png')
@@ -729,7 +748,7 @@ def analisi_opzioni_potenzialmente_da_rollare(request):
     return render(request, "index4.html", {'trades': trades})
 
 
-def opzioni_PUT_da_rollare(request):
+def opzioni_da_vedere_se_andare_invertito(request):
     template = loader.get_template('index5.html')
     # inporto df
     df = pd.read_csv('portfolio.csv')
@@ -750,39 +769,14 @@ def opzioni_PUT_da_rollare(request):
     df["Valore_tmp_fin_float"] = df["Valore_tmp_fin"].astype(float)
     df['PUT/CALL'] = df['Strumento_finanziario'].str.split(' ').str[3]
 
-    df2 = df.loc[(df['Giorni_rimanenti'] < 21) & (
-        df['Deltaabs'] > 0.5) & (df['PUT/CALL'] == "PUT")]
-
+    df2 = df.loc[(df['Giorni_rimanenti'] < 12) & (
+        df['Deltaabs'] > 0.5) ]
+            
     trades = df2
     return render(request, "index4.html", {'trades': trades})
 
 
-def opzioni_CALL_da_vedere_se_andare_invertito(request):
-    template = loader.get_template('index5.html')
-    # inporto df
-    df = pd.read_csv('portfolio.csv')
-    df2 = pd.DataFrame()
 
-    # aggiustamenti colonne e dati
-    df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
-              "Giorni restanti all'UGT": "Giorni_rimanenti"}, inplace=True)
-    df['Delta'] = df['Delta'].astype(float)
-    df['Giorni_rimanenti'] = df['Giorni_rimanenti'].astype(int)
-
-    df["Deltaabs"] = abs(df['Delta'].astype(float))
-
-    df["Valore temporale (%)"].replace("", 99.999, inplace=True)
-
-    df["Valore_tmp_fin"] = df["Valore temporale (%)"].str.extract(
-        r"(\d+\.\d+)")
-    df["Valore_tmp_fin_float"] = df["Valore_tmp_fin"].astype(float)
-    df['PUT/CALL'] = df['Strumento_finanziario'].str.split(' ').str[3]
-
-    df2 = df.loc[(df['Giorni_rimanenti'] < 21) & (
-        df['Deltaabs'] > 0.5) & (df['PUT/CALL'] == "CALL")]
-
-    trades = df2
-    return render(request, "index4.html", {'trades': trades})
 
 
 # QUESTO NON FUNZIONA PUOI RISCRIVERMI LA funziona analis di portafolgio vedendo dove è l'errore?
