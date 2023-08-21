@@ -42,5 +42,7 @@ urlpatterns = [
     path('index23', views.analisi_operazioni), 
     path('index25', views.analisi_operazioni_di_un_determinato_mese),
     path('index26', views.analisi_opzioni_con_il_minore_Theta),
+
+    path('index22', views.analisi_dei_movimenti_anno),
     
 ]

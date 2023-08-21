@@ -12,6 +12,7 @@ import yfinance as yf
 import traceback
 import sys
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def index(request):
@@ -1368,4 +1369,43 @@ def analisi_opzioni_con_il_minore_Theta(request):
     return render(request, "index4.html", {'trades': trades})
 
 
+def analisi_dei_movimenti_anno(request):
+    template = loader.get_template('index4.html')
+    # inporto df
+    df = pd.read_csv('Movimenti_anno.csv')
+    print(df)
+
+
+    # estarggo il primo campo di simbolo
+    df['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
+
+    # esttraggo il quarto campo di simbolo PUT/CALL
+    df['PUT/CALL'] = df['Simbolo'].str.split(' ').str[3]
+
+    # il campo p/l realizzato lo converto in float a due decimali
+    df["P/L realizzato"] = df['P/L realizzato'].astype(float)
+    df["P/L realizzato"] = round(df["P/L realizzato"], 2)
     
+
+    # estraggo il campo simbolo+data
+    df['Simbolo_solo_mese'] = df['Simbolo'].str.split(' ').str[0] + \
+        df['Simbolo'].str.split(' ').str[1]
+    
+    # prendo solo quelli che hanno il simbolo solo_mese uguale a 'AAPL 17FEB23'
+    df = df[df['Simbolo_solo_mese'] == 'TXN15SEP23']
+    
+    # li ordino per data ora di esecuzione in modo ascendente
+    df.sort_values(by=['Data/ora'], inplace=True, ascending=True)
+
+    # alla fine del dataframe aggiungo una riga con il totale di solo il campo P/L realizzato
+    totale = df['P/L realizzato'].sum()
+    
+    # aggiungo una riga con il totale con il metodo concat al df
+    df = pd.concat([df, pd.DataFrame(
+        [[totale]], columns=df.columns)], ignore_index=True)
+   
+
+    
+    trades = df
+
+    return render(request, "index4.html", {'trades': trades})
