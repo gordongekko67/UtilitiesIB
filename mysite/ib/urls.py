@@ -44,5 +44,6 @@ urlpatterns = [
     path('index26', views.analisi_opzioni_con_il_minore_Theta),
 
     path('index22', views.analisi_dei_movimenti_anno),
+    path('index30', views.analisi_delle_perdite),
     
 ]

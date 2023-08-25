@@ -1409,3 +1409,35 @@ def analisi_dei_movimenti_anno(request):
     trades = df
 
     return render(request, "index4.html", {'trades': trades})
+
+
+
+def analisi_delle_perdite(request):
+    template = loader.get_template('index4.html')
+    # inporto df
+    df = pd.read_csv('Movimenti_anno.csv')
+    print(df)
+
+    # seleziono solo le righe che hanno il campo P/L realizzato minore di 0
+
+    df = df[df['P/L realizzato'] < 0]
+
+    # estraggo il quarto campo di simbolo PUT/CALL
+    df['PUT/CALL'] = df['Simbolo'].str.split(' ').str[3]
+
+    # estraggo il campo quantità e lo converto in intero
+    df['Quantità'] = df['Quantità'].str.replace(',', '').astype(int)
+
+    #  ordino per tipo put call/ e quantità
+
+    df.sort_values(by=['PUT/CALL', 'Quantità'], inplace=True, ascending=True)
+
+    # aggiungo un numeratore di riga che a rottura di put call si azzera
+    df['numeratore'] = df.groupby(['PUT/CALL']).cumcount()+1
+
+    
+
+
+    trades = df
+
+    return render(request, "index4.html", {'trades': trades})
