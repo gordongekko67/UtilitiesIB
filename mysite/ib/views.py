@@ -434,8 +434,7 @@ def analisi_trade_scadenza_simbolo_2(request):
 
     # faccio un totale finale di tutto
     trades = trades0.sort_values(by=['Data_scadenza', 'Simbolo_solo'],  ascending=True)
-    trades.loc['Totale'] = trades.sum(numeric_only=True, axis=0)
-         
+    
         
     # emissione videata
     return render(request, "index4.html", {'trades': trades})
@@ -1422,6 +1421,11 @@ def analisi_delle_perdite(request):
 
     df = df[df['P/L realizzato'] < 0]
 
+    # cancello le colonne : dettaglio eseguiti e tipo di attivo , header e data discriminator
+    df = df.drop(['Dettaglio eseguiti', 'Tipo di attivo',
+                  'Header', 'DataDiscriminator'], axis=1)
+
+
     # estraggo il quarto campo di simbolo PUT/CALL
     df['PUT/CALL'] = df['Simbolo'].str.split(' ').str[3]
 
@@ -1431,12 +1435,13 @@ def analisi_delle_perdite(request):
     #  ordino per tipo put call/ e quantità
 
     df.sort_values(by=['PUT/CALL', 'Quantità'], inplace=True, ascending=True)
-
+    # a faccio una riga di separazione tra put e call e tra quantità positiva e negativa
+    
     # aggiungo un numeratore di riga che a rottura di put call si azzera
     df['numeratore'] = df.groupby(['PUT/CALL']).cumcount()+1
 
     
-
+    
 
     trades = df
 
