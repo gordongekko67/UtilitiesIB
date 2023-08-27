@@ -254,8 +254,9 @@ def elevatissimo_rischio_di_assegnazione(request):
         r"(\d+\.\d+)")
     df["Valore_tmp_fin_float"] = df["Valore_tmp_fin"].astype(float)
 
-    # prendo solo le righe con GG < di 25
-    df2 = df.loc[(df['Deltaabs'] > 0.499) & (df['Valore_tmp_fin_float'] < 1.0) & (df['GG'] < 25)]
+    # prendo solo le righe con valore temporale < 0.5
+
+    df2 = df.loc[(df['Deltaabs'] > 0.499) & (df['Valore_tmp_fin_float'] < 0.7)]
 
     
     # li ordino per valore temporale crescente
