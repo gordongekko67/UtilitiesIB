@@ -234,6 +234,39 @@ def importa_portfolio_ITM_valore_temporale_percentuale(request):
     trades = df4
     return render(request, "index4.html", {'trades': trades})
  
+def elevatissimo_rischio_di_assegnazione(request):
+    template = loader.get_template('index5.html')
+    # inporto df
+    df = pd.read_csv('portfolio.csv')
+    df2 = pd.DataFrame()
+
+    # aggiustamenti colonne e dati
+    df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
+              "Giorni restanti all'UGT": "GG"}, inplace=True)
+    df['Delta'] = df['Delta'].astype(float)
+    df['GG'] = df['GG'].astype(int)
+
+    df["Deltaabs"] = abs(df['Delta'].astype(float))
+
+    df["Valore temporale (%)"].replace("", 99.999, inplace=True)
+
+    df["Valore_tmp_fin"] = df["Valore temporale (%)"].str.extract(
+        r"(\d+\.\d+)")
+    df["Valore_tmp_fin_float"] = df["Valore_tmp_fin"].astype(float)
+
+    # prendo solo le righe con GG < di 25
+    df2 = df.loc[(df['Deltaabs'] > 0.499) & (df['Valore_tmp_fin_float'] < 1.0) & (df['GG'] < 25)]
+
+    
+    # li ordino per valore temporale crescente
+    df4 = df2.sort_values(['Valore_tmp_fin_float'],
+                            ascending=[True])
+    
+
+    # emissione videata
+    trades = df4
+    print(trades)
+    return render(request, "index5.html", {'trades': trades})
 
 
     
