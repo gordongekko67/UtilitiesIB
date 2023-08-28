@@ -803,8 +803,11 @@ def opzioni_da_vedere_se_andare_invertito(request):
     df["Valore_tmp_fin_float"] = df["Valore_tmp_fin"].astype(float)
     df['PUT/CALL'] = df['Strumento_finanziario'].str.split(' ').str[3]
 
-    df2 = df.loc[(df['Giorni_rimanenti'] < 12) & (
-        df['Deltaabs'] > 0.5) ]
+    # anche la quantità deve essere negativa
+    df["Posizione_int"] = df['Posizione'].astype(float)
+    
+    df2 = df.loc[(df['Giorni_rimanenti'] < 12) & (df['Deltaabs'] > 0.5) ]  
+    
             
     trades = df2
     return render(request, "index4.html", {'trades': trades})
