@@ -364,7 +364,7 @@ def analisi_trade_scadenza(request):
     print(df2)
 
     # prendo solo le righe con Tipo_CALL_PUT = 'C'
-    df2 = df2[df2['Tipo_CALL_PUT'] == 'P']
+    #df2 = df2[df2['Tipo_CALL_PUT'] == 'P']
 
 
     # raggruppa il dataframe per il campo "Simbolo_opzione" e somma i valori per ogni gruppo
@@ -1323,7 +1323,6 @@ def analisi_operazioni(request):
 def analisi_operazioni_di_un_determinato_mese(request):
     template = loader.get_template('index9.html')
 
-
     return render(request, "index9.html")
 
 
@@ -1364,8 +1363,23 @@ def analisi_operazioni_di_un_determinato_mese_esecuzione(request):
     return render_to_response('index.html', context_instance=RequestContext(request))
     return render(request, "index4.html", {'trades': trades})
 
+def visualizza_tutte_le_opzioni_long(request):
+    df = pd.read_csv('portfolio.csv')
+
+    # aggiustamenti colonne e dati
+    df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
+                "Giorni restanti all'UGT": "Giorni_rimanenti"}, inplace=True)
+
+    # visulaizza solo le opzioni long ordinate per GG di scadenza
+    df = df[df['Posizione'] > 0]
+    df.sort_values(by=['Giorni_rimanenti'], inplace=True, ascending=True)
+
+
 
    
+    trades = df
+
+    return render(request, "index4.html", {'trades': trades})
 
 
 
