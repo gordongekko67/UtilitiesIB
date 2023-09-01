@@ -493,26 +493,37 @@ def analisi_trade_scadenza_simbolo_3(request):
 
     # associao a data_scadenza_mese un numero
     df2['Data_scadenza_mese_numero'] = df2['Data_scadenza_mese'].replace(['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG',
-                                                                     'SEP', 'OCT', 'NOV', 'DEC'], ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10',
+                                                                     'SEP', 'OCT', 'NOV', 'DEC'], ['01 Gennaio', '02 Febbraio', '03 Marzo', '04 Aprile', '05 Maggio', '06 Giugno', '07 Luglio', '08 Agosto',
+                                                                                                    '09 Settembre', '10 Ottobre', '11 Novembre', '12 Dicembre'])
                                                                                      
-                                                                                                    '11', '12'])
+        
+                                                                                                   
+
     
     # estraggo da data scadenza solo l'anno che sarebbe solo il sesto e settimo carattere
     df2['Data_scadenza_anno'] = df2['Data_scadenza'].str[6:7]
+
+    # estraggo data scadenza anno estesa = se Data_scadenza_anno = 3 allora 2023, ecc ecc
+    df2['Data_scadenza_anno_estesa'] = df2['Data_scadenza_anno'].replace(['3', '4', '5', '6', '7', '8', '9', '0'], ['2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030'])
+
+    # estraggo il mese come Jan feb ecc ecc
+    df2['Data_scadenza_mese_estesa'] = df2['Data_scadenza_mese'].replace(['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG',
+                                                                        'SEP', 'OCT', 'NOV', 'DEC'], ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto',
+                                                                                                        'Settembre', 'Ottobre', 'Novembre', 'Dicembre'])
     
-    # aggiungo un campo con datascadenza_anno + datascadenza_mese
-    df2['Data_scadenza_mese_anno'] = df2['Data_scadenza_anno'] + df2['Data_scadenza_mese_numero']
+    # aggiungo un campo con datascadenza_anno_estesa + datascadenza_mese_estesa
+    df2['Data_scadenza_mese_anno_numero'] = df2['Data_scadenza_anno_estesa'] + " " + df2['Data_scadenza_mese_numero']
 
-    # adesso ordino per data_scadenza_mese_anno e simbolo_solo
-
-    df2.sort_values(by=['Data_scadenza_mese_anno', 'Simbolo_solo'], inplace=True)
+    
+    # li ordino per data_scadenza_mese_anno_estesa crescente 
+    df2.sort_values(by=['Data_scadenza_mese_anno_numero', 'Simbolo_solo'], inplace=True)
 
     # raggruppa il dataframe per il campo "Data_scadenza_mese_anno" e "Simbolo_solo" e somma i valori per ogni gruppo
     # a cambiamento di data_scadenza_mese_anno devo fare un totale
-    df_grouped = df2.groupby(['Data_scadenza_mese_anno']).agg(
+    df_grouped = df2.groupby(['Data_scadenza_mese_anno_numero']).agg(
         {'Realizzato Totale': 'sum', 'Non realizzato Totale': 'sum', 'Totale': 'sum'}).reset_index()
     
-    trades = df_grouped[['Data_scadenza_mese_anno', 'Realizzato Totale', 'Non realizzato Totale', 'Totale']]
+    trades = df_grouped[['Data_scadenza_mese_anno_numero', 'Realizzato Totale', 'Non realizzato Totale', 'Totale']]
 
     # faccio un totale finale di tutto
     trades.loc['Totale'] = trades.sum(numeric_only=True, axis=0)         
@@ -1381,7 +1392,39 @@ def visualizza_tutte_le_opzioni_long(request):
 
     return render(request, "index4.html", {'trades': trades})
 
+def analisi_opzioni_con_il_maggiore_gamma(request):
 
+    df = pd.read_csv('portfolio.csv')
+
+    # aggiustamenti colonne e dati
+    df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
+                "Giorni restanti all'UGT": "Giorni_rimanenti"}, inplace=True)
+
+    # vado a vedere le opzioni che hanno il maggiore gamma
+
+    # prendo il gamma e lo converto in float
+    df["Gamma_float"] = df['Gamma'].astype(float)
+    # calcolo il gamma a giorno e lo aggiungo al data frame e lo arrotondo a due decimali
+    df["Gamma_gg"] = df["Gamma_float"] *100
+    df["Gamma_gg"] = round(df["Gamma_gg"], 2)
+
+    
+
+    # prendo solo quelli che hanno il gamma maggiore di 0.08 e scadenza  minore di 21 giorni e posizione maggiore di 0
+    df = df[df['Gamma_float'] > 0.04]
+    
+    # df = df[df['Giorni_rimanenti'] < 45]
+    df = df[df['Posizione'] < 0]
+    
+
+    # ordino per gamma
+    df.sort_values(by=['Gamma_float'], inplace=True, ascending=False)
+    
+    # le visulaizzo su html
+
+    trades = df
+
+    return render(request, "index4.html", {'trades': trades})
 
 def analisi_opzioni_con_il_minore_Theta(request):
     df = pd.read_csv('portfolio.csv')
