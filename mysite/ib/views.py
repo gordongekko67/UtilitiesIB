@@ -828,9 +828,32 @@ def opzioni_da_vedere_se_andare_invertito(request):
     # anche la quantità deve essere negativa
     df["Posizione_int"] = df['Posizione'].astype(float)
 
-    # se giorni < di 20 e delta > 0.5
+    # se giorni < di 50 e delta > 0.5
 
-    df2 = df.loc[(df['Giorni_rimanenti'] < 20)  & (df['Deltaabs'] > 0.5)                           ]
+    df2 = df.loc[(df['Giorni_rimanenti'] <  50)  & (df['Deltaabs'] > 0.5)]  
+    
+    # faccio un loop su questi elelmnti e vado a reperire il prezzo corrente
+    for index, row in df2.iterrows():
+
+        # se il simbolo è diverso da IWM e anche da SPY e anche da USD e anche da QQQ
+        # e anche da TLT e anche da GLD e anche da SLV e anche da VXX e anche da VIXY
+        # e anche da VIXM e anche da VIX e anche da VIXW e anche da VIX3M e anche da VIX6M
+
+        if df2['Strumento_finanziario'][index].split(' ')[0] != 'IWM' and df2['Strumento_finanziario'][index].split(' ')[0] != 'SPY' and df2['Strumento_finanziario'][index].split(' ')[0] != 'USD' and df2['Strumento_finanziario'][index].split(' ')[0] != 'QQQ' and df2['Strumento_finanziario'][index].split(' ')[0] != 'TLT' and df2['Strumento_finanziario'][index].split(' ')[0] != 'GLD' and df2['Strumento_finanziario'][index].split(' ')[0] != 'SLV' and df2['Strumento_finanziario'][index].split(' ')[0] != 'VXX' and df2['Strumento_finanziario'][index].split(' ')[0] != 'VIXY' and df2['Strumento_finanziario'][index].split(' ')[0] != 'VIXM' and df2['Strumento_finanziario'][index].split(' ')[0] != 'VIX' and df2['Strumento_finanziario'][index].split(' ')[0] != 'VIXW' and df2['Strumento_finanziario'][index].split(' ')[0] != 'VIX3M' and df2['Strumento_finanziario'][index].split(' ')[0] != 'VIX6M':                              
+            # con simbolo solo vado a predenermi il ticker su yahoo finance
+            simbolo_solo = df2['Strumento_finanziario'][index].split(' ')[0]
+            # vado a prednere il prezzo su yahho  finance
+            ticker = yf.Ticker(simbolo_solo)
+            print(simbolo_solo)
+            # prendo il prezzo
+            prezzo = ticker.info['currentPrice']
+            # lo inserisco nel dataframe nella terza colonna
+            df2.at[index, 'Prezzo_corrente'] = prezzo
+            
+    
+    # la colonna prezzo corrente me la porto all'inizio
+    df2 = df2[['Strumento_finanziario', 'Giorni_rimanenti', 'Delta', 'Deltaabs', 'Valore temporale (%)',  'Prezzo_corrente',   'Valore_tmp_fin', 'Valore_tmp_fin_float', 'PUT/CALL', 'Posizione', 'Posizione_int']]
+                                           
                  
     # li ordino per valore finanziario crescente
     df2.sort_values(by=['Valore_tmp_fin_float'], inplace=True, ascending=True)
