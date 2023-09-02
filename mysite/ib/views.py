@@ -508,8 +508,8 @@ def analisi_trade_scadenza_simbolo_3(request):
 
     # estraggo il mese come Jan feb ecc ecc
     df2['Data_scadenza_mese_estesa'] = df2['Data_scadenza_mese'].replace(['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG',
-                                                                        'SEP', 'OCT', 'NOV', 'DEC'], ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto',
-                                                                                                        'Settembre', 'Ottobre', 'Novembre', 'Dicembre'])
+                                                                        'SEP', 'OCT', 'NOV', 'DEC'], ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago',
+                                                                                                        'Set', 'Ott', 'Nov', 'Dic'])
     
     # aggiungo un campo con datascadenza_anno_estesa + datascadenza_mese_estesa
     df2['Data_scadenza_mese_anno_numero'] = df2['Data_scadenza_anno_estesa'] + " " + df2['Data_scadenza_mese_numero']
@@ -525,9 +525,20 @@ def analisi_trade_scadenza_simbolo_3(request):
     
     trades = df_grouped[['Data_scadenza_mese_anno_numero', 'Realizzato Totale', 'Non realizzato Totale', 'Totale']]
 
-    # faccio un totale finale di tutto
-    trades.loc['Totale'] = trades.sum(numeric_only=True, axis=0)         
-        
+    # traccio un grafico a barre
+    # copio il datframe in un altro per poterlo modificare con solo totale
+    trades2 = trades.copy()
+
+    # trasformo Data_scadenza_mese_anno_numero in stringa
+    trades2['Data_scadenza_mese_anno_numero'] = trades2['Data_scadenza_mese_anno_numero'].astype(str)
+
+    # lo visualizzo con matplotlib
+    trades2.plot.bar(x='Data_scadenza_mese_anno_numero', y=['Totale'], rot=0, figsize=(15, 10))
+
+    # visualizzo trade2
+    plt.show()
+    
+    #       
     # emissione videata
     return render(request, "index4.html", {'trades': trades})
 
@@ -816,9 +827,16 @@ def opzioni_da_vedere_se_andare_invertito(request):
 
     # anche la quantità deve essere negativa
     df["Posizione_int"] = df['Posizione'].astype(float)
-    
-    df2 = df.loc[(df['Giorni_rimanenti'] < 12) & (df['Deltaabs'] > 0.5) ]  
-    
+
+    # se giorni < di 20 e delta > 0.5
+
+    df2 = df.loc[(df['Giorni_rimanenti'] < 20)  & (df['Deltaabs'] > 0.5)                           ]
+                 
+    # li ordino per valore finanziario crescente
+    df2.sort_values(by=['Valore_tmp_fin_float'], inplace=True, ascending=True)
+
+     
+   
             
     trades = df2
     return render(request, "index4.html", {'trades': trades})
@@ -1383,11 +1401,10 @@ def visualizza_tutte_le_opzioni_long(request):
 
     # visulaizza solo le opzioni long ordinate per GG di scadenza
     df = df[df['Posizione'] > 0]
-    df.sort_values(by=['Giorni_rimanenti'], inplace=True, ascending=True)
 
-
-
-   
+    # ordino per Strumento
+    df.sort_values(by=['Strumento_finanziario'], inplace=True, ascending=True)
+       
     trades = df
 
     return render(request, "index4.html", {'trades': trades})
@@ -1425,6 +1442,39 @@ def analisi_opzioni_con_il_maggiore_gamma(request):
     trades = df
 
     return render(request, "index4.html", {'trades': trades})
+
+
+def analisi_opzioni_con_il_maggiore_vega(request):
+
+    df = pd.read_csv('portfolio.csv')
+
+    # aggiustamenti colonne e dati
+    df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
+                "Giorni restanti all'UGT": "Giorni_rimanenti"}, inplace=True)
+
+    # vado a vedere le opzioni che hanno il maggiore gamma
+
+    # prendo il gamma e lo converto in float
+    df["Vega_float"] = df['Vega'].astype(float)
+   
+       
+    
+    # prendo solo quelli che hanno il vega  maggiore di 0.10 
+    df = df[df['Vega_float'] > 0.10]
+    
+
+    # ordino per gamma
+    df.sort_values(by=['Vega_float'], inplace=True, ascending=False)
+    
+    # le visulaizzo su html
+
+    trades = df
+
+    return render(request, "index4.html", {'trades': trades})
+
+
+
+
 
 def analisi_opzioni_con_il_minore_Theta(request):
     df = pd.read_csv('portfolio.csv')

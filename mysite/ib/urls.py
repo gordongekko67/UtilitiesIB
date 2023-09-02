@@ -48,5 +48,6 @@ urlpatterns = [
     path('index30', views.analisi_delle_perdite),
     path('index31', views.visualizza_tutte_le_opzioni_long),
     path('index32', views.analisi_opzioni_con_il_maggiore_gamma),
+    path('index33', views.analisi_opzioni_con_il_maggiore_vega),
     
 ]
