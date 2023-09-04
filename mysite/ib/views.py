@@ -812,9 +812,9 @@ def opzioni_da_vedere_se_andare_invertito(request):
 
     # aggiustamenti colonne e dati
     df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
-              "Giorni restanti all'UGT": "Giorni_rimanenti"}, inplace=True)
+              "Giorni restanti all'UGT": "GG"}, inplace=True)
     df['Delta'] = df['Delta'].astype(float)
-    df['Giorni_rimanenti'] = df['Giorni_rimanenti'].astype(int)
+    df['GG'] = df['GG'].astype(int)
 
     df["Deltaabs"] = abs(df['Delta'].astype(float))
 
@@ -830,7 +830,7 @@ def opzioni_da_vedere_se_andare_invertito(request):
 
     # se giorni < di 50 e delta > 0.5
 
-    df2 = df.loc[(df['Giorni_rimanenti'] <  50)  & (df['Deltaabs'] > 0.5)]  
+    df2 = df.loc[(df['GG'] <  50)  & (df['Deltaabs'] > 0.5)]  
     
     # faccio un loop su questi elelmnti e vado a reperire il prezzo corrente
     for index, row in df2.iterrows():
@@ -852,7 +852,7 @@ def opzioni_da_vedere_se_andare_invertito(request):
             
     
     # la colonna prezzo corrente me la porto all'inizio
-    df2 = df2[['Strumento_finanziario', 'Giorni_rimanenti', 'Delta', 'Deltaabs', 'Valore temporale (%)',  'Prezzo_corrente',   'Valore_tmp_fin', 'Valore_tmp_fin_float', 'PUT/CALL', 'Posizione', 'Posizione_int']]
+    df2 = df2[['Strumento_finanziario', 'Prezzo_corrente', 'GG','Deltaabs', 'Valore temporale (%)', 'Valore_tmp_fin', 'Valore_tmp_fin_float', 'PUT/CALL', 'Posizione', 'Posizione_int']]
                                            
                  
     # li ordino per valore finanziario crescente
@@ -914,15 +914,19 @@ def analisi_di_portafoglio(request):
     print(df4)
 
     for i in df4.index:
-        stringa = str(df4.loc[i, 'Simbolo_solo_allineato'])
-        print("ciclo"+stringa)
-        reperisci_corrente_prezzo(stringa)
-        stringa0 = str(stringa.iloc[0]) if isinstance(
+        # prendo il primo campo di strumento finanziario
+        stringa = df['Strumento_finanziario'][i].split(' ')[0]
+        # se il simbolo è diverso da IWM e anche da SPY e anche da QQQ
+        if stringa != 'IWM' and stringa != 'SPY' and stringa != 'QQQ':
+
+            print("ciclo"+stringa)
+            reperisci_corrente_prezzo(stringa)
+            stringa0 = str(stringa.iloc[0]) if isinstance(
             stringa, pd.Series) else str(stringa)
 
-        stock = yf.Ticker(stringa0)
-        price = stock.info['currentPrice']
-        df4.at[i, 'current_price'] = price
+            stock = yf.Ticker(stringa0)
+            price = stock.info['currentPrice']
+            df4.at[i, 'current_price'] = price
 
     print(df4)
     fruits = ['riepilogo delle opzioni ']
@@ -931,8 +935,7 @@ def analisi_di_portafoglio(request):
     for i in df4.index:
         var = row['Simbolo_solo_allineato']
         # se il simbolo è diverso da IWM e anche da SPY
-        if var != 'IWM' and var != 'SPY':
-        
+        if var != 'IWM' and var != 'SPY' and var != 'QQQ':     
             try:
                 stringa = str(df4.loc[i, 'Simbolo_solo'])
                 print("ciclo"+stringa)
@@ -970,7 +973,7 @@ def analisi_di_portafoglio(request):
     # eliminazione colonne
     df4 = df4.drop(['Operazione ticker'], axis=1)
     df4 = df4.drop(['Val_tmp_fin_float'], axis=1)
-    df4 = df4.drop(['Unnamed: 15'], axis=1)
+    #df4 = df4.drop(['Unnamed: 15'], axis=1)
 
     #
     # ordina per giorni rimaneti e delta discendente
@@ -1013,6 +1016,7 @@ def calcolo_totale_valore_temporale(request):
 
 def reperisci_corrente_prezzo(stringa0):
     stock = yf.Ticker(stringa0)
+    print('il valore di stringa0 è'+stringa0)
     price = stock.info['currentPrice']
     print("il prezzo è di", price)
 
