@@ -1014,6 +1014,64 @@ def calcolo_totale_valore_temporale(request):
     return render(request, "index7.html", {'fruits': fruits})
 
 
+
+
+
+def calcolo_totale_valore_temporale_residuo_per_scadenza(request):
+    template = loader.get_template('index4.html')
+    # inporto df
+    df = pd.read_csv('portfolio.csv')
+
+    df["Posizione_int"] = df['Posizione'].astype(int)
+    df["Valore temporale (%)"].replace("", 99.999, inplace=True)
+    df["Val_tmp_fin"] = df["Valore temporale (%)"].str.extract(r"(\d+\.\d+)")
+    df["Val_tmp_fin_float"] = df["Val_tmp_fin"].astype(float)
+    df["Val_tmp_fin_float_Totale_riga"] = df["Val_tmp_fin_float"] * \
+        100*df["Posizione_int"]
+    
+    df["Deltaabs"] = abs(df['Delta'].astype(float))
+    
+    # creo due nuovi campi che mi servono per il raggruppamento
+    # se deltaabs è minore di 0.5 allora metto in Valore_tmp_fin_float_totale riga_OTM il valore di Valore_tmp_fin_float_totale riga
+    # altrimenti metto 0
+    df.loc[df['Deltaabs'] < 0.5, 'Valore_tmp_fin_float_Totale_riga_OTM'] = df['Val_tmp_fin_float_Totale_riga']
+
+    # se deltaabs è maggiore di 0.5 allora metto in Valore_tmp_fin_float_totale riga_ITM il valore di Valore_tmp_fin_float_totale riga
+    # altrimenti metto 0
+    df.loc[df['Deltaabs'] > 0.5, 'Valore_tmp_fin_float_Totale_riga_ITM'] = df['Val_tmp_fin_float_Totale_riga']
+
+            
+    # aggiustamenti colonne e dati
+    df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
+              "Giorni restanti all'UGT": "Giorni_rimanenti"}, inplace=True)
+    
+
+    # visualizzo nel data frame solo le colonne che mi servono : strumento finanziario, giorni rimanenti, deltaabs, valore temporale, valore temporale float, valore temporale float totale riga
+    df = df[['Strumento_finanziario', 'Giorni_rimanenti', 'Deltaabs', 'Valore temporale (%)', 'Val_tmp_fin', 'Val_tmp_fin_float_Totale_riga', 'Valore_tmp_fin_float_Totale_riga_ITM', 'Valore_tmp_fin_float_Totale_riga_OTM']]        
+
+
+
+    
+    # ordino per scadenza e strumento finanziario
+    df.sort_values(by=['Giorni_rimanenti', 'Strumento_finanziario'], inplace=True, ascending=True)
+
+    # a cambio data scadenza faccio un totale per totale riga ITM e OTM
+    df_grouped = df.groupby('Giorni_rimanenti').agg(
+        {'Valore_tmp_fin_float_Totale_riga_ITM': 'sum', 'Valore_tmp_fin_float_Totale_riga_OTM': 'sum'}).reset_index()
+    
+    
+    # e un totale finale solo di valori temporali
+    df_grouped.loc['Totale'] = df_grouped.sum(numeric_only=True, axis=0)
+
+    # aggiungo i totali di valori temporali (append non è supportato)
+    df_grouped.loc['Totale', 'Valore_tmp_fin_float_Totale_riga_ITM'] = df_grouped['Valore_tmp_fin_float_Totale_riga_ITM'].sum()
+
+    trades = df 
+    
+
+    
+    return render(request, "index4.html", {'trades': trades})
+
 def reperisci_corrente_prezzo(stringa0):
     stock = yf.Ticker(stringa0)
     print('il valore di stringa0 è'+stringa0)
