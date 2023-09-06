@@ -1329,23 +1329,67 @@ def reperisci_strike_opzione_comprata(simbolop, putcallp, df):
     return strike
 
 
+
+
+
+
 def ultimate_analisi_di_portafoglio(request):
     # inizializza il template
-    template = loader.get_template('index7.html')
+    template = loader.get_template('index4.html')
     # inizializza schiera errori
     fruits = []
     # inizializza il dataframe
-    df = pd.read_csv('Analisi_trade.csv')
+    df = pd.read_csv('portfolio.csv')
 
-    df['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
-    df.sort_values(by=['Simbolo_solo'], inplace=True)
+    # devo estrarre il primo campo di simbolo
+    df['Simbolo_solo'] = df['Strumento finanziario'].str.split(' ').str[0]
+    
 
-    # raggruppa il dataframe per il campo "Simbolo_opzione" e somma i valori per ogni gruppo
-    df_grouped = df.groupby('Simbolo_solo')
+    # creo un nuovo dataframe con solo simbolo_solo raggruppato 
+    # 
+    df2 = df.groupby(['Simbolo_solo']).agg({'Posizione': 'sum'}).reset_index()
 
-    print(df_grouped)
+    # per ognuno dei simboli di df2 vado a reperire il prezzo tramite yahoo finance tranne che per IWM, SPY e QQQ
+    for index, row in df2.iterrows():
+        var = row['Simbolo_solo']
+        # se il simbolo è diverso da IWM e anche da SPY
+        if var != 'IWM' and var != 'SPY' and var != 'QQQ':
+            # eseguo la routine
+            stock = yf.Ticker(var)
+            price = stock.info['currentPrice']
+            # aggiungo la colonna price al data frame e lo converto in float
+            df2.at[index, 'price'] = price
+            pricefloat = float(price)
+            # aggiungo la colonna pricefloat al data frame
+            df2.at[index, 'pricefloat'] = pricefloat
 
-    return render(request, "index7.html", {'fruits': fruits})
+    
+    print(df2)
+
+    # prendo i primi due ampi di Strumento finanziario e li unisco
+    df['Simbolo_solo_data'] = df['Strumento finanziario'].str.split(' ').str[0] + df['Strumento finanziario'].str.split(' ').str[1]
+    # creo un nuovo dataframe con solo simbolo_solo_data  raggruppato e totalizzo per delta di portafoglio , riportando nella riga anche simbolo_solo
+    df3 = df.groupby(['Simbolo_solo_data']).agg({'Delta portafoglio': 'sum', 'Simbolo_solo': 'first'}).reset_index()
+    # aggiungo al data frame df3 la colonna Simbolo_solo
+
+    # aggiungo al data frame df3 la colonna pricefloat aggiungendo la colonna pricefloat di df2
+    df3['pricefloat'] = df3['Simbolo_solo'].map(df2.set_index('Simbolo_solo')['pricefloat'])
+    # aggiungo al data frame df3 la colonna price aggiungendo la colonna price di df2
+    df3['price'] = df3['Simbolo_solo'].map(df2.set_index('Simbolo_solo')['price'])
+
+    
+
+   
+
+    print(df3)
+
+    trades = df3
+   
+    return render(request, "index4.html", {'trades': trades})
+
+    
+  
+
 
 
 def reperisci_premio_totale_simbolo(simbolop, df):
