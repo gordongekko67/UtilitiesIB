@@ -1377,13 +1377,21 @@ def ultimate_analisi_di_portafoglio(request):
     # aggiungo al data frame df3 la colonna price aggiungendo la colonna price di df2
     df3['price'] = df3['Simbolo_solo'].map(df2.set_index('Simbolo_solo')['price'])
 
+    # faccio il merge di df  con  df3 agganciandomi a simbolo_solo_data e prendendo i campi di df3 delta portafoglio, pricefloat e price
+    df4 = pd.merge(df, df3[['Simbolo_solo_data', 'Delta portafoglio', 'pricefloat', 'price']], on='Simbolo_solo_data', how='left')
+    
+    # creo un nuovo dataframe che prende :
+    # 1) le righe che hanno delta in valore assuluto maggiore di 0.50 e giorni restanti all'UGT minori di 21 e la posizione è minore di 0
+
+    df5 = df4[(abs(df4['Delta']) > 0.50) & (df4['Giorni restanti all\'UGT'] < 21) & (df4['Posizione'] < 0)]
+    # elimino colonna pricefloat
+    df5 = df5.drop(['pricefloat'], axis=1)
     
 
-   
 
-    print(df3)
+    print(df5)
 
-    trades = df3
+    trades = df5
    
     return render(request, "index4.html", {'trades': trades})
 
