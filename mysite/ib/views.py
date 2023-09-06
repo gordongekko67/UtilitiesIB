@@ -1379,13 +1379,43 @@ def ultimate_analisi_di_portafoglio(request):
 
     # faccio il merge di df  con  df3 agganciandomi a simbolo_solo_data e prendendo i campi di df3 delta portafoglio, pricefloat e price
     df4 = pd.merge(df, df3[['Simbolo_solo_data', 'Delta portafoglio', 'pricefloat', 'price']], on='Simbolo_solo_data', how='left')
-    
-    # creo un nuovo dataframe che prende :
-    # 1) le righe che hanno delta in valore assuluto maggiore di 0.50 e giorni restanti all'UGT minori di 21 e la posizione è minore di 0
 
-    df5 = df4[(abs(df4['Delta']) > 0.50) & (df4['Giorni restanti all\'UGT'] < 21) & (df4['Posizione'] < 0)]
-    # elimino colonna pricefloat
-    df5 = df5.drop(['pricefloat'], axis=1)
+    
+    print(df4)
+
+    df4['Valore temporale (%)'] = df4['Valore temporale (%)'].str.split(' ').str[0].astype(float)
+
+    # metto delta portafoglio e price nella terza e quarta colonna
+    df4.insert(3, 'Delta portafoglio_y', df4.pop('Delta portafoglio_y'))
+    df4.insert(4, 'pricefloat', df4.pop('pricefloat'))
+
+    
+    
+
+    # creo un nuovo dataframe che prende :
+    # 1) le righe che hanno delta in valore assuluto maggiore di 0.50 e la posizione è minore di 0 e il valore temporale è minore di 1.2
+      # anche il valore 00.000 è minore di 1.2
+    # 2) le righe che hanno delta in valore assuluto minore di 0.50 e la posizione è maggiore di 0 e il valore temporale è minore di 1.2
+
+    print(df4)
+
+    # prendo delta in valore assoluto e in float
+    df4['Deltaabs'] = abs(df4['Delta'].astype(float))
+
+    # prendo posizione in float
+    df4['Posizione'] = df4['Posizione'].astype(float)
+
+    
+
+
+    df5 = df4[(df4['Deltaabs'] > 0.50) & (df4['Posizione'] < 0) & (df4['Valore temporale (%)'] < 1,2) ]    
+   
+
+      
+
+    
+
+    
     
 
 
