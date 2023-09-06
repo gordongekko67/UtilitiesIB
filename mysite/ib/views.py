@@ -76,6 +76,10 @@ def importa_portfolio_ITM(request):
 
     df["Deltaabs"] = abs(df['Delta'].astype(float))
 
+    # la colonna dei giorni va vicino alla colonna del valore temporale
+    df = df[['Strumento_finanziario',  'GG_rim',         'Valore temporale (%)', 'Ultimo', 'Posizione',
+                'Delta', 'Deltaabs', 'Variazione %', 'Modifica']]
+
     # eseguo la selezione
     df1 = df.loc[(df['Deltaabs'] > 0.499999) & (df['Posizione'] < 0)]
 
@@ -115,10 +119,9 @@ def importa_portfolio_ITM_valore_temporale(request):
     # elimino la colonna simbolo_solo e operazione ticker
     df1.drop(["Operazione ticker"], axis=1, inplace=True)
 
-     # se il valore temporale float è maggiore di 4,5 lo elimino
-    #df1 = df1[df1['Valore_tmp_fin_float'] < 4.5]
-    print(df1)
-
+    # la colonna dei giorni va vicino alla colonna del valore temporale
+    df1 = df1[['Strumento_finanziario', 'Valore temporale (%)',  'GG_rim', 'Valore_tmp_fin', 'Valore_tmp_fin_float',
+                'Ultimo',  'Posizione', 'Delta', 'Deltaabs', 'Variazione %', 'Modifica']]
 
     # li ordino
     df4 = df1.sort_values(['Valore_tmp_fin_float'],
