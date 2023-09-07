@@ -1383,11 +1383,12 @@ def ultimate_analisi_di_portafoglio(request):
     
     print(df4)
 
-    df4['Valore temporale (%)'] = df4['Valore temporale (%)'].str.split(' ').str[0].astype(float)
+    df4['Valore_temporale_float'] = df4['Valore temporale (%)'].str.split(' ').str[0].astype(float)
 
     # metto delta portafoglio e price nella terza e quarta colonna
     df4.insert(3, 'Delta portafoglio_y', df4.pop('Delta portafoglio_y'))
     df4.insert(4, 'pricefloat', df4.pop('pricefloat'))
+    df4.insert(5, 'valore_temporale_float', df4.pop('Valore_temporale_float'))
 
     
     
@@ -1405,11 +1406,15 @@ def ultimate_analisi_di_portafoglio(request):
     # prendo posizione in float
     df4['Posizione'] = df4['Posizione'].astype(float)
 
+    print(df4)
+
+
+    df5 = df4[(df4['Deltaabs'] > 0.50) & (df4['Posizione'] < 0) ]
+
+    # ordino per Valore temporale_float crescente
+    df5.sort_values(by=['Valore_temporale_float'], inplace=True, ascending=True)
     
-
-
-    df5 = df4[(df4['Deltaabs'] > 0.50) & (df4['Posizione'] < 0) & (df4['Valore temporale (%)'] < 1,2) ]    
-   
+      
 
       
 
