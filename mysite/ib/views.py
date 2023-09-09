@@ -12,7 +12,7 @@ import yfinance as yf
 import traceback
 import sys
 import matplotlib.pyplot as plt
-import numpy as np
+import numpy as np 
 
 
 def index(request):
