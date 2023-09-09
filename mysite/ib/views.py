@@ -1766,3 +1766,7 @@ def analisi_delle_perdite(request):
     trades = df
 
     return render(request, "index4.html", {'trades': trades})
+
+
+# prova github 
+
