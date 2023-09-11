@@ -390,6 +390,7 @@ def analisi_trade_scadenza(request):
      # faccio una somma finale per avere il totale del realizzato e non realizzato Totale
     trades.loc['Totale'] = trades.sum(numeric_only=True, axis=0)
 
+    '''
     # copio il datframe in un altro per poterlo modificare con solo totale
     trades2 = trades.copy()
     # lascio solo la colonna totale
@@ -410,7 +411,7 @@ def analisi_trade_scadenza(request):
     
     # salvo il grafico
     plt.savefig('scadenza.png')
-   
+   '''
        
 
     # emissione videata
