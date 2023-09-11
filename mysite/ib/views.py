@@ -15,6 +15,11 @@ import matplotlib.pyplot as plt
 import numpy as np 
 
 
+
+
+
+
+
 def index(request):
     template = loader.get_template('index.html')
     return HttpResponse(template.render())
@@ -367,9 +372,6 @@ def analisi_trade_scadenza(request):
 
     print(df2)
 
-    # prendo solo le righe con Tipo_CALL_PUT = 'C'
-    #df2 = df2[df2['Tipo_CALL_PUT'] == 'P']
-
 
     # raggruppa il dataframe per il campo "Simbolo_opzione" e somma i valori per ogni gruppo
     df_grouped = df2.groupby('Simbolo_opzione').agg(
@@ -529,6 +531,7 @@ def analisi_trade_scadenza_simbolo_3(request):
     
     trades = df_grouped[['Data_scadenza_mese_anno_numero', 'Realizzato Totale', 'Non realizzato Totale', 'Totale']]
 
+    '''
     # traccio un grafico a barre
     # copio il datframe in un altro per poterlo modificare con solo totale
     trades2 = trades.copy()
@@ -536,12 +539,15 @@ def analisi_trade_scadenza_simbolo_3(request):
     # trasformo Data_scadenza_mese_anno_numero in stringa
     trades2['Data_scadenza_mese_anno_numero'] = trades2['Data_scadenza_mese_anno_numero'].astype(str)
 
+    plt.use('Agg')
+
+
     # lo visualizzo con matplotlib
     trades2.plot.bar(x='Data_scadenza_mese_anno_numero', y=['Totale'], rot=0, figsize=(15, 10))
 
     # visualizzo trade2
-    plt.show()
-    
+    #plt.show()
+    '''
     #       
     # emissione videata
     return render(request, "index4.html", {'trades': trades})
@@ -1770,3 +1776,28 @@ def analisi_delle_perdite(request):
 
 # prova github 
 
+
+
+
+def test_importazione(request):
+    template = loader.get_template('index4.html')
+    # inporto df
+    df = pd.read_csv('Analisi_trade.csv')
+    print(df)
+
+    df2 = df.drop(
+        ["Sommario profitti e perdite Realizzati e Non realizzati", "Header"], axis=1)
+
+    df2['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
+    df2['Data_scadenza'] = df['Simbolo'].str.split(' ').str[1]
+    df2['Simbolo_opzione'] = df['Simbolo'].str.split(
+        ' ').str[0] + df['Simbolo'].str.split(' ').str[1]
+    
+
+    print(df2)
+
+
+
+    trades = df
+
+    return render(request, "index4.html", {'trades': trades})
