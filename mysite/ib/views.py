@@ -1802,3 +1802,15 @@ def test_importazione(request):
     trades = df
 
     return render(request, "index4.html", {'trades': trades})
+
+
+
+
+def analisi_di_una_determinata_posizione(request):
+    template = loader.get_template('index10.html')
+
+    # vado a stampare cosa c'è nel campo ticker di index10.html
+    ticker = request.POST.get('ticker')
+    print(ticker)
+
+    return render(request, "index10.html")

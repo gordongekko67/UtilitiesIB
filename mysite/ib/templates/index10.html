@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<title>Bootstrap demo</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+<body>
+
+  <h1>Analisi di una determinata posizione </h1>
+  <!--vorrei fare una combo box  per richiedere un dato con csrf  token-->
+
+
+
+  <label for="ticker">Immetti il ticker:</label>
+
+  <select name="ticker" id="ticker">
+    <option value="Tutte">Tutte</option>
+    <option value="AAPL">AAPL</option>
+    <option value="JNJ">JNJ</option>
+
+  </select>
+
+  <a href="/index29" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Analisi di una determinata
+    posizione </a>
+
+  <input type="submit" value="Submit">
+
+
+
+  <br></br>
+
+
+  <table class="table table-striped table-bordered table-sm">
+    <thead class="thead-dark">
+
+
+
+
+      <!--riscrivi abbellita con  bootstrap CSS questa tabella-->
+
+      <table class="table table-striped table-bordered table-sm">
+        <thead class="thead-dark">
+          <tr>
+          <tr>
+            {% for col in trades.columns %}
+            <td>
+              {{col}}
+            </td>
+            {% endfor %}
+
+
+
+          </tr>
+        </thead>
+        <tbody>
+          {% for index, row in trades.iterrows %}
+          <tr>
+            {% for cell in row %}
+            <td>
+              {{cell}}
+            </td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+        </tbody>
+
+
+
+
+</body>
+
+</html>
