@@ -1796,6 +1796,7 @@ def test_importazione(request):
     
 
     print(df2)
+    print(df2.describe())
 
 
 
