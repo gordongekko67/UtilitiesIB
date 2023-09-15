@@ -532,23 +532,15 @@ def analisi_trade_scadenza_simbolo_3(request):
     
     trades = df_grouped[['Data_scadenza_mese_anno_numero', 'Realizzato Totale', 'Non realizzato Totale', 'Totale']]
 
-    '''
-    # traccio un grafico a barre
-    # copio il datframe in un altro per poterlo modificare con solo totale
-    trades2 = trades.copy()
+    # mi creo un nuovo dataframe da trades
+    df5 = trades.copy()
+    # stampo le caratteristiche di df5
+    print(df5.info())
+    print(df5.describe())
 
-    # trasformo Data_scadenza_mese_anno_numero in stringa
-    trades2['Data_scadenza_mese_anno_numero'] = trades2['Data_scadenza_mese_anno_numero'].astype(str)
-
-    plt.use('Agg')
+  
 
 
-    # lo visualizzo con matplotlib
-    trades2.plot.bar(x='Data_scadenza_mese_anno_numero', y=['Totale'], rot=0, figsize=(15, 10))
-
-    # visualizzo trade2
-    #plt.show()
-    '''
     #       
     # emissione videata
     return render(request, "index4.html", {'trades': trades})
@@ -1741,7 +1733,15 @@ def analisi_dei_movimenti_anno(request):
     df = pd.read_csv('Movimenti_anno.csv')
     print(df)
 
+      
+    # elimino le righe che nella colonna 'Header' non sono di tipo data
+    df = df[df['Header'] == 'Data']
 
+    # elimino le prime 4 colonne che non mi servono
+    df = df.drop(['Dettaglio eseguiti', 'Tipo di attivo',
+                    'Header', 'DataDiscriminator'], axis=1)
+
+          
     # estarggo il primo campo di simbolo
     df['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
 
@@ -1758,20 +1758,18 @@ def analisi_dei_movimenti_anno(request):
         df['Simbolo'].str.split(' ').str[1]
     
     # prendo solo quelli che hanno il simbolo solo_mese uguale a 'AAPL 17FEB23'
-    df = df[df['Simbolo_solo_mese'] == 'TXN15SEP23']
+    df = df[df['Simbolo_solo_mese'] == 'IWM15SEP23']
     
     # li ordino per data ora di esecuzione in modo ascendente
     df.sort_values(by=['Data/ora'], inplace=True, ascending=True)
 
     # alla fine del dataframe aggiungo una riga con il totale di solo il campo P/L realizzato
     totale = df['P/L realizzato'].sum()
-    
-    # aggiungo una riga con il totale con il metodo concat al df
-    df = pd.concat([df, pd.DataFrame(
-        [[totale]], columns=df.columns)], ignore_index=True)
-   
 
-    
+    # aggiungo il totoale al dataframe senza farlo con l-append che non e supportato
+    #df.loc[len(df.index)] = ['Total', '', '', '
+                             
+        
     trades = df
 
     return render(request, "index4.html", {'trades': trades})
