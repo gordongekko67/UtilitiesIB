@@ -597,6 +597,46 @@ def analisi_trade_scadenza_simbolo_ancora_aperte(request):
 
 
 
+def analisi_trade_scadenza_simbolo_ancora_aperte_ordinate_per_mese(request):
+    # devo fare lo stesso di analisi_trade_scadenza_simbolo_ancora_aperte
+    #solo che invece che riepilogare e ordinare per simbolo_opzione devo riepilogare e ordinare per mese-simbolo_opzione
+    
+    df = pd.read_csv('Analisi_trade.csv')
+    df2 = df.drop(
+        ["Sommario profitti e perdite Realizzati e Non realizzati", "Header"], axis=1)
+    
+    print(df2)
+    
+    # estraggo da data scadenza che e' il secondo campo di simbolo 
+    df2['Data_scadenza'] = df['Simbolo'].str.split(' ').str[1]
+    # estraggo il titolo che e' il primo campo di simbolo
+    df2['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
+    
+    # creo un nuovo campo con data_scadenza + simbolo_solo
+    df2['Data_scadenza_solo'] = df2['Data_scadenza'] + " " + df2['Simbolo_solo']
+
+    # adesso ordino e raggruppo tutto per data_scadenza_solo
+    df2.sort_values(by=['Data_scadenza_solo'], inplace=True)
+    # raggruppa il dataframe per il campo "Data_scadenza_solo" e somma i valori per ogni gruppo
+    df_grouped = df2.groupby('Data_scadenza_solo').agg(
+        {'Realizzato Totale': 'sum', 'Non realizzato Totale': 'sum', 'Totale': 'sum'}).reset_index()
+    trades0 = df_grouped[['Data_scadenza_solo',
+                            'Realizzato Totale', 'Non realizzato Totale', 'Totale']]
+    trades = trades0.sort_values(by=['Data_scadenza_solo'],  ascending=True)
+
+    # devo prendere di trades solo le righe con non realizzato diverso da 0
+    trades = trades[trades['Non realizzato Totale'] != 0]
+
+    # faccio una somma finale per avere il totale del realizzato e non realizzato Totale
+    trades.loc['Totale'] = trades.sum(numeric_only=True, axis=0)
+
+
+    # emissione videata
+    return render(request, "index4.html", {'trades': trades})
+
+
+
+
 
 def analisi_trade_scadenza_simbolo_completamente_chiuse(request):
     df = pd.read_csv('Analisi_trade.csv')

@@ -32,6 +32,7 @@ urlpatterns = [
      
 
     path('index18', views.analisi_trade_scadenza_simbolo_ancora_aperte),
+    path('index37', views.analisi_trade_scadenza_simbolo_ancora_aperte_ordinate_per_mese),
     path('index20', views.analisi_trade_scadenza_simbolo_completamente_chiuse),
     path('index17', views.analisi_trade_dettaglio_simbolo_ancora_aperte),
     path('index99', views.analisi_di_portafoglio),
