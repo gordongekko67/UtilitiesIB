@@ -538,7 +538,24 @@ def analisi_trade_scadenza_simbolo_3(request):
     print(df5.info())
     print(df5.describe())
 
-  
+    # emetto un grafico con matplotlib a barre su di un diagramma cartesiano 
+    # con asse x = Data_scadenza_mese_anno_numero e asse y = Totale
+    # e faccio un grafico a punti con asse x = Data_scadenza_mese_anno_numero e asse y = Totale
+    '''
+    # copio il datframe in un altro per poterlo modificare con solo totale
+    trades2 = trades.copy()
+    # lascio solo la colonna totale
+    trades2 = trades2[['Data_scadenza_mese_anno_numero', 'Totale']]
+
+    # lo trasformo in numeri con due decimali per la visulaizzazione solo
+    trades2['Totale'] = trades2['Totale'].round(2)
+    # lo visualizzo con matplotlib
+    trades2.plot.bar(x='Data_scadenza_mese_anno_numero', y=['Totale'], rot=0, figsize=(15, 10))
+    # faccio un diagramma a punti
+    trades2.plot(x='Data_scadenza_mese_anno_numero', y=['Totale'], kind='scatter', figsize=(15, 10)) 
+
+    print(trades2)
+    '''
 
 
     #       
