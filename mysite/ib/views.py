@@ -486,8 +486,8 @@ def analisi_trade_scadenza_simbolo_2(request):
 def analisi_trade_scadenza_simbolo_3(request):
     df = pd.read_csv('Analisi_trade.csv')
 
-    df.plot()
-    plt.show()
+    #df.plot()
+    #plt.show()
 
 
 
@@ -1766,7 +1766,7 @@ def analisi_dei_movimenti_anno(request):
         df['Simbolo'].str.split(' ').str[1]
     
     # prendo solo quelli che hanno il simbolo solo_mese uguale a 'AAPL 17FEB23'
-    df = df[df['Simbolo_solo_mese'] == 'AAPL15SEP23']
+    df = df[df['Simbolo_solo_mese'] == 'TXN15SEP23']
     
     # li ordino per data ora di esecuzione in modo ascendente
     df.sort_values(by=['Data/ora'], inplace=True, ascending=True)
@@ -1827,28 +1827,20 @@ def analisi_delle_perdite(request):
 
 
 def test_importazione(request):
-    template = loader.get_template('index4.html')
-    # inporto df
+    
     df = pd.read_csv('Analisi_trade.csv')
-    print(df)
 
-    df2 = df.drop(
-        ["Sommario profitti e perdite Realizzati e Non realizzati", "Header"], axis=1)
-
-    df2['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
-    df2['Data_scadenza'] = df['Simbolo'].str.split(' ').str[1]
-    df2['Simbolo_opzione'] = df['Simbolo'].str.split(
-        ' ').str[0] + df['Simbolo'].str.split(' ').str[1]
     
 
-    print(df2)
-    print(df2.describe())
+    df.plot()
+    plt.show()
 
 
 
-    trades = df
 
-    return render(request, "index4.html", {'trades': trades})
+
+
+    
 
 
 

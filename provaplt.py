@@ -22,7 +22,13 @@ df.plot()
 plt.show()
 
 df = pd.read_csv('Analisi_trade.csv')
+
+# estraggo il secondo campo di simbolo 
+df['Scadenza'] = df['Simbolo'].str.split(' ').str[1]
+
+# faccio un ripilogo dei dati per scadenza  e con solo il realizzato totale e lo memorizzo in un df
+df2 = df.groupby(['Scadenza'])['Realizzato Totale'].sum().to_frame()
  
 
-df.plot()
+df2.plot()
 plt.show()
