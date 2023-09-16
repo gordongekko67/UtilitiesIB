@@ -289,6 +289,7 @@ def importa_portfolio_con_rischio_di_assegnazione(request):
     df = pd.read_csv('portfolio.csv')
     df2 = pd.DataFrame()
 
+    
     # aggiustamenti colonne e dati
     df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
               "Giorni restanti all'UGT": "GG"}, inplace=True)
@@ -484,6 +485,12 @@ def analisi_trade_scadenza_simbolo_2(request):
 
 def analisi_trade_scadenza_simbolo_3(request):
     df = pd.read_csv('Analisi_trade.csv')
+
+    df.plot()
+    plt.show()
+
+
+
     df2 = df.drop(
         ["Sommario profitti e perdite Realizzati e Non realizzati", "Header"], axis=1)
 
@@ -532,30 +539,14 @@ def analisi_trade_scadenza_simbolo_3(request):
     
     trades = df_grouped[['Data_scadenza_mese_anno_numero', 'Realizzato Totale', 'Non realizzato Totale', 'Totale']]
 
-    # mi creo un nuovo dataframe da trades
-    df5 = trades.copy()
-    # stampo le caratteristiche di df5
-    print(df5.info())
-    print(df5.describe())
+    # crea un grafico con i dati del dataframe
+    #df2.plot()
+    #plt.show()
 
-    # emetto un grafico con matplotlib a barre su di un diagramma cartesiano 
-    # con asse x = Data_scadenza_mese_anno_numero e asse y = Totale
-    # e faccio un grafico a punti con asse x = Data_scadenza_mese_anno_numero e asse y = Totale
-    '''
-    # copio il datframe in un altro per poterlo modificare con solo totale
-    trades2 = trades.copy()
-    # lascio solo la colonna totale
-    trades2 = trades2[['Data_scadenza_mese_anno_numero', 'Totale']]
 
-    # lo trasformo in numeri con due decimali per la visulaizzazione solo
-    trades2['Totale'] = trades2['Totale'].round(2)
-    # lo visualizzo con matplotlib
-    trades2.plot.bar(x='Data_scadenza_mese_anno_numero', y=['Totale'], rot=0, figsize=(15, 10))
-    # faccio un diagramma a punti
-    trades2.plot(x='Data_scadenza_mese_anno_numero', y=['Totale'], kind='scatter', figsize=(15, 10)) 
 
-    print(trades2)
-    '''
+
+    
 
 
     #       
@@ -1775,7 +1766,7 @@ def analisi_dei_movimenti_anno(request):
         df['Simbolo'].str.split(' ').str[1]
     
     # prendo solo quelli che hanno il simbolo solo_mese uguale a 'AAPL 17FEB23'
-    df = df[df['Simbolo_solo_mese'] == 'IWM15SEP23']
+    df = df[df['Simbolo_solo_mese'] == 'AAPL15SEP23']
     
     # li ordino per data ora di esecuzione in modo ascendente
     df.sort_values(by=['Data/ora'], inplace=True, ascending=True)
