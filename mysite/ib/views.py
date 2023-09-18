@@ -486,11 +486,7 @@ def analisi_trade_scadenza_simbolo_2(request):
 def analisi_trade_scadenza_simbolo_3(request):
     df = pd.read_csv('Analisi_trade.csv')
 
-    #df.plot()
-    #plt.show()
-
-
-
+    
     df2 = df.drop(
         ["Sommario profitti e perdite Realizzati e Non realizzati", "Header"], axis=1)
 
@@ -542,17 +538,16 @@ def analisi_trade_scadenza_simbolo_3(request):
     # crea un grafico con i dati del dataframe
     #df2.plot()
     #plt.show()
-
-
-
-
-    
+  
 
 
     #       
     # emissione videata
     return render(request, "index4.html", {'trades': trades})
 
+    # crea un grafico con i dati del dataframe
+    df2.plot()
+    plt.show()
 
 
 
@@ -634,7 +629,37 @@ def analisi_trade_scadenza_simbolo_ancora_aperte_ordinate_per_mese(request):
     # emissione videata
     return render(request, "index4.html", {'trades': trades})
 
+def analisi_trade_scadenza_simbolo_specifica(request):
+    # devo fare lo stesso di analisi_trade_scadenza_simbolo_ancora_aperte
+    #solo che invece che riepilogare e ordinare per simbolo_opzione devo riepilogare e ordinare per mese-simbolo_opzione
+    
+    df = pd.read_csv('Analisi_trade.csv')
+    df2 = df.drop(
+        ["Sommario profitti e perdite Realizzati e Non realizzati", "Header"], axis=1)
+    
+    print(df2)
+  
+    
+    # estraggo da data scadenza che e' il secondo campo di simbolo 
+    df2['Data_scadenza'] = df['Simbolo'].str.split(' ').str[1]
+    # estraggo il titolo che e' il primo campo di simbolo
+    df2['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
+    
+    # creo un nuovo campo con data_scadenza + simbolo_solo
+    df2['Data_scadenza_solo'] = df2['Data_scadenza'] + " " + df2['Simbolo_solo']
 
+    # adesso ordino e raggruppo tutto per data_scadenza_solo
+    df2.sort_values(by=['Data_scadenza_solo'], inplace=True)
+    # raggruppa il dataframe per il campo "Data_scadenza_solo" e somma i valori per ogni gruppo
+    
+    trades = df2[df2['Data_scadenza_solo'] == '15SEP23 IWM']
+    # metti i totali a fine dataframe
+    trades.loc['Totale'] = trades.sum(numeric_only=True, axis=0)
+
+
+
+    # emissione videata
+    return render(request, "index4.html", {'trades': trades})
 
 
 
@@ -1766,19 +1791,25 @@ def analisi_dei_movimenti_anno(request):
         df['Simbolo'].str.split(' ').str[1]
     
     # prendo solo quelli che hanno il simbolo solo_mese uguale a 'AAPL 17FEB23'
-    df = df[df['Simbolo_solo_mese'] == 'TXN15SEP23']
+    df = df[df['Simbolo_solo_mese'] == 'IWM15SEP23']
     
     # li ordino per data ora di esecuzione in modo ascendente
     df.sort_values(by=['Data/ora'], inplace=True, ascending=True)
 
-    # alla fine del dataframe aggiungo una riga con il totale di solo il campo P/L realizzato
-    totale = df['P/L realizzato'].sum()
+    avviso = 'Attenzione i totali non sono completi in quanto mancano le opzioni comprate andate in scadenza'
 
-    # aggiungo il totoale al dataframe senza farlo con l-append che non e supportato
-    #df.loc[len(df.index)] = ['Total', '', '', '
-                             
-        
+    # alla fine del data frame aggiungo una dicitura " attenzione i totali non sono completi in quanto mancano le opzioni comprate andate in scadenza"
+    # la aggiungo con il comando concat
+    df = pd.concat([df, pd.DataFrame([[avviso]], columns=['Data/ora'])], ignore_index=True)
+
     trades = df
+
+
+    
+
+
+
+        
 
     return render(request, "index4.html", {'trades': trades})
 
