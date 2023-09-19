@@ -112,9 +112,8 @@ def importa_portfolio_ITM_valore_temporale(request):
     df["Deltaabs"] = abs(df['Delta'].astype(float))
 
     # eseguo la selezione
-    # solo se GG_rim < 45
-    df1 = df.loc[(df['Deltaabs'] > 0.499999) & (df['Posizione'] < 0) & (df['GG_rim'] < 45)]
-    
+    df1 = df.loc[(df['Deltaabs'] > 0.499999) & (df['Posizione'] < 0)]
+         
     # estraggo il primo campo del valore temporale e lo converto in float
     df1["Valore temporale (%)"].replace("", 99.999, inplace=True)
 
