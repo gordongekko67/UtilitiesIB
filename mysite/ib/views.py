@@ -354,14 +354,20 @@ def analisi_prendere_profitto(request):
 
     df["Deltaabs"] = abs(df['Delta'].astype(float))
     df["Posizione"] = df['Posizione'].astype(int)
-    df["P&L non realizzato"] = df['P&L non realizzato'].astype(float)
+    df["P&L non realizzato"] = df['P&L non realizzato'].astype(str)
+    df["P&L non realizzato_float"] = df['P&L non realizzato'].str.extract(
+        r"(\d+\.\d+)")
+    df["P&L non realizzato_float"] = df["P&L non realizzato_float"].astype(float)
+    
+    print(df['P&L non realizzato_float'])
+    
 
     # eseguo la selezione
     # prendo quelli con deltaabs > 0.5 e P/L non realizzato > 0
-    df1 = df.loc[(df['Deltaabs'] > 0.499999) & (df['Posizione'] < 0) & (df['P&L non realizzato'] > 0)]
+    df1 = df.loc[(df['Deltaabs'] > 0.499999) & (df['Posizione'] < 0) & (df['P&L non realizzato_float'] > 0)]
 
     # li ordino
-    df4 = df1.sort_values(by=['P&L non realizzato'],  ascending=False)
+    df4 = df1.sort_values(by=['P&L non realizzato_float'],  ascending=False)
 
     # emissione videata
     trades = df4
@@ -570,7 +576,9 @@ def analisi_trade_scadenza_simbolo_3(request):
     
     trades = df_grouped[['Data_scadenza_mese_anno_numero', 'Realizzato Totale', 'Non realizzato Totale', 'Totale']]
 
-    # crea un grafico con i dati del dataframe
+    # faccio un totale finale
+    trades.loc['Totale'] = trades.sum(numeric_only=True, axis=0)
+    
     #df2.plot()
     #plt.show()
   
@@ -580,16 +588,7 @@ def analisi_trade_scadenza_simbolo_3(request):
     # emissione videata
     return render(request, "index4.html", {'trades': trades})
 
-    # crea un grafico con i dati del dataframe
-    df2.plot()
-    plt.show()
-
-
-
-
-
-
-
+    
 
 
 
@@ -1826,7 +1825,7 @@ def analisi_dei_movimenti_anno(request):
         df['Simbolo'].str.split(' ').str[1]
     
     # prendo solo quelli che hanno il simbolo solo_mese uguale a 'AAPL 17FEB23'
-    df = df[df['Simbolo_solo_mese'] == 'IWM15SEP23']
+    df = df[df['Simbolo_solo_mese'] == 'MRK20OCT23']
     
     # li ordino per data ora di esecuzione in modo ascendente
     df.sort_values(by=['Data/ora'], inplace=True, ascending=True)
