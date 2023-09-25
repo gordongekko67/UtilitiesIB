@@ -358,28 +358,26 @@ def analisi_prendere_profitto(request):
     df["P&L non realizzato_float"] = df['P&L non realizzato'].str.extract(
         r"(\d+\.\d+)")
     df["P&L non realizzato_float"] = df["P&L non realizzato_float"].astype(float)
+          
+    # metto il campo P&L non realizzato in prima posizione
+    df = df[['P&L non realizzato', 'Strumento_finanziario', 'Giorni_rimanenti', 'Ultimo', 'Posizione',
+                'Delta', 'Deltaabs', 'Variazione %', 'Modifica']]
+        
+    # elimino eventuali caratteri , da P&L non realizzato
+    df['P&L non realizzato'] = df['P&L non realizzato'].str.replace(',', '')
+    df['P&L non realizzato'] = df['P&L non realizzato'].astype(float)
     
-    print(df['P&L non realizzato_float'])
-    
-
     # eseguo la selezione
     # prendo quelli con deltaabs > 0.5 e P/L non realizzato > 0
-    df1 = df.loc[(df['Deltaabs'] > 0.499999) & (df['Posizione'] < 0) & (df['P&L non realizzato_float'] > 0)]
+    df1 = df.loc[(df['Deltaabs'] > 0.499999) & (df['Posizione'] < 0) & (df['P&L non realizzato'] > 0)]
 
     # li ordino
-    df4 = df1.sort_values(by=['P&L non realizzato_float'],  ascending=False)
+    df4 = df1.sort_values(by=['P&L non realizzato'],  ascending=False)
 
     # emissione videata
     trades = df4
 
-
-
-
-
     return render(request, "index4.html", {'trades': trades})
-
-
-
 
 
 
