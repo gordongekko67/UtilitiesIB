@@ -369,7 +369,7 @@ def analisi_prendere_profitto(request):
     
     # eseguo la selezione
     # prendo quelli con deltaabs > 0.5 e P/L non realizzato > 0
-    df1 = df.loc[(df['Deltaabs'] > 0.499999) & (df['Posizione'] < 0) & (df['P&L non realizzato'] > 0)]
+    df1 = df.loc[(df['Deltaabs'] > 0.499999) & (df['Posizione'] < 0) & (df['P&L non realizzato'] > 100)]
 
     # li ordino
     df4 = df1.sort_values(by=['P&L non realizzato'],  ascending=False)
