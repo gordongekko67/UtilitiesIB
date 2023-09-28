@@ -264,7 +264,7 @@ def elevatissimo_rischio_di_assegnazione(request):
 
     # prendo solo le righe con valore temporale < 0.5
 
-    df2 = df.loc[(df['Deltaabs'] > 0.499) & (df['Valore_tmp_fin_float'] < 0.87)]
+    df2 = df.loc[(df['Deltaabs'] > 0.499) & (df['Valore_tmp_fin_float'] < 0.99)]
 
     
     # li ordino per valore temporale crescente
@@ -1858,6 +1858,49 @@ def analisi_dei_movimenti_anno_2(request):
 
     # prendo solo quelli che hanno  data scadenza = 201023
     df = df[df['Data scadenza'] == '20OCT23']
+
+    # li ordino per data ora di esecuzione in modo ascendente
+    df.sort_values(by=['Data/ora'], inplace=True, ascending=True)
+
+    avviso = 'Attenzione i totali non sono completi in quanto mancano le opzioni comprate andate in scadenza'
+    # faccio un totale finale di P/L realizzato
+    totale_pl_realizzato = df['P/L realizzato'].sum()
+    # arrotondo a due decimali
+    totale_pl_realizzato = round(totale_pl_realizzato, 2)  
+
+
+
+    # alla fine del data frame aggiungo avvio e totale al dataframe
+    # la aggiungo con il comando concat
+    df = pd.concat([df, pd.DataFrame([[avviso, totale_pl_realizzato]], columns=['Data/ora', 'P/L realizzato'])], ignore_index=True)
+
+    trades = df
+    
+
+    return render(request, "index4.html", {'trades': trades})
+
+
+
+
+def analisi_dei_movimenti_anno_3(request):
+    template = loader.get_template('index4.html')
+    # inporto df
+    df = pd.read_csv('Movimenti_anno.csv')
+    print(df)
+
+      
+    # elimino le righe che nella colonna 'Header' non sono di tipo data
+    df = df[df['Header'] == 'Data']
+
+    # elimino le prime 4 colonne che non mi servono
+    df = df.drop(['Dettaglio eseguiti', 'Tipo di attivo',
+                    'Header', 'DataDiscriminator'], axis=1)
+
+
+    # estarggo il primo campo di  simbolo
+    df['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
+    # prendo solo quelli che hanno  simbolo = a 
+    df = df[df['Simbolo_solo'] == 'KO']
 
     # li ordino per data ora di esecuzione in modo ascendente
     df.sort_values(by=['Data/ora'], inplace=True, ascending=True)
