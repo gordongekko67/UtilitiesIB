@@ -41,6 +41,7 @@ urlpatterns = [
     path('index97', views.elevatissimo_rischio_di_assegnazione),
     path('index98', views.nuova_analisi_di_portafoglio),
     path('index100',views.ultimate_analisi_di_portafoglio),
+    path('index8',views.ultimate_analisi_di_portafoglio_2),
 
 
     path('index4', views.analisi_opzioni_vendute_comprate),

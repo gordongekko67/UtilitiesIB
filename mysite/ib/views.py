@@ -938,7 +938,7 @@ def opzioni_da_vedere_se_andare_invertito(request):
 
     # se giorni < di 50 e delta > 0.5
 
-    df2 = df.loc[(df['GG'] <  50)  & (df['Deltaabs'] > 0.5)]  
+    df2 = df.loc[(df['GG'] <  50)  & (df['Deltaabs'] > 0.5) & (df["Posizione_int"] < 0)]  
     
     # faccio un loop su questi elelmnti e vado a reperire il prezzo corrente
     for index, row in df2.iterrows():
@@ -1535,7 +1535,21 @@ def ultimate_analisi_di_portafoglio(request):
    
     return render(request, "index4.html", {'trades': trades})
 
-    
+
+
+def ultimate_analisi_di_portafoglio_2(request):
+    # inizializza il template
+    template = loader.get_template('index4.html')
+    # inizializza il dataframe
+    df1 = pd.read_csv('portfolio.csv')
+
+    trades = df1
+    print(trades)
+   
+    return render(request, "index4.html", {'trades': trades})
+
+
+
   
 
 
