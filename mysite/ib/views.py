@@ -2007,3 +2007,42 @@ def analisi_di_una_determinata_posizione(request):
     print(ticker)
 
     return render(request, "index10.html")
+
+
+
+def analisi_operazioni_vendute_comprate(request):
+    df = pd.read_csv('Analisi_trade.csv')
+
+    # estraggo il campo PUT/CALL dal quarto campo del simbolo 
+    df['PUT/CALL'] = df['Simbolo'].str.split(' ').str[3]
+
+    # df1  sono le operazioni di tipo PUT vendute (quando la posizione è minore  di 0
+    # e il tipo di opzione è PUT)
+
+    df1 = df[(df['Posizione'] < 0) & (df['PUT/CALL'] == 'P')]
+
+    # df2  sono le operazioni di tipo CALL vendute (quando la posizione è minore  di 0
+    # e il tipo di opzione è CALL)
+
+    df2 = df[(df['Posizione'] < 0) & (df['PUT/CALL'] == 'C')]
+
+    # df3  sono le operazioni di tipo PUT comprate (quando la posizione è maggiore  di 0
+    # e il tipo di opzione è PUT)
+
+    df3 = df[(df['Posizione'] > 0) & (df['PUT/CALL'] == 'P')]
+
+    # df4  sono le operazioni di tipo CALL comprate (quando la posizione è maggiore  di 0
+    # e il tipo di opzione è CALL)
+
+    df4 = df[(df['Posizione'] > 0) & (df['PUT/CALL'] == 'C')]
+
+    # faccio il describe dei 4 dataframe
+    print(df1.describe())
+    print(df2.describe())
+    print(df3.describe())
+    print(df4.describe())
+
+    
+
+
+
