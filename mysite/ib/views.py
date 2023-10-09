@@ -2074,8 +2074,11 @@ def analisi_posizioni_da_rollare_prossima_scadenza(request):
 
     # stampo a video il dataframe
     print(df_grouped)
-    
-    trades=df_grouped
+
+    df1=df_grouped
+    print(df1)
+    trades = df1
+        
 
     return render(request, "index4.html", {'trades': trades})
     
