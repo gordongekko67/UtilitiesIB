@@ -59,5 +59,6 @@ urlpatterns = [
     path('index35', views.test_importazione),
     path('index36', views.analisi_di_una_determinata_posizione),
     path('index42', views.analisi_operazioni_vendute_comprate),
+    path('index43', views.analisi_posizioni_da_rollare_prossima_scadenza),
     
 ]

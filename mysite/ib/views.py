@@ -2043,6 +2043,43 @@ def analisi_operazioni_vendute_comprate(request):
     print(df4.describe())
 
     
+def analisi_posizioni_da_rollare_prossima_scadenza(request):
+    template = loader.get_template('index4.html')
+    # inporto df
+    df = pd.read_csv('portfolio.csv')
+    # aggiustamenti colonne e dati
+     # elimino eventuali caratteri , da P&L non realizzato
+    df['Val mkt'] = df['Val mkt'].str.replace(',', '')
+    # valore di mercato Val mrt lo porto ad essere un valore float
+    df["Val mkt"] = df['Val mkt'].astype(float)
+    # prendo tutti quelli che hanno i giorni rimanenti minori di 21
+    df = df[df["Giorni restanti all'UGT"] < 21]
+
+    # estraggo il primo campo di simbolo 
+    df['Simbolo_solo'] = df['Strumento finanziario'].str.split(' ').str[0]
+    # ordino per simbolo_solo
+    df.sort_values(by=['Simbolo_solo'], inplace=True, ascending=True)
+    # raggruppo per simbolo_solo e faccio la somma di val mkt
+    df_grouped = df.groupby('Simbolo_solo')['Val mkt'].sum()
+    # ordino df_grouped per val mkt crescente
+    df_grouped.sort_values(inplace=True, ascending=True)
+    # da df_groped prendo solo quelli che hanno val mkt minore di 0
+    df_grouped = df_grouped[df_grouped < 0]
+    # e li ordino in ordine decrescente
+    df_grouped.sort_values(inplace=True, ascending=False)
+
+
+    # aggiungo una riga con il totale finale
+    df_grouped.loc['Total'] = df_grouped.sum()
+
+    # stampo a video il dataframe
+    print(df_grouped)
+    
+    trades=df_grouped
+
+    return render(request, "index4.html", {'trades': trades})
+    
+
 
 
 
