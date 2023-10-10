@@ -1837,7 +1837,7 @@ def analisi_dei_movimenti_anno(request):
         df['Simbolo'].str.split(' ').str[1]
     
     # prendo solo quelli che hanno il simbolo solo_mese uguale a 'AAPL 17FEB23'
-    df = df[df['Simbolo_solo_mese'] == 'MRK20OCT23']
+    df = df[df['Simbolo_solo_mese'] == 'CVX20OCT23']
     
     # li ordino per data ora di esecuzione in modo ascendente
     df.sort_values(by=['Data/ora'], inplace=True, ascending=True)
@@ -2044,7 +2044,7 @@ def analisi_operazioni_vendute_comprate(request):
 
     
 def analisi_posizioni_da_rollare_prossima_scadenza(request):
-    template = loader.get_template('index4.html')
+    template = loader.get_template('index4b.html')
     # inporto df
     df = pd.read_csv('portfolio.csv')
     # aggiustamenti colonne e dati
@@ -2075,12 +2075,10 @@ def analisi_posizioni_da_rollare_prossima_scadenza(request):
     # stampo a video il dataframe
     print(df_grouped)
 
-    df1=df_grouped
-    print(df1)
-    trades = df1
+    trades = df_grouped
         
 
-    return render(request, "index4.html", {'trades': trades})
+    return render(request, "index4b.html", {'trades': trades})
     
 
 
