@@ -11,6 +11,7 @@ urlpatterns = [
     path('index8', views.importa_portfolio_ITM),
     path('index19', views.importa_portfolio_ITM_valore_temporale),
     path('index28', views.importa_portfolio_ITM_valore_temporale_percentuale),
+    path('index44', views.importa_portfolio_ITM_valore_temporale_2),
     
 
     

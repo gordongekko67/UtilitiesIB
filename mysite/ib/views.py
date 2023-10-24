@@ -136,6 +136,59 @@ def importa_portfolio_ITM_valore_temporale(request):
     trades = df4
     return render(request, "index4.html", {'trades': trades})
 
+
+
+
+
+
+
+
+
+
+
+
+def importa_portfolio_ITM_valore_temporale_2(request):
+    template = loader.get_template('index4.html')
+    # inporto df
+    df = pd.read_csv('portfolio.csv')
+
+    # aggiustamenti colonne e dati
+    df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
+              "Giorni restanti all'UGT": "GG_rim"}, inplace=True)
+    print(df)
+    df['Delta'] = df['Delta'].astype(float)
+    df['GG_rim'] = df['GG_rim'].astype(int)
+
+    df["Deltaabs"] = abs(df['Delta'].astype(float))
+
+    # eseguo la selezione
+    df1 = df.loc[(df['Deltaabs'] > 0.499999) & (df['GG_rim'] < 25)]
+         
+    # estraggo il primo campo del valore temporale e lo converto in float
+    df1["Valore temporale (%)"].replace("", 99.999, inplace=True)
+
+    df1["Valore_tmp_fin"] = df1["Valore temporale (%)"].str.extract(
+        r"(\d+\.\d+)")
+    df1["Valore_tmp_fin_float"] = df1["Valore_tmp_fin"].astype(float)
+
+    # elimino la colonna simbolo_solo e operazione ticker
+    df1.drop(["Operazione ticker"], axis=1, inplace=True)
+
+    # la colonna dei giorni va vicino alla colonna del valore temporale
+    df1 = df1[['Strumento_finanziario', 'Valore temporale (%)',  'GG_rim', 'Valore_tmp_fin', 'Valore_tmp_fin_float',
+                'Ultimo',  'Posizione', 'Delta', 'Deltaabs', 'Variazione %', 'Modifica']]
+
+    # li ordino
+    df4 = df1.sort_values(['Valore_tmp_fin_float'],
+                          ascending=[True])
+
+    # emissione videata
+    trades = df4
+    return render(request, "index4.html", {'trades': trades})
+
+
+
+
 def importa_portfolio_ITM_valore_temporale_percentuale(request):
     template = loader.get_template('index4.html')
     # inporto df
