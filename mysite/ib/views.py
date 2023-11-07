@@ -738,7 +738,7 @@ def analisi_trade_scadenza_simbolo_specifica(request):
     df2.sort_values(by=['Data_scadenza_solo'], inplace=True)
     # raggruppa il dataframe per il campo "Data_scadenza_solo" e somma i valori per ogni gruppo
     
-    trades = df2[df2['Data_scadenza_solo'] == '15SEP23 IWM']
+    trades = df2[df2['Data_scadenza_solo'] == '17NOV23 SPY']
     # metti i totali a fine dataframe
     trades.loc['Totale'] = trades.sum(numeric_only=True, axis=0)
 
@@ -1891,7 +1891,7 @@ def analisi_dei_movimenti_anno(request):
         df['Simbolo'].str.split(' ').str[1]
     
     # prendo solo quelli che hanno il simbolo solo_mese uguale a 'AAPL 17FEB23'
-    df = df[df['Simbolo_solo_mese'] == 'JNJ20OCT23']
+    df = df[df['Simbolo_solo_mese'] == 'SPY17NOV23']
     
     # li ordino per data ora di esecuzione in modo ascendente
     df.sort_values(by=['Data/ora'], inplace=True, ascending=True)
@@ -1925,7 +1925,7 @@ def analisi_dei_movimenti_anno_2(request):
     df['Data scadenza'] = df['Simbolo'].str.split(' ').str[1]
 
     # prendo solo quelli che hanno  data scadenza = 201023
-    df = df[df['Data scadenza'] == '20OCT23']
+    df = df[df['Data scadenza'] == '17NOV23']
 
     # li ordino per data ora di esecuzione in modo ascendente
     df.sort_values(by=['Data/ora'], inplace=True, ascending=True)
