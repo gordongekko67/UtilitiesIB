@@ -511,6 +511,43 @@ def analisi_trade_scadenza(request):
     # emissione videata
     return render(request, "index4.html", {'trades': trades})
 
+def analisi_trade_scadenza_PUTCALL(request):
+    df = pd.read_csv('Analisi_trade.csv')
+    df2 = df.drop(
+        ["Sommario profitti e perdite Realizzati e Non realizzati", "Header"], axis=1)
+
+    df2['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
+    df2['Simbolo_opzione'] = df['Simbolo'].str.split(
+        ' ').str[0] + df['Simbolo'].str.split(' ').str[1]
+    
+    # prendo il quarto elemento di Simbolo che sarebbe se CALL o PUT
+    df2['Tipo_CALL_PUT'] = df['Simbolo'].str.split(' ').str[3]
+
+    # creo un nuovo campo con simbolo opzione e tipo call put
+    df2['Simbolo_opzione_tipo'] = df2['Simbolo_opzione'] + df2['Tipo_CALL_PUT']
+
+    df2.sort_values(by=['Simbolo_opzione_tipo'], inplace=True)
+
+    # lo raggruppo per simbolo opzione e tipo call put e totalizzo tutto 
+    df_grouped = df2.groupby(['Simbolo_opzione_tipo']).agg(
+        {'Realizzato Totale': 'sum', 'Non realizzato Totale': 'sum', 'Totale': 'sum'}).reset_index()
+    
+
+    trades = df_grouped[['Simbolo_opzione_tipo',
+                            'Realizzato Totale', 'Non realizzato Totale', 'Totale']]
+    
+    #trades = trades0.sort_values(by=['Totale'],  ascending=True)
+
+    # visualizzo in html
+    return render(request, "index4.html", {'trades': trades})
+
+  
+
+
+
+
+
+
 
 def analisi_trade_scadenza_simbolo(request):
     df = pd.read_csv('Analisi_trade.csv')
@@ -1891,7 +1928,7 @@ def analisi_dei_movimenti_anno(request):
         df['Simbolo'].str.split(' ').str[1]
     
     # prendo solo quelli che hanno il simbolo solo_mese uguale a 'AAPL 17FEB23'
-    df = df[df['Simbolo_solo_mese'] == 'MSFT15DEC23']
+    df = df[df['Simbolo_solo_mese'] == 'CVX19JAN24']
     
     # li ordino per data ora di esecuzione in modo ascendente
     df.sort_values(by=['Data/ora'], inplace=True, ascending=True)
