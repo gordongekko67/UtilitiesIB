@@ -536,8 +536,9 @@ def analisi_trade_scadenza_PUTCALL(request):
     trades = df_grouped[['Simbolo_opzione_tipo',
                             'Realizzato Totale', 'Non realizzato Totale', 'Totale']]
     
-    #trades = trades0.sort_values(by=['Totale'],  ascending=True)
-
+    # ordine per totale
+    trades = trades.sort_values(by=['Totale'],  ascending=True)
+    
     # visualizzo in html
     return render(request, "index4.html", {'trades': trades})
 
@@ -1928,7 +1929,7 @@ def analisi_dei_movimenti_anno(request):
         df['Simbolo'].str.split(' ').str[1]
     
     # prendo solo quelli che hanno il simbolo solo_mese uguale a 'AAPL 17FEB23'
-    df = df[df['Simbolo_solo_mese'] == 'CVX19JAN24']
+    df = df[df['Simbolo_solo_mese'] == 'MSFT21APR23']
     
     # li ordino per data ora di esecuzione in modo ascendente
     df.sort_values(by=['Data/ora'], inplace=True, ascending=True)
