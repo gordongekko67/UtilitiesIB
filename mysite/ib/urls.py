@@ -32,6 +32,7 @@ urlpatterns = [
     path('index27', views.analisi_trade_scadenza_simbolo_2),
     path('index29', views.analisi_trade_scadenza_simbolo_3),
     path('index40', views.analisi_prendere_profitto),
+    path('index46', views.analisi_prendere_profitto_2),
      
 
     path('index18', views.analisi_trade_scadenza_simbolo_ancora_aperte),

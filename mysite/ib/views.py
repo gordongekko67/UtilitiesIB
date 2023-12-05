@@ -316,9 +316,12 @@ def elevatissimo_rischio_di_assegnazione(request):
         r"(\d+\.\d+)")
     df["Valore_tmp_fin_float"] = df["Valore_tmp_fin"].astype(float)
 
+    # ricavo la posizione
+    df["Posizione"] = df['Posizione'].astype(int)
+
     # prendo solo le righe con valore temporale < 0.5
 
-    df2 = df.loc[(df['Deltaabs'] > 0.499) & (df['Valore_tmp_fin_float'] < 0.99)]
+    df2 = df.loc[(df['Deltaabs'] > 0.499) & (df['Valore_tmp_fin_float'] < 0.99) & (df['Posizione'] < 0)]
 
     
     # li ordino per valore temporale crescente
@@ -424,6 +427,48 @@ def analisi_prendere_profitto(request):
     # eseguo la selezione
     # prendo quelli con deltaabs > 0.5 e P/L non realizzato > 0
     df1 = df.loc[(df['Deltaabs'] > 0.499999) & (df['Posizione'] < 0) & (df['P&L non realizzato'] > 100)]
+
+    # li ordino
+    df4 = df1.sort_values(by=['P&L non realizzato'],  ascending=False)
+
+    # emissione videata
+    trades = df4
+
+    return render(request, "index4.html", {'trades': trades})
+
+
+
+def analisi_prendere_profitto_2(request):
+    
+    template = loader.get_template('index4.html')
+    # inporto df
+    df = pd.read_csv('portfolio.csv')
+
+    # aggiustamenti colonne e dati
+    df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
+              "Giorni restanti all'UGT": "Giorni_rimanenti"}, inplace=True)
+    print(df)
+    df['Delta'] = df['Delta'].astype(float)
+    df['Giorni_rimanenti'] = df['Giorni_rimanenti'].astype(int)
+
+    df["Deltaabs"] = abs(df['Delta'].astype(float))
+    df["Posizione"] = df['Posizione'].astype(int)
+    df["P&L non realizzato"] = df['P&L non realizzato'].astype(str)
+    df["P&L non realizzato_float"] = df['P&L non realizzato'].str.extract(
+        r"(\d+\.\d+)")
+    df["P&L non realizzato_float"] = df["P&L non realizzato_float"].astype(float)
+          
+    # metto il campo P&L non realizzato in prima posizione
+    df = df[['P&L non realizzato', 'Strumento_finanziario', 'Giorni_rimanenti', 'Ultimo', 'Posizione',
+                'Delta', 'Deltaabs', 'Variazione %', 'Modifica']]
+        
+    # elimino eventuali caratteri , da P&L non realizzato
+    df['P&L non realizzato'] = df['P&L non realizzato'].str.replace(',', '')
+    df['P&L non realizzato'] = df['P&L non realizzato'].astype(float)
+    
+    # eseguo la selezione
+    # prendo quelli con deltaabs > 0.5 e P/L non realizzato > 0
+    df1 = df.loc[(df['Deltaabs'] < 0.16499999) & (df['Posizione'] < 0) & (df['P&L non realizzato'] > 100)]
 
     # li ordino
     df4 = df1.sort_values(by=['P&L non realizzato'],  ascending=False)
@@ -1929,7 +1974,7 @@ def analisi_dei_movimenti_anno(request):
         df['Simbolo'].str.split(' ').str[1]
     
     # prendo solo quelli che hanno il simbolo solo_mese uguale a 'AAPL 17FEB23'
-    df = df[df['Simbolo_solo_mese'] == 'MSFT21APR23']
+    df = df[df['Simbolo_solo_mese'] == 'IWM15DEC23']
     
     # li ordino per data ora di esecuzione in modo ascendente
     df.sort_values(by=['Data/ora'], inplace=True, ascending=True)
