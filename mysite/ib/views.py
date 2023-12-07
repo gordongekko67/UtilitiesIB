@@ -821,7 +821,7 @@ def analisi_trade_scadenza_simbolo_specifica(request):
     df2.sort_values(by=['Data_scadenza_solo'], inplace=True)
     # raggruppa il dataframe per il campo "Data_scadenza_solo" e somma i valori per ogni gruppo
     
-    trades = df2[df2['Data_scadenza_solo'] == '15DEC23 MSFT']
+    trades = df2[df2['Data_scadenza_solo'] == '15DEC23 IWM']
     # metti i totali a fine dataframe
     trades.loc['Totale'] = trades.sum(numeric_only=True, axis=0)
 
@@ -2072,6 +2072,49 @@ def analisi_dei_movimenti_anno_3(request):
     
 
     return render(request, "index4.html", {'trades': trades})
+
+
+def analisi_dei_movimenti_anno_4(request):
+    template = loader.get_template('index4.html')
+    # inporto df
+    df = pd.read_csv('Movimenti_anno.csv')
+    print(df)
+
+      
+    # elimino le righe che nella colonna 'Header' non sono di tipo data
+    df = df[df['Header'] == 'Data']
+
+    # elimino le prime 4 colonne che non mi servono
+    df = df.drop(['Dettaglio eseguiti', 'Tipo di attivo',
+                    'Header', 'DataDiscriminator'], axis=1)
+
+
+    # estarggo il primo campo di  simbolo
+    df['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
+    # prendo solo quelli che hanno  simbolo = a 
+    df = df[df['Simbolo_solo'] == 'IWM']
+
+    # li ordino per data ora di esecuzione in modo ascendente
+    df.sort_values(by=['Data/ora'], inplace=True, ascending=True)
+
+    avviso = 'Attenzione i totali non sono completi in quanto mancano le opzioni comprate andate in scadenza'
+    # faccio un totale finale di P/L realizzato
+    totale_pl_realizzato = 0
+    # arrotondo a due decimali
+    totale_pl_realizzato = round(totale_pl_realizzato, 2)  
+
+
+
+    # alla fine del data frame aggiungo avvio e totale al dataframe
+    # la aggiungo con il comando concat
+    df = pd.concat([df, pd.DataFrame([[avviso, totale_pl_realizzato]], columns=['Data/ora', 'P/L realizzato'])], ignore_index=True)
+
+    trades = df
+    
+
+    return render(request, "index4.html", {'trades': trades})
+
+
 
 
 
