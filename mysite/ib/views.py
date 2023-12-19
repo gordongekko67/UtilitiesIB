@@ -2121,7 +2121,7 @@ def analisi_dei_movimenti_anno_4(request):
     # estarggo il primo campo di  simbolo
     df['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
     # prendo solo quelli che hanno  simbolo = a 
-    df = df[df['Simbolo_solo'] == 'JNJ']
+    df = df[df['Simbolo_solo'] == 'AXP']
 
     # li ordino per data ora di esecuzione in modo ascendente
     df.sort_values(by=['Data/ora'], inplace=True, ascending=True)
