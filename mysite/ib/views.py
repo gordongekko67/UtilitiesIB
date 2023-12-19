@@ -1240,6 +1240,35 @@ def calcolo_theta_portafoglio(request):
     return render(request, "index7.html", {'fruits': fruits})
 
 
+def analisi_delle_LEAP_options(request):
+    template = loader.get_template('index7.html')
+    # inporto df
+    df = pd.read_csv('portfolio.csv')
+
+    # aggiustamenti colonne e dati
+    df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
+                "Giorni restanti all'UGT": "Giorni_rimanenti"}, inplace=True)
+    
+    #  giorni rimanaenti deve essere convertito in in int
+    df['Giorni_rimanenti'] = df['Giorni_rimanenti'].astype(int)
+
+    # prendo quelli che hanno giorni rimanenti > 100
+    df2 = df.loc[(df['Giorni_rimanenti'] > 100)]
+
+    # li ordino per delta 
+    
+    df2.sort_values(by=['Delta'], inplace=True, ascending=False)
+    
+    
+    # emissione videata
+    trades = df2
+    return render(request, "index4.html", {'trades': trades})
+
+
+
+
+
+
 def calcolo_totale_valore_temporale(request):
     template = loader.get_template('index7.html')
     # inporto df
