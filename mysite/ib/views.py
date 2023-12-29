@@ -2037,7 +2037,7 @@ def analisi_dei_movimenti_anno_2(request):
     df['Data scadenza'] = df['Simbolo'].str.split(' ').str[1]
 
     # prendo solo quelli che hanno  data scadenza = 201023
-    df = df[df['Data scadenza'] == '19JAN24']
+    df = df[df['Data scadenza'] == '16FEB24']
 
     # li ordino per data ora di esecuzione in modo ascendente
     df.sort_values(by=['Data/ora'], inplace=True, ascending=True)
