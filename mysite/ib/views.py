@@ -2080,7 +2080,7 @@ def analisi_dei_movimenti_anno_3(request):
     # estarggo il primo campo di  simbolo
     df['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
     # prendo solo quelli che hanno  simbolo = a 
-    df = df[df['Simbolo_solo'] == 'KO']
+    df = df[df['Simbolo_solo'] == 'IWM']
 
     # li ordino per data ora di esecuzione in modo ascendente
     df.sort_values(by=['Data/ora'], inplace=True, ascending=True)
