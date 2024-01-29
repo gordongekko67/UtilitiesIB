@@ -2003,7 +2003,7 @@ def analisi_dei_movimenti_anno(request):
         df['Simbolo'].str.split(' ').str[1]
     
     # prendo solo quelli che hanno il simbolo solo_mese uguale a 'AAPL 17FEB23'
-    df = df[df['Simbolo_solo_mese'] == 'AXP16FEB24']
+    df = df[df['Simbolo_solo_mese'] == 'MSFT16FEB24']
     
     # li ordino per data ora di esecuzione in modo ascendente
     df.sort_values(by=['Data/ora'], inplace=True, ascending=True)
@@ -2121,7 +2121,7 @@ def analisi_dei_movimenti_anno_4(request):
     # estarggo il primo campo di  simbolo
     df['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
     # prendo solo quelli che hanno  simbolo = a 
-    df = df[df['Simbolo_solo'] == 'CVX']
+    df = df[df['Simbolo_solo'] == 'AXP']
 
     # li ordino per data ora di esecuzione in modo ascendente
     df.sort_values(by=['Data/ora'], inplace=True, ascending=True)
