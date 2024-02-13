@@ -556,6 +556,95 @@ def analisi_trade_scadenza(request):
     # emissione videata
     return render(request, "index4.html", {'trades': trades})
 
+
+def analisi_trade_scadenza_2(request):
+    df = pd.read_csv('Analisi_trade.csv')
+    df2 = df.drop(
+        ["Sommario profitti e perdite Realizzati e Non realizzati", "Header"], axis=1)
+
+    df2['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
+    df2['Simbolo_opzione'] = df['Simbolo'].str.split(
+        ' ').str[0] + df['Simbolo'].str.split(' ').str[1]
+    df2.sort_values(by=['Simbolo_opzione'], inplace=True)
+
+    print(df2)
+
+    # prendo il quarto elemento di Simbolo che sarebbe se CALL o PUT
+    df2['Tipo_CALL_PUT'] = df['Simbolo'].str.split(' ').str[3]    
+
+    # estraggo il campo scadenza
+    df2['Scadenza'] = df['Simbolo'].str.split(' ').str[1]   
+
+    df2[(df2.Scadenza == '15DEC23') | (df2.Scadenza == '19JAN24') | (df2.Scadenza == '16FEB24') | (df2.Scadenza == '15MAR24')]
+
+
+    # elimino delle righe che non mi servono 
+    df2 = df2[~((df2.Simbolo_solo == 'IWM') & (df2.Scadenza == '15MAR24'))]
+    df2 = df2[~((df2.Simbolo_solo == 'JNJ') & (df2.Scadenza == '21JUN24'))]
+    df2 = df2[~((df2.Simbolo_solo == 'MRK') & (df2.Scadenza == '19JAN24'))]
+   
+
+
+    print(df2)
+
+
+    # raggruppa il dataframe per il campo "Simbolo_opzione" e somma i valori per ogni gruppo
+    df_grouped = df2.groupby('Simbolo_opzione').agg(
+        {'Realizzato Totale': 'sum', 'Non realizzato Totale': 'sum', 'Totale': 'sum'}).reset_index()
+
+    trades0 = df_grouped[['Simbolo_opzione',
+                          'Realizzato Totale', 'Non realizzato Totale', 'Totale']]
+    trades = trades0.sort_values(by=['Totale'],  ascending=True)
+
+    # vorrei solo aggiungere un contatopre di riga a trades per poterlo usare in html come indice sequenziale
+    # per vedere quante righe ho in totale
+    trades['contatore'] = range(1, len(trades) + 1)
+    # perfetto solo il valore dovrebbe essere allineato a destra
+    trades['contatore'] = trades['contatore'].astype(str).str.rjust(3, '0')
+
+     # faccio una somma finale per avere il totale del realizzato e non realizzato Totale
+    trades.loc['Totale'] = trades.sum(numeric_only=True, axis=0)
+
+    '''
+    # copio il datframe in un altro per poterlo modificare con solo totale
+    trades2 = trades.copy()
+    # lascio solo la colonna totale
+    trades2 = trades2[['Simbolo_opzione', 'Totale']]
+    
+    # lo trasformo in numeri con due decimali per la visulaizzazione solo 
+    trades2['Totale'] = trades2['Totale'].round(2)
+    # lo visualizzo con matplotlib
+    trades2.plot.bar(x='Simbolo_opzione', y=['Totale'], rot=0, figsize=(15, 10))
+    # faccio un diagramma a punti
+    #trades2.plot(x='Simbolo_opzione', y=['Totale'], kind='scatter', figsize=(15, 10))
+
+
+    print(trades2)
+
+    # visualizzo trade2
+    plt.show()
+    
+    # salvo il grafico
+    plt.savefig('scadenza.png')
+   '''
+       
+
+    # emissione videata
+    return render(request, "index4.html", {'trades': trades})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def analisi_trade_scadenza_PUTCALL(request):
     df = pd.read_csv('Analisi_trade.csv')
     df2 = df.drop(
@@ -2003,7 +2092,7 @@ def analisi_dei_movimenti_anno(request):
         df['Simbolo'].str.split(' ').str[1]
     
     # prendo solo quelli che hanno il simbolo solo_mese uguale a 'AAPL 17FEB23'
-    df = df[df['Simbolo_solo_mese'] == 'MRK15MAR24']
+    df = df[df['Simbolo_solo_mese'] == 'QQQ16FEB24']
     
     # li ordino per data ora di esecuzione in modo ascendente
     df.sort_values(by=['Data/ora'], inplace=True, ascending=True)
