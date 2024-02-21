@@ -2207,13 +2207,19 @@ def analisi_dei_movimenti_anno_4(request):
                     'Header', 'DataDiscriminator'], axis=1)
 
 
-    # estarggo il primo campo di  simbolo
+    # estarggo il primo campo di simbolo
     df['Simbolo_solo'] = df['Simbolo'].str.split(' ').str[0]
-    # prendo solo quelli che hanno  simbolo = a 
-    df = df[df['Simbolo_solo'] == 'AXP']
 
-    # li ordino per data ora di esecuzione in modo ascendente
-    df.sort_values(by=['Data/ora'], inplace=True, ascending=True)
+    # estarggo il secondo campo di simbolo
+    df['Data scadenza'] = df['Simbolo'].str.split(' ').str[1]
+
+    # prendo solo quelli che hanno  data scadenza = 201023
+    df = df[df['Data scadenza'] == '15MAR24']
+
+     
+    # li ordino per Simbolo_solo, Data scadenza, e Data/ora in modo ascendente
+    df.sort_values(by=['Simbolo_solo', 'Data/ora'], inplace=True, ascending=True)
+
 
     avviso = 'Attenzione i totali non sono completi in quanto mancano le opzioni comprate andate in scadenza'
     # faccio un totale finale di P/L realizzato
