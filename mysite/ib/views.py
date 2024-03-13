@@ -2092,7 +2092,7 @@ def analisi_dei_movimenti_anno(request):
         df['Simbolo'].str.split(' ').str[1]
     
     # prendo solo quelli che hanno il simbolo solo_mese uguale a 'AAPL 17FEB23'
-    df = df[df['Simbolo_solo_mese'] == 'SPY15MAR24']
+    df = df[df['Simbolo_solo_mese'] == 'QQQ15MAR24']
     
     # li ordino per data ora di esecuzione in modo ascendente
     df.sort_values(by=['Data/ora'], inplace=True, ascending=True)
@@ -2111,9 +2111,15 @@ def analisi_dei_movimenti_anno_2(request):
     template = loader.get_template('index4.html')
     # inporto df
     df = pd.read_csv('Movimenti_anno.csv')
-    print(df)
 
-      
+
+    # Seleziona solo le righe dove il valore della prima colonna non è "Statement"
+    df = df[df.iloc[:, 0] != "Statement"]
+
+    # Salva il DataFrame risultante in un nuovo file CSV
+    df.to_csv('Movimenti_anno.csv', index=False)
+
+          
     # elimino le righe che nella colonna 'Header' non sono di tipo data
     df = df[df['Header'] == 'Data']
 
@@ -2126,7 +2132,7 @@ def analisi_dei_movimenti_anno_2(request):
     df['Data scadenza'] = df['Simbolo'].str.split(' ').str[1]
 
     # prendo solo quelli che hanno  data scadenza = 201023
-    df = df[df['Data scadenza'] == '16FEB24']
+    df = df[df['Data scadenza'] == '15MAR24']
 
     # li ordino per data ora di esecuzione in modo ascendente
     df.sort_values(by=['Data/ora'], inplace=True, ascending=True)
@@ -2197,6 +2203,14 @@ def analisi_dei_movimenti_anno_4(request):
     # inporto df
     df = pd.read_csv('Movimenti_anno.csv')
     print(df)
+
+
+    # Seleziona solo le righe dove il valore della prima colonna non è "Statement"
+    df = df[df.iloc[:, 0] != "Statement"]
+
+    # Salva il DataFrame risultante in un nuovo file CSV
+    df.to_csv('Movimenti_anno.csv', index=False)
+
 
       
     # elimino le righe che nella colonna 'Header' non sono di tipo data
