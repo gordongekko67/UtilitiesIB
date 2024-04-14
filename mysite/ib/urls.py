@@ -43,6 +43,7 @@ urlpatterns = [
     path('index17', views.analisi_trade_dettaglio_simbolo_ancora_aperte),
     path('index99', views.analisi_di_portafoglio),
     path('index96', views.analisi_di_portafoglio_2),
+    path('index95', views.analisi_di_portafoglio_3),
     path('index97', views.elevatissimo_rischio_di_assegnazione),
     path('index98', views.nuova_analisi_di_portafoglio),
     path('index100',views.ultimate_analisi_di_portafoglio),

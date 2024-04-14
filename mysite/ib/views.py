@@ -2434,7 +2434,12 @@ def analisi_di_portafoglio_parziale(request):
 
     
         
-def analisi_di_portafoglio_2(request):
+
+
+'''
+
+
+
 
     template = loader.get_template('index4b.html')
     # inporto df
@@ -2463,14 +2468,158 @@ def analisi_di_portafoglio_2(request):
     # Raggruppa per Simbolo_soloScadenzae calcola la somma di Deltaportafoglio
     df2 = df.groupby('Simbolo_soloScadenza').agg({'Delta portafoglio': 'sum'}).reset_index()
 
-    df2["Delta portafoglio"] = df['Delta portafoglio'].abs
+    df2['delta_portafoglio_abs'] = df2['Delta portafoglio'].abs()
+    df2["delta_portafoglio_abs"] = df2['delta_portafoglio_abs'].astype(float)
    
     # stampo a video il dataframe
     print(df2)
 
-    trades = df2
+    # Filtraggio delle righe con delta_portafoglio_abs maggiore di 20
+    filtered_df1 = df2[df2['delta_portafoglio_abs'] > 20]
+
+    # Raggruppa per Simbolo
+    df3 = df.groupby('Simbolo').agg({'Delta portafoglio': 'sum'}).reset_index()
+
+    df3['delta_portafoglio_abs'] = df3['Delta portafoglio'].abs()
+    df3["delta_portafoglio_abs"] = df3['delta_portafoglio_abs'].astype(float)
+   
+    # stampo a video il dataframe
+    print(df3)
+
+    # Filtraggio delle righe con delta_portafoglio_abs maggiore di 20
+    filtered_df3 = df3[df3['delta_portafoglio_abs'] > 20]
+
+    # unisco i due data frame
+
+
+    trades =  filtered_df1 + filtered_df3
         
 
     return render(request, "index4.html", {'trades': trades})
     
+'''
+
+
+def analisi_di_portafoglio_2(request):
+
+
+    template = loader.get_template('index4b.html')
+    # inporto df
+    df = pd.read_csv('portfolio.csv')
+
+    # aggiustamenti colonne e dati
+     # elimino eventuali caratteri , da P&L non realizzato
+    df['Val mkt'] = df['Val mkt'].str.replace(',', '')
+    # valore di mercato Val mrt lo porto ad essere un valore float
+    df["Val mkt"] = df['Val mkt'].astype(float)
+   
+    # estraggo il primo campo di simbolo 
+    df['Simbolo_solo'] = df['Strumento finanziario'].str.split(' ').str[0]
+    # ordino per simbolo_solo
+
+    # converto delta di portafoglio in un numero float
+    df["Delta portafoglio"] = df['Delta portafoglio'].astype(float)
+
+    # estraggo il secondo campo scadenza
+    df['Scadenza'] = df['Strumento finanziario'].str.split(' ').str[1]
+
+    #unisco i due campi simbolo_solo + scadenza
+    df['Simbolo_soloScadenza'] = df['Simbolo_solo'] + ' ' + df['Scadenza']
+
+
+    # Raggruppa per Simbolo_soloScadenzae calcola la somma di Deltaportafoglio
+    df2 = df.groupby('Simbolo_soloScadenza').agg({'Delta portafoglio': 'sum'}).reset_index()
+
+    df2['delta_portafoglio_abs'] = df2['Delta portafoglio'].abs()
+    df2["delta_portafoglio_abs"] = df2['delta_portafoglio_abs'].astype(float)
+   
+    # stampo a video il dataframe
+    print(df2)
+
+    # Filtraggio delle righe con delta_portafoglio_abs maggiore di 20
+    filtered_df1 = df2[df2['delta_portafoglio_abs'] > 20]
+
+    # Raggruppa per Simbolo
+    df3 = df.groupby('Simbolo_solo').agg({'Delta portafoglio': 'sum'}).reset_index()
+
+    df3['delta_portafoglio_abs'] = df3['Delta portafoglio'].abs()
+    df3["delta_portafoglio_abs"] = df3['delta_portafoglio_abs'].astype(float)
+   
+    # stampo a video il dataframe
+    print(df3)
+
+    # Filtraggio delle righe con delta_portafoglio_abs maggiore di 20
+    filtered_df3 = df3[df3['delta_portafoglio_abs'] > 20]
+
+    # unisco i due data frame
+
+
+    trades =  filtered_df3        
+
+    return render(request, "index4.html", {'trades': trades})
+
+
+
+def analisi_di_portafoglio_3(request):
+
+
+    template = loader.get_template('index4b.html')
+    # inporto df
+    df = pd.read_csv('portfolio.csv')
+
+    # aggiustamenti colonne e dati
+     # elimino eventuali caratteri , da P&L non realizzato
+    df['Val mkt'] = df['Val mkt'].str.replace(',', '')
+    # valore di mercato Val mrt lo porto ad essere un valore float
+    df["Val mkt"] = df['Val mkt'].astype(float)
+   
+    # estraggo il primo campo di simbolo 
+    df['Simbolo_solo'] = df['Strumento finanziario'].str.split(' ').str[0]
+    # ordino per simbolo_solo
+
+    # converto delta di portafoglio in un numero float
+    df["Delta portafoglio"] = df['Delta portafoglio'].astype(float)
+
+    # estraggo il secondo campo scadenza
+    df['Scadenza'] = df['Strumento finanziario'].str.split(' ').str[1]
+
+    #unisco i due campi simbolo_solo + scadenza
+    df['Simbolo_soloScadenza'] = df['Simbolo_solo'] + ' ' + df['Scadenza']
+
+
+    # Raggruppa per Simbolo_soloScadenzae calcola la somma di Deltaportafoglio
+    df2 = df.groupby('Simbolo_soloScadenza').agg({'Delta portafoglio': 'sum'}).reset_index()
+
+    df2['delta_portafoglio_abs'] = df2['Delta portafoglio'].abs()
+    df2["delta_portafoglio_abs"] = df2['delta_portafoglio_abs'].astype(float)
+   
+    # stampo a video il dataframe
+    print(df2)
+
+    # Filtraggio delle righe con delta_portafoglio_abs maggiore di 20
+    filtered_df1 = df2[df2['delta_portafoglio_abs'] > 20]
+
+    # Raggruppa per Simbolo
+    df3 = df.groupby('Simbolo_solo').agg({'Delta portafoglio': 'sum'}).reset_index()
+
+    df3['delta_portafoglio_abs'] = df3['Delta portafoglio'].abs()
+    df3["delta_portafoglio_abs"] = df3['delta_portafoglio_abs'].astype(float)
+   
+    # stampo a video il dataframe
+    print(df3)
+
+    # Filtraggio delle righe con delta_portafoglio_abs maggiore di 20
+    filtered_df3 = df3[df3['delta_portafoglio_abs'] > 20]
+
+    # unisco i due data frame
+
+
+    trades =  filtered_df1        
+
+    return render(request, "index4.html", {'trades': trades})
+
+
+
+
+
 
