@@ -2091,8 +2091,10 @@ def analisi_dei_movimenti_anno(request):
     df['Simbolo_solo_mese'] = df['Simbolo'].str.split(' ').str[0] + \
         df['Simbolo'].str.split(' ').str[1]
     
+    print(df)
+    
     # prendo solo quelli che hanno il simbolo solo_mese uguale a 'AAPL 17FEB23'
-    df = df[df['Simbolo_solo_mese'] == 'TXN21JUN24']
+    df = df[df['Simbolo_solo_mese'] == 'JNJ21JUN24']
     
     # li ordino per data ora di esecuzione in modo ascendente
     df.sort_values(by=['Data/ora'], inplace=True, ascending=True)
@@ -2132,7 +2134,7 @@ def analisi_dei_movimenti_anno_2(request):
     df['Data scadenza'] = df['Simbolo'].str.split(' ').str[1]
 
     # prendo solo quelli che hanno  data scadenza = 201023
-    df = df[df['Data scadenza'] == '19APR24']
+    df = df[df['Data scadenza'] == '21JUN24']
 
     # li ordino per data ora di esecuzione in modo ascendente
     df.sort_values(by=['Data/ora'], inplace=True, ascending=True)
