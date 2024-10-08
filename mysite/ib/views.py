@@ -70,7 +70,7 @@ def show(request):
 def importa_portfolio_ITM(request):
     template = loader.get_template('index4.html')
     # inporto df
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
 
     # aggiustamenti colonne e dati
     df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
@@ -100,7 +100,7 @@ def importa_portfolio_ITM(request):
 def importa_portfolio_ITM_valore_temporale(request):
     template = loader.get_template('index4.html')
     # inporto df
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
 
     # aggiustamenti colonne e dati
     df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
@@ -150,7 +150,7 @@ def importa_portfolio_ITM_valore_temporale(request):
 def importa_portfolio_ITM_valore_temporale_2(request):
     template = loader.get_template('index4.html')
     # inporto df
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
 
     # aggiustamenti colonne e dati
     df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
@@ -193,7 +193,7 @@ def importa_portfolio_ITM_valore_temporale_2(request):
 def importa_portfolio_ITM_valore_temporale_percentuale(request):
     template = loader.get_template('index4.html')
     # inporto df
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
 
     # aggiustamenti colonne e dati
     df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
@@ -299,7 +299,7 @@ def importa_portfolio_ITM_valore_temporale_percentuale(request):
 def elevatissimo_rischio_di_assegnazione(request):
     template = loader.get_template('index5.html')
     # inporto df
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
     df2 = pd.DataFrame()
 
     # aggiustamenti colonne e dati
@@ -342,7 +342,7 @@ def elevatissimo_rischio_di_assegnazione(request):
 def importa_portfolio_con_rischio_di_assegnazione(request):
     template = loader.get_template('index5.html')
     # inporto df
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
     df2 = pd.DataFrame()
 
     
@@ -376,7 +376,7 @@ def importa_portfolio_con_rischio_di_assegnazione(request):
 def importa_portfolio_da_rollare_profitto(request):
     template = loader.get_template('index4.html')
     # inporto df
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
 
     # aggiustamenti colonne e dati
     df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
@@ -400,7 +400,7 @@ def importa_portfolio_da_rollare_profitto(request):
 def analisi_prendere_profitto(request):
     template = loader.get_template('index4.html')
     # inporto df
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
 
     # aggiustamenti colonne e dati
     df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
@@ -442,7 +442,7 @@ def analisi_prendere_profitto_2(request):
     
     template = loader.get_template('index4.html')
     # inporto df
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
 
     # aggiustamenti colonne e dati
     df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
@@ -1020,7 +1020,7 @@ def analisi_bilanciamento_delta(request):
     fruits = ['Totale Delta Portafoglio  ']
     template = loader.get_template('index4.html')
     # inporto df
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
 
     # aggiustamenti colonne e dati
     df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
@@ -1058,7 +1058,7 @@ def analisi_bilanciamento_delta_titolo_scadenza(request):
     fruits = ['Totale Delta Portafoglio  ']
     template = loader.get_template('index4.html')
     # inporto df
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
 
     # aggiustamenti colonne e dati
     df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
@@ -1103,7 +1103,7 @@ def analisi_bilanciamento_delta_titolo_scadenza(request):
 def analisi_opzioni_potenzialmente_da_rollare(request):
     template = loader.get_template('index5.html')
     # inporto df
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
     df2 = pd.DataFrame()
 
     # aggiustamenti colonne e dati
@@ -1141,7 +1141,7 @@ def analisi_opzioni_potenzialmente_da_rollare(request):
 def opzioni_da_vedere_se_andare_invertito(request):
     template = loader.get_template('index5.html')
     # inporto df
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
     df2 = pd.DataFrame()
 
     # aggiustamenti colonne e dati
@@ -1207,7 +1207,7 @@ def opzioni_da_vedere_se_andare_invertito(request):
 def analisi_di_portafoglio(request):
     template = loader.get_template('index7.html')
     # inporto df
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
     print(df)
 
     # aggiustamenti colonne e dati
@@ -1320,7 +1320,7 @@ def analisi_di_portafoglio(request):
 def calcolo_theta_portafoglio(request):
     template = loader.get_template('index7.html')
     # inporto df
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
 
     Total = df['Theta portafoglio'].sum()
 
@@ -1332,7 +1332,7 @@ def calcolo_theta_portafoglio(request):
 def analisi_delle_LEAP_options(request):
     template = loader.get_template('index7.html')
     # inporto df
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
 
     # aggiustamenti colonne e dati
     df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
@@ -1361,7 +1361,7 @@ def analisi_delle_LEAP_options(request):
 def calcolo_totale_valore_temporale(request):
     template = loader.get_template('index7.html')
     # inporto df
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
 
     df["Posizione_int"] = df['Posizione'].astype(int)
     df["Valore temporale (%)"].replace("", 99.999, inplace=True)
@@ -1383,7 +1383,7 @@ def calcolo_totale_valore_temporale(request):
 def calcolo_totale_valore_temporale_residuo_per_scadenza(request):
     template = loader.get_template('index4.html')
     # inporto df
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
 
     df["Posizione_int"] = df['Posizione'].astype(int)
     df["Valore temporale (%)"].replace("", 99.999, inplace=True)
@@ -1486,7 +1486,7 @@ def nuova_analisi_di_portafoglio(request):
     operazioni = []
 
     # inporto df
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
 
     # aggiustamenti colonne e dati
     df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
@@ -1699,7 +1699,7 @@ def ultimate_analisi_di_portafoglio(request):
     # inizializza schiera errori
     fruits = []
     # inizializza il dataframe
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
 
     # devo estrarre il primo campo di simbolo
     df['Simbolo_solo'] = df['Strumento finanziario'].str.split(' ').str[0]
@@ -1796,7 +1796,7 @@ def ultimate_analisi_di_portafoglio_2(request):
     # inizializza il template
     template = loader.get_template('index4.html')
     # inizializza il dataframe
-    df1 = pd.read_csv('portfolio.csv')
+    df1 = pd.read_csv('portfoliook.csv')
 
     trades = df1
     print(trades)
@@ -1942,7 +1942,7 @@ def analisi_operazioni_di_un_determinato_mese_esecuzione(request):
     return render(request, "index4.html", {'trades': trades})
 
 def visualizza_tutte_le_opzioni_long(request):
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
 
     # aggiustamenti colonne e dati
     df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
@@ -1960,7 +1960,7 @@ def visualizza_tutte_le_opzioni_long(request):
 
 def analisi_opzioni_con_il_maggiore_gamma(request):
 
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
 
     # aggiustamenti colonne e dati
     df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
@@ -1995,7 +1995,7 @@ def analisi_opzioni_con_il_maggiore_gamma(request):
 
 def analisi_opzioni_con_il_maggiore_vega(request):
 
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
 
     # aggiustamenti colonne e dati
     df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
@@ -2026,7 +2026,7 @@ def analisi_opzioni_con_il_maggiore_vega(request):
 
 
 def analisi_opzioni_con_il_minore_Theta(request):
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
 
     # aggiustamenti colonne e dati
     df.rename(columns={"Strumento finanziario": "Strumento_finanziario",
@@ -2366,7 +2366,7 @@ def analisi_operazioni_vendute_comprate(request):
 def analisi_posizioni_da_rollare_prossima_scadenza(request):
     template = loader.get_template('index4b.html')
     # inporto df
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
     # aggiustamenti colonne e dati
      # elimino eventuali caratteri , da P&L non realizzato
     df['Val mkt'] = df['Val mkt'].str.replace(',', '')
@@ -2406,7 +2406,7 @@ def analisi_di_portafoglio_parziale(request):
     
     template = loader.get_template('index4b.html')
     # inporto df
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
     # aggiustamenti colonne e dati
      # elimino eventuali caratteri , da P&L non realizzato
     df['Val mkt'] = df['Val mkt'].str.replace(',', '')
@@ -2445,7 +2445,7 @@ def analisi_di_portafoglio_2(request):
 
     template = loader.get_template('index4b.html')
     # inporto df
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
 
     # aggiustamenti colonne e dati
      # elimino eventuali caratteri , da P&L non realizzato
@@ -2505,7 +2505,7 @@ def analisi_di_portafoglio_3(request):
 
     template = loader.get_template('index4b.html')
     # inporto df
-    df = pd.read_csv('portfolio.csv')
+    df = pd.read_csv('portfoliook.csv')
 
     # aggiustamenti colonne e dati
      # elimino eventuali caratteri , da P&L non realizzato
