@@ -2560,6 +2560,23 @@ def analisi_di_portafoglio_3(request):
 
 
 
+def analisi_di_anno_2024(request):
 
 
+    template = loader.get_template('index4b.html')
+    # inporto df
+    df = pd.read_csv('movimenti_anno_2024op.csv')
+
+    df_filtrato = df[~df['Header'].isin(['SubTotal', 'Total'])]
+
+
+    # Calcola la somma della colonna 'P/L realizzato'
+    somma_PL = df_filtrato['P/L realizzato'].sum()
+
+    print(somma_PL)
+
+
+    trades =  df_filtrato        
+
+    return render(request, "index4.html", {'trades': trades})
 
