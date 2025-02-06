@@ -2094,7 +2094,7 @@ def analisi_dei_movimenti_anno(request):
     print(df)
     
     # prendo solo quelli che hanno il simbolo solo_mese uguale a 'AAPL 17FEB23'
-    df = df[df['Simbolo_solo_mese'] == 'NVDA21FEB25']
+    df = df[df['Simbolo_solo_mese'] == 'MSFT21MAR25']
     
     # li ordino per data ora di esecuzione in modo ascendente
     df.sort_values(by=['Data/ora'], inplace=True, ascending=True)
